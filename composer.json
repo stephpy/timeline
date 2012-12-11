@@ -15,6 +15,9 @@
     "require-dev": {
         "atoum/atoum": "dev-master"
     },
+    "suggest": {
+        "knplabs/knp-components": "Pagination"
+    },
     "autoload":     {
         "psr-0": {
             "Spy\\Timeline": "src/"

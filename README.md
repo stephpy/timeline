@@ -1,6 +1,6 @@
 Spy Timeline
 ============
 
-Standalone library which ATM represents API from [SpyTimelineBundle](https://github.com/stephpy/TimelineBundle)
+Standalone library to make timeline.
 
-Wait for having a standalone library.
+Wait for documentation.
