@@ -53,7 +53,10 @@ class FilterManager implements FilterManagerInterface
         return $collection;
     }
 
-    protected function sortFilters()
+    /**
+     * Sort filters by priority.
+     */
+    public function sortFilters()
     {
         usort($this->filters, function($a, $b) {
             $a = $a->getPriority();

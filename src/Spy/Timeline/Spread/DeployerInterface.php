@@ -2,10 +2,11 @@
 
 namespace Spy\Timeline\Spread;
 
-use Spy\Timeline\Model\TimelineInterface;
-use Spy\Timeline\Model\ActionInterface;
 use Spy\Timeline\Driver\ActionManagerInterface;
 use Spy\Timeline\Driver\TimelineManagerInterface;
+use Spy\Timeline\Model\ActionInterface;
+use Spy\Timeline\Model\TimelineInterface;
+use Spy\Timeline\Notification\NotificationManagerInterface;
 
 /**
  * Deployer
@@ -27,6 +28,11 @@ interface DeployerInterface
      * @param string $delivery delivery
      */
     public function setDelivery($delivery);
+
+    /**
+     * @param NotificationManagerInterface $notificationManager notificationManager
+     */
+    public function setNotificationManager(NotificationManagerInterface $notificationManager);
 
     /**
      * @return boolean

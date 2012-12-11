@@ -50,20 +50,18 @@ class Deployer implements DeployerInterface
     protected $timelineManager;
 
     /**
-     * @param NotificationManagerInterface $notificationManager notificationManager
-     * @param TimelineManagerInterface     $timelineManager     timelineManager
-     * @param EntryCollection              $entryCollection     entryCollection
-     * @param boolean                      $onSubject           onSubject
-     * @param integer                      $batchSize           batch size
+     * @param TimelineManagerInterface $timelineManager     timelineManager
+     * @param EntryCollection          $entryCollection     entryCollection
+     * @param boolean                  $onSubject           onSubject
+     * @param integer                  $batchSize           batch size
      */
-    public function __construct(NotificationManagerInterface $notificationManager, TimelineManagerInterface $timelineManager, EntryCollection $entryCollection, $onSubject = true, $batchSize = 50)
+    public function __construct(TimelineManagerInterface $timelineManager, EntryCollection $entryCollection, $onSubject = true, $batchSize = 50)
     {
-        $this->notificationManager = $notificationManager;
-        $this->timelineManager     = $timelineManager;
-        $this->entryCollection     = $entryCollection;
-        $this->spreads             = new \ArrayIterator();
-        $this->onSubject           = $onSubject;
-        $this->batchSize           = (int) $batchSize;
+        $this->timelineManager = $timelineManager;
+        $this->entryCollection = $entryCollection;
+        $this->spreads         = new \ArrayIterator();
+        $this->onSubject       = (bool) $onSubject;
+        $this->batchSize       = (int) $batchSize;
     }
 
     /**
@@ -83,8 +81,12 @@ class Deployer implements DeployerInterface
         $i = 1;
         foreach ($results as $context => $entries) {
             foreach ($entries as $entry) {
+
                 $this->timelineManager->createAndPersist($action, $entry->getSubject(), $context, TimelineInterface::TYPE_TIMELINE);
-                $this->notificationManager->notify($action, $context, $entry->getSubject());
+
+                if ($this->notificationManager) {
+                    $this->notificationManager->notify($action, $context, $entry->getSubject());
+                }
 
                 if (($i % $this->batchSize) == 0) {
                     $this->timelineManager->flush();
@@ -93,7 +95,7 @@ class Deployer implements DeployerInterface
             }
         }
 
-        if (count($results)) {
+        if ($i > 0) {
             $this->timelineManager->flush();
         }
 
@@ -103,6 +105,14 @@ class Deployer implements DeployerInterface
         $actionManager->updateAction($action);
 
         $this->entryCollection->clear();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setNotificationManager(NotificationManagerInterface $notificationManager)
+    {
+        $this->notificationManager = $notificationManager;
     }
 
     /**

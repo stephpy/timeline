@@ -11,7 +11,7 @@ use Spy\Timeline\Model\ComponentInterface;
  *
  * @author Stephane PY <py.stephane1@gmail.com>
  */
-abstract class AbstractActionManager
+abstract class AbstractActionManager implements ActionManagerInterface
 {
     /**
      * @var DeployerInterface

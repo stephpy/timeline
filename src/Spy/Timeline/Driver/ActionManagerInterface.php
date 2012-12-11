@@ -79,9 +79,9 @@ interface ActionManagerInterface
     public function flushComponents();
 
     /**
-     * @param array $concatIdents array<concat(model,identifier)>
+     * @param array $hashes hashes
      *
      * @return array
      */
-    public function findComponents(array $concatIdents);
+    public function findComponents(array $hashes);
 }
