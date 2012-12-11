@@ -57,14 +57,6 @@ interface ActionInterface
     public function getComponent($type);
 
     /**
-     * @param ComponentInterface  $component            component
-     * @param string              $actionComponentClass actionComponentClass
-     *
-     * @return ActionInterface
-     */
-    public function setSubject(ComponentInterface $component, $actionComponentClass);
-
-    /**
      * @return ComponentInterface|null
      */
     public function getSubject();

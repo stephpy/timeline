@@ -56,6 +56,10 @@ class Entry
     public function buildComponent(ActionComponentInterface $actionComponent)
     {
         $component = $actionComponent->getComponent();
+        if (!is_object($component)) {
+            return;
+        }
+
         $data      = $component->getData();
 
         if (null !== $data

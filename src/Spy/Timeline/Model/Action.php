@@ -62,7 +62,7 @@ class Action implements ActionInterface
      */
     public function __construct()
     {
-        $this->createdAt        = new DateTime();
+        $this->createdAt = new DateTime();
     }
 
     /**
@@ -158,16 +158,6 @@ class Action implements ActionInterface
                 return $actionComponent->getText() ?: $actionComponent->getComponent();
             }
         }
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setSubject(ComponentInterface $component, $actionComponentClass)
-    {
-        $this->addComponent('subject', $component, $actionComponentClass);
-
-        return $this;
     }
 
     /**

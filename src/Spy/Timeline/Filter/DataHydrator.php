@@ -109,8 +109,9 @@ class DataHydrator extends AbstractFilter implements FilterInterface
 
         foreach ($collection as $key => $action) {
             foreach ($action->getActionComponents() as $actionComponent) {
-                if (!$actionComponent->isText() && null === $actionComponent->getComponent()->getData()) {
-                    $hash = $actionComponent->getComponent()->getHash();
+                $component = $actionComponent->getComponent();
+                if (!$actionComponent->isText() && is_object($component) && null === $component->getData()) {
+                    $hash = $component->getHash();
 
                     if (array_key_exists($hash, $componentsLocated) && !empty($componentsLocated[$hash])) {
                         $actionComponent->setComponent($componentsLocated[$hash]);
