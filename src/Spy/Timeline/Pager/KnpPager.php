@@ -30,11 +30,6 @@ class KnpPager implements PagerInterface
      */
     public function __construct(Paginator $paginator, FilterManagerInterface $filterManager)
     {
-        if (null === $paginator) {
-            throw new \LogicException('Please install KnpPagerBundle or disable paginator');
-
-        }
-
         $this->paginator     = $paginator;
         $this->filterManager = $filterManager;
     }
