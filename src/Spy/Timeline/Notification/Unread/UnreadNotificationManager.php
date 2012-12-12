@@ -56,7 +56,7 @@ class UnreadNotificationManager implements NotifierInterface
      * count how many timeline had not be read
      *
      * @param ComponentInterface $subject The subject
-     * @param string             $context      The context
+     * @param string             $context The context
      *
      * @return integer
      */

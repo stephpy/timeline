@@ -55,4 +55,3 @@ class KnpPager implements PagerInterface
         return $this->filterManager->filter($pager);
     }
 }
-

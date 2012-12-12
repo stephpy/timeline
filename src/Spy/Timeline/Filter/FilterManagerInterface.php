@@ -16,4 +16,3 @@ interface FilterManagerInterface
      */
     public function filter($collection);
 }
-

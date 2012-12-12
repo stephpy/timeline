@@ -4,7 +4,6 @@ namespace Spy\Timeline\Filter;
 
 use Spy\Timeline\Filter\DataHydrator\Locator\LocatorInterface;
 use Spy\Timeline\Filter\DataHydrator\Entry;
-use Spy\Timeline\Filter\DataHydrator\Reference;
 use Spy\Timeline\Filter\FilterInterface;
 
 /**

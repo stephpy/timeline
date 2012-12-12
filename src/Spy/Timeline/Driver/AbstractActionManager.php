@@ -26,7 +26,7 @@ abstract class AbstractActionManager implements ActionManagerInterface
         $action = new $this->actionClass();
         $action->setVerb($verb);
 
-        if(!$subject instanceof ComponentInterface AND !is_object($subject)) {
+        if (!$subject instanceof ComponentInterface AND !is_object($subject)) {
             throw new \Exception('Subject must be a ComponentInterface or an object');
         }
 

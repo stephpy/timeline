@@ -75,7 +75,7 @@ class Action implements ActionInterface
 
         if ($component instanceof ComponentInterface) {
             $actionComponent->setComponent($component);
-        } elseif(is_scalar($component)) {
+        } elseif (is_scalar($component)) {
             $actionComponent->setText($component);
         } else {
             throw new \InvalidArgumentException('Component has to be a ComponentInterface or a scalar');
@@ -318,7 +318,7 @@ class Action implements ActionInterface
     }
 
     /**
-     * @param ActionComponentInterface $actionComponents
+     * @param  ActionComponentInterface $actionComponents
      * @return Action
      */
     public function addActionComponent(ActionComponentInterface $actionComponents)

@@ -50,10 +50,10 @@ class Deployer implements DeployerInterface
     protected $timelineManager;
 
     /**
-     * @param TimelineManagerInterface $timelineManager     timelineManager
-     * @param EntryCollection          $entryCollection     entryCollection
-     * @param boolean                  $onSubject           onSubject
-     * @param integer                  $batchSize           batch size
+     * @param TimelineManagerInterface $timelineManager timelineManager
+     * @param EntryCollection          $entryCollection entryCollection
+     * @param boolean                  $onSubject       onSubject
+     * @param integer                  $batchSize       batch size
      */
     public function __construct(TimelineManagerInterface $timelineManager, EntryCollection $entryCollection, $onSubject = true, $batchSize = 50)
     {

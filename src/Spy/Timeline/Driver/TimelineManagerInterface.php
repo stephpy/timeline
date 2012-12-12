@@ -44,8 +44,8 @@ interface TimelineManagerInterface
      * remove all keys from storage
      * This action has to be flushed
      *
-     * @param  ComponentInterface $subject  subject
-     * @param  array  $options      Array of options
+     * @param  ComponentInterface $subject subject
+     * @param  array              $options Array of options
      * @return void
      */
     public function removeAll(ComponentInterface $subject, array $options = array());

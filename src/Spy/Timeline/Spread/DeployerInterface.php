@@ -3,9 +3,7 @@
 namespace Spy\Timeline\Spread;
 
 use Spy\Timeline\Driver\ActionManagerInterface;
-use Spy\Timeline\Driver\TimelineManagerInterface;
 use Spy\Timeline\Model\ActionInterface;
-use Spy\Timeline\Model\TimelineInterface;
 use Spy\Timeline\Notification\NotificationManagerInterface;
 
 /**

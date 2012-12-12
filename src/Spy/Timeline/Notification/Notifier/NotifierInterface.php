@@ -13,9 +13,9 @@ use Spy\Timeline\Model\ComponentInterface;
 interface NotifierInterface
 {
     /**
-     * @param  ActionInterface    $action  action notified
-     * @param  string             $context context notified
-     * @param  ComponentInterface $subject Subject notified
+     * @param ActionInterface    $action  action notified
+     * @param string             $context context notified
+     * @param ComponentInterface $subject Subject notified
      */
     public function notify(ActionInterface $action, $context, ComponentInterface $subject);
 }

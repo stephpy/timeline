@@ -15,7 +15,7 @@ interface ActionComponentInterface
     public function isText();
 
     /**
-     * @param string $id id
+     * @param  string                   $id id
      * @return ActionComponentInterface
      */
     public function setId($id);
@@ -26,7 +26,7 @@ interface ActionComponentInterface
     public function getId();
 
     /**
-     * @param string $type
+     * @param  string          $type
      * @return ActionComponent
      */
     public function setType($type);
@@ -37,7 +37,7 @@ interface ActionComponentInterface
     public function getType();
 
     /**
-     * @param string $text
+     * @param  string          $text
      * @return ActionComponent
      */
     public function setText($text);
@@ -48,7 +48,7 @@ interface ActionComponentInterface
     public function getText();
 
     /**
-     * @param ActionInterface $action
+     * @param  ActionInterface $action
      * @return ActionComponent
      */
     public function setAction(ActionInterface $action);
@@ -59,7 +59,7 @@ interface ActionComponentInterface
     public function getAction();
 
     /**
-     * @param ComponentInterface $component
+     * @param  ComponentInterface $component
      * @return ActionComponent
      */
     public function setComponent(ComponentInterface $component);

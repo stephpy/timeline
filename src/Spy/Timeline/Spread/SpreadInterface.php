@@ -28,4 +28,3 @@ interface SpreadInterface
      */
     public function process(ActionInterface $action, EntryCollection $coll);
 }
-
