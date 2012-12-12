@@ -159,9 +159,9 @@ class Asserter implements CriteriaInterface
     /**
      * {@inheritdoc}
      */
-    public function fromArray(array $datas)
+    public function fromArray(array $data)
     {
-        list ($field, $operator, $value) = $datas['value'];
+        list ($field, $operator, $value) = $data['value'];
 
         return $this->field($field)
             ->create($operator, $value);

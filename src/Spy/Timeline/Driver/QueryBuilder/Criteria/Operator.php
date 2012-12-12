@@ -108,15 +108,17 @@ class Operator implements CriteriaInterface
     /**
      * {@inheritdoc}
      */
-    public function fromArray(array $datas, QueryBuilderFactory $factory)
+    public function fromArray(array $data, QueryBuilderFactory $factory)
     {
         $criterias = array_map(function($v) {
             if ('operator' == $v['type']) {
                 return $factory->createOperatorFromArray($v);
             } elseif ('expr' == $v['type']) {
                 return $factory->createAsserterFromArray($v);
+            } else {
+                throw new \InvalidArgumentException(sprintf('Type "%s" is not supported, use expr or operator.', $v['type']));
             }
-        }, $datas['criterias']);
+        }, $data['criterias']);
 
         $this->setType($data['value']);
         $this->setCriterias($criterias);
