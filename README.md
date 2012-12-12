@@ -5,6 +5,6 @@ Spy Timeline
 
 Standalone library to make timeline.
 
-At this moment, `drivers` are only available on [Symfony 2 bundle](https://github.com/stephpy/TimelineBundle).
+At this moment, only one `driver` is `redis`
 
 Wait for documentation.
