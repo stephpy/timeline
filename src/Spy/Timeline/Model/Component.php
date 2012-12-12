@@ -54,11 +54,9 @@ class Component implements ComponentInterface
     }
 
     /**
-     * @param string $hash hash
-     *
-     * @return ComponentInterface
+     * {@inheritdoc}
      */
-    public static function createFromHash($hash)
+    public function createFromHash($hash)
     {
         $data = explode('#', $hash);
         if (count($data) == 1) {
@@ -68,11 +66,10 @@ class Component implements ComponentInterface
         $model      = array_shift($data);
         $identifier = unserialize(implode('', $data));
 
-        $instance   = new static();
-        $instance->setModel($model);
-        $instance->setIdentifier($identifier);
+        $this->setModel($model);
+        $this->setIdentifier($identifier);
 
-        return $instance;
+        return $this;
     }
 
     /**

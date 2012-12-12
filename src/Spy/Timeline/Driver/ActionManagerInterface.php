@@ -84,4 +84,11 @@ interface ActionManagerInterface
      * @return array
      */
     public function findComponents(array $hashes);
+
+    /**
+     * @param string $hash hash
+     *
+     * @return ComponentInterface
+     */
+    public function findComponentWithHash($hash);
 }

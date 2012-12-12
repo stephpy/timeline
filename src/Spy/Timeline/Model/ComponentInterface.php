@@ -17,6 +17,13 @@ interface ComponentInterface
     public function getHash();
 
     /**
+     * @param string $hash hash
+     *
+     * @return ComponentInterface
+     */
+    public function createFromHash($hash);
+
+    /**
      * @param mixed $data data
      *
      * @return Component
