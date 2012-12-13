@@ -60,12 +60,12 @@ class Asserter implements CriteriaInterface
 
     public function in(array $values)
     {
-        return $this->create(self::ASSERTER_IN, $value);
+        return $this->create(self::ASSERTER_IN, $values);
     }
 
     public function notIn(array $values)
     {
-        return $this->create(self::ASSERTER_NOT_IN, $value);
+        return $this->create(self::ASSERTER_NOT_IN, $values);
     }
 
     public function like($value)
@@ -165,5 +165,29 @@ class Asserter implements CriteriaInterface
 
         return $this->field($field)
             ->create($operator, $value);
+    }
+
+    /**
+     * @return string
+     */
+    public function getField()
+    {
+        return $this->field;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOperator()
+    {
+        return $this->operator;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getValue()
+    {
+        return $this->value;
     }
 }

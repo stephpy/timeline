@@ -110,7 +110,7 @@ class Operator implements CriteriaInterface
      */
     public function fromArray(array $data, QueryBuilderFactory $factory)
     {
-        $criterias = array_map(function($v) {
+        $criterias = array_map(function($v) use ($factory) {
             if ('operator' == $v['type']) {
                 return $factory->createOperatorFromArray($v);
             } elseif ('expr' == $v['type']) {
