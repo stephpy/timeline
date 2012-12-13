@@ -26,4 +26,41 @@ class Action extends atoum\test
             ->string($object->getStatusWanted())->isEqualTo(ActionInterface::STATUS_PUBLISHED)
             ;
     }
+
+    public function testAddComponent()
+    {
+    }
+
+    public function testIsPublished()
+    {
+    }
+
+    public function testHasDuplicateKey()
+    {
+    }
+
+    public function testGetValidStatus()
+    {
+        $this->if($object = new TestedModel())
+            ->array($object->getValidStatus())
+            ->isNotEmpty();
+    }
+
+    public function testIsValidStatus()
+    {
+        $this->if($object = new TestedModel())
+            ->boolean($object->isValidStatus(TestedModel::STATUS_PENDING))->isTrue()
+            ->boolean($object->isValidStatus(TestedModel::STATUS_PUBLISHED))->isTrue()
+            ->boolean($object->isValidStatus(TestedModel::STATUS_FROZEN))->isTrue()
+            ->boolean($object->isValidStatus('custom_status'))->isFalse()
+            ;
+    }
+
+    public function testGetComponent()
+    {
+    }
+
+    public function testGetSubject()
+    {
+    }
 }

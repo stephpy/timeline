@@ -73,7 +73,7 @@ class DataHydrator extends AbstractFilter implements FilterInterface
     /**
      * @param array $components
      */
-    public function addComponents(array $components)
+    protected function addComponents(array $components)
     {
         foreach ($components as $component) {
             $model = $component->getModel();
@@ -87,8 +87,12 @@ class DataHydrator extends AbstractFilter implements FilterInterface
 
     /**
      * Use locators to hydrate components.
+     *
+     * @param mixed $collection collection
+     *
+     * @return mixed
      */
-    public function hydrateComponents($collection)
+    protected function hydrateComponents($collection)
     {
         $componentsLocated = array();
 

@@ -53,7 +53,7 @@ class Entry
     /**
      * @param ActionComponentInterface $actionComponent actionComponent
      */
-    public function buildComponent(ActionComponentInterface $actionComponent)
+    protected function buildComponent(ActionComponentInterface $actionComponent)
     {
         $component = $actionComponent->getComponent();
         if (!is_object($component)) {

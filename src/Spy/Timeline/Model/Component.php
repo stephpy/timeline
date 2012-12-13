@@ -77,7 +77,7 @@ class Component implements ComponentInterface
      */
     public function __sleep()
     {
-        return array('id', 'model', 'identifier');
+        return array('id', 'model', 'identifier', 'hash');
     }
 
     /**
