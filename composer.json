@@ -17,7 +17,9 @@
         "atoum/atoum": "dev-master"
     },
     "suggest": {
-        "knplabs/knp-components": "Pagination"
+        "knplabs/knp-components": "Pagination",
+        "ext-phpredis": "Redis C extension for PHP",
+        "predis/predis": "Redis PHP client library"
     },
     "autoload":     {
         "psr-0": {

@@ -2,6 +2,7 @@
 
 namespace Spy\Timeline\Driver\QueryBuilder;
 
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Spy\Timeline\Driver\ActionManagerInterface;
 use Spy\Timeline\Driver\QueryBuilder\Criteria\Asserter;
 use Spy\Timeline\Driver\QueryBuilder\Criteria\Operator;
@@ -14,11 +15,31 @@ use Spy\Timeline\Driver\QueryBuilder\Criteria\Operator;
 class QueryBuilderFactory
 {
     /**
+     * @var array
+     */
+    protected $classes;
+
+    /**
+     * @param array $classes classes could contain query_builder, operator, asserter/
+     */
+    public function __construct(array $classes = array())
+    {
+        $resolver = new OptionsResolver();
+        $resolver->setDefaults(array(
+            'asserter'      => '\Spy\Timeline\Driver\QueryBuilder\Criteria\Asserter',
+            'operator'      => '\Spy\Timeline\Driver\QueryBuilder\Criteria\Operator',
+            'query_builder' => '\Spy\Timeline\Driver\QueryBuilder\QueryBuilder',
+        ));
+
+        $this->classes = $resolver->resolve($classes);
+    }
+
+    /**
      * @return QueryBuilder
      */
     public function createQueryBuilder()
     {
-        return new QueryBuilder($this);
+        return new $this->classes['query_builder']($this);
     }
 
     /**
@@ -34,17 +55,17 @@ class QueryBuilderFactory
     }
 
     /**
-     * @return Operator
+     * @return CriteriaInterface
      */
     public function createOperator()
     {
-        return new Operator();
+        return new $this->classes['operator']();
     }
 
     /**
      * @param array $data data
      *
-     * @return Operator
+     * @return CriteriaInterface
      */
     public function createOperatorFromArray(array $data)
     {
@@ -53,17 +74,17 @@ class QueryBuilderFactory
     }
 
     /**
-     * @return Asserter
+     * @return CriteriaInterface
      */
     public function createAsserter()
     {
-        return new Asserter();
+        return new $this->classes['asserter']();
     }
 
     /**
      * @param array $data data
      *
-     * @return Asserter
+     * @return CriteriaInterface
      */
     public function createAsserterFromArray(array $data)
     {
