@@ -67,11 +67,11 @@ class QueryBuilder extends atoum\test
                 $qb->field('unknownfield');
             })
                 ->isInstanceOf('\InvalidArgumentException')
-                ->hasMessage('Field "unknownfield" not supported, prefer: context, subject, verb, type, text, model, identifier, created_at')
+                ->hasMessage('Field "unknownfield" not supported, prefer: context, subject, verb, type, text, model, identifier, createdAt')
             // real field
             ->and($resultExpected = new Asserter())
-            ->and($resultExpected->field('created_at'))
-            ->object($qb->field('created_at'))
+            ->and($resultExpected->field('createdAt'))
+            ->object($qb->field('createdAt'))
             ->isEqualTo($resultExpected)
             ;
     }
@@ -83,10 +83,10 @@ class QueryBuilder extends atoum\test
                 $qb->setSort('unknownfield', 'ASC');
             })
                 ->isInstanceOf('\InvalidArgumentException')
-                ->hasMessage('Field "unknownfield" not supported, prefer: context, subject, verb, type, text, model, identifier, created_at')
+                ->hasMessage('Field "unknownfield" not supported, prefer: context, subject, verb, type, text, model, identifier, createdAt')
             // bad order
             ->exception(function () use ($qb) {
-                $qb->setSort('created_at', 'badorder');
+                $qb->setSort('createdAt', 'badorder');
             })
                 ->isInstanceOf('\InvalidArgumentException')
                 ->hasMessage('Order "badorder" not supported, prefer: ASC or DESC')
@@ -142,7 +142,7 @@ class QueryBuilder extends atoum\test
                 'page' => 10,
                 'max_per_page' => 100,
                 'sort' => array(
-                    'created_at',
+                    'createdAt',
                     'DESC',
                 ),
                 'criterias' => array(
@@ -152,7 +152,7 @@ class QueryBuilder extends atoum\test
             ->and($resultExpected = new QueryBuilderTested($factory))
             ->and($resultExpected->setPage(10))
             ->and($resultExpected->setMaxPerPage(100))
-            ->and($resultExpected->setSort('created_at', 'DESC'))
+            ->and($resultExpected->setSort('createdAt', 'DESC'))
             ->and($resultExpected->setCriterias($criteria))
             ->and($resultExpected->addSubject($component))
             ->object($data = $qb->fromArray($data, $actionManager))
@@ -172,7 +172,7 @@ class QueryBuilder extends atoum\test
             ->and($qb->setCriterias($criteria))
             ->and($qb->setPage(10))
             ->and($qb->setMaxPerPage(100))
-            ->and($qb->setSort('created_at', 'DESC'))
+            ->and($qb->setSort('createdAt', 'DESC'))
             ->and($qb->addSubject($subject))
             ->array($qb->toArray())
             ->isIdenticalTo(
@@ -184,7 +184,7 @@ class QueryBuilder extends atoum\test
                     'max_per_page' => 100,
                     'criterias' => 'TOARRAYRESULT',
                     'sort' => array(
-                        'created_at',
+                        'createdAt',
                         'DESC',
                     ),
                 )

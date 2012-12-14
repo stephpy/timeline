@@ -46,6 +46,19 @@ class QueryBuilder
     protected $factory;
 
     /**
+     * @var array
+     */
+    protected static $fieldLocation = array(
+        'context'    => 'timeline',
+        'createdAt'  => 'timeline',
+        'verb'       => 'action',
+        'type'       => 'actionComponent',
+        'text'       => 'actionComponent',
+        'model'      => 'component',
+        'identifier' => 'component',
+    );
+
+    /**
      * @param QueryBuilderFactory $factory factory
      */
     public function __construct(QueryBuilderFactory $factory = null)
@@ -183,19 +196,28 @@ class QueryBuilder
     }
 
     /**
+     * @param string $field field
+     *
+     * @return string
+     */
+    public function getFieldLocation($field)
+    {
+        return self::$fieldLocation[$field];
+    }
+
+    /**
      * @return array
      */
     public function getAvailableFields()
     {
         return array(
             'context',
-            'subject',
             'verb',
+            'createdAt',
             'type',
             'text',
             'model',
             'identifier',
-            'created_at',
         );
     }
 

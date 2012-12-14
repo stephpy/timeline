@@ -185,7 +185,8 @@ class ActionManager extends AbstractActionManager implements ActionManagerInterf
         $components = array();
 
         foreach ($concatIdents as $concatIdent) {
-            $components[] = call_user_func_array(array($this->componentClass, 'createFromHash'), array($concatIdent));
+            $component    = new $this->componentClass();
+            $components[] = $component->createFromHash($concatIdent);
         }
 
         return $components;
