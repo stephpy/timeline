@@ -12,7 +12,7 @@ use Spy\Timeline\Pager\PagerInterface;
  * @uses PagerInterface
  * @author Stephane PY <py.stephane1@gmail.com>
  */
-class Pager implements PagerInterface
+class Pager implements PagerInterface, \IteratorAggregate, \Countable
 {
     /**
      * @var FilterManagerInterface
@@ -55,7 +55,9 @@ class Pager implements PagerInterface
 
         $ids    = $this->client->zRevRange($target->key, $offset, ($offset + $limit));
 
-        return  $this->actionManager->findActionsForIds($ids);
+        $this->items = $this->actionManager->findActionsForIds($ids);
+
+        return $this;
     }
 
     /**
@@ -63,6 +65,30 @@ class Pager implements PagerInterface
      */
     public function filter($pager)
     {
-        return $this->filterManager->filter($pager);
+        return $this->filterManager->filter($pager->getItems());
+    }
+
+    /**
+     * @return rray
+     */
+    public function getItems()
+    {
+        return $this->items;
+    }
+
+    /**
+     * @return \ArrayIterator
+     */
+    public function getIterator()
+    {
+        return new \ArrayIterator($this->items);
+    }
+
+    /**
+     * @return integer
+     */
+    public function count()
+    {
+        return count($this->items);
     }
 }
