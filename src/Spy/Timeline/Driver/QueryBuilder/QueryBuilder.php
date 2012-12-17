@@ -26,9 +26,14 @@ class QueryBuilder
     protected $page = 1;
 
     /**
-     * @var mixed
+     * @var integer
      */
     protected $maxPerPage = 10;
+
+    /**
+     * @var boolean
+     */
+    protected $groupByAction = false;
 
     /**
      * @var array
@@ -196,11 +201,23 @@ class QueryBuilder
     }
 
     /**
+     * @param boolean $value value
+     *
+     * @return QueryBuilder
+     */
+    public function groupByAction($value = true)
+    {
+        $this->groupByAction = $value;
+
+        return $this;
+    }
+
+    /**
      * @param string $field field
      *
      * @return string
      */
-    public function getFieldLocation($field)
+    public static function getFieldLocation($field)
     {
         return self::$fieldLocation[$field];
     }
@@ -255,6 +272,10 @@ class QueryBuilder
             $this->setSort($field, $order);
         }
 
+        if (isset($data['group_by_action'])) {
+            $this->groupByAction($data['group_by_action']);
+        }
+
         if (isset($data['subject'])) {
             $subjects = $data['subject'];
 
@@ -281,13 +302,14 @@ class QueryBuilder
     public function toArray()
     {
         return array(
-            'subject'      => array_values(
+            'subject'         => array_values(
                 array_map(function ($v) { return $v->getHash(); }, $this->subjects)
             ),
-            'page'         => $this->page,
-            'max_per_page' => $this->maxPerPage,
-            'criterias'    => $this->criterias->toArray(),
-            'sort'         => $this->sort,
+            'page'            => $this->page,
+            'max_per_page'    => $this->maxPerPage,
+            'criterias'       => $this->criterias->toArray(),
+            'sort'            => $this->sort,
+            'group_by_action' => $this->groupByAction,
         );
     }
 }
