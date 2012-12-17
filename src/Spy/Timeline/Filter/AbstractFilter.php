@@ -12,7 +12,7 @@ abstract class AbstractFilter
     /**
      * @var integer
      */
-    protected $priority;
+    protected $priority = 255;
 
     /**
      * @param array $options options

@@ -14,9 +14,11 @@
         "symfony/options-resolver": "*"
     },
     "require-dev": {
-        "atoum/atoum": "dev-master"
+        "atoum/atoum": "dev-master",
+        "pimple/pimple": "*"
     },
     "suggest": {
+        "pimple/pimple": "Use ServiceLocator",
         "knplabs/knp-components": "Pagination",
         "ext-phpredis": "Redis C extension for PHP",
         "predis/predis": "Redis PHP client library"

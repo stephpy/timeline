@@ -1,6 +1,14 @@
 Pagination
 ----------
 
+.. code-block:: php
+
+    $timelineManager->getTimeline($subject, array('page' => 1, 'max_per_page' => '10'));
+    $actionManager->getSubjectActions($subject, array('page' => 1, 'max_per_page' => '10'));
+
+Use KnpPager
+````````````
+
 @todo
 
 Documentation

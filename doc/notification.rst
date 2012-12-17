@@ -1,7 +1,49 @@
 Notification
 ------------
 
-@todo
+During the deployment of an action, you can define some notifiers, they must implements **NotifierInterface**
+
+UnreadNotification
+``````````````````
+
+UnreadNotification is already provided on this library. All actions spreads on your timeline will be stored and you'll
+be able to mark them as read or retrieve unread notifications.
+
+How to use it ?
+
+.. code-block:: php
+
+    // enable it (should be done at initialization of your project).
+    $c['notification_manager']->addNotifier($c['unread_notifications']);
+
+    // methods
+    $actionManager = $c['action_manager'];
+    $subject       = $actionManager->findOrCreateComponent('User', 'ChuckNorris');
+
+    $unread        = $c['unread_notifications'];
+    //count how many unread message for global context
+    $count  = $unread->countKeys($subject); // on global context
+    $count  = $unread->countKeys($subject, 'MyContext');
+
+    // remove ONE unread notification
+    $unread->markAsReadTimelineAction($subject, 'TimelineActionId'); // on global context
+    $unread->markAsReadTimelineAction($subject, 'TimelineActionId', 'MyContext');
+
+    // remove several unread notifications
+    $unread->markAsReadTimelineActions(array(
+        array('GLOBAL', $subject, 'TimelineActionId'),
+        array('GLOBAL', $subject, 'TimelineActionId'),
+        ...
+    ));
+
+    // all unread notifications
+    $unread->markAllAsRead($subject); // on global context
+    $unread->markAllAsRead($subject, 'MyContext');
+
+    // retrieve timeline actions
+    $actions = $unread->getUnreadNotifications($subject); // on global context, no options
+    $actions = $unread->getUnreadNotifications($subject, 'MyContext', $options);
+    // in options you can define offset, limit, etc ...
 
 Documentation
 -------------

@@ -1,9 +1,63 @@
 Basic usage
 -----------
 
-Use pimple
+Example with `Pimple <http://pimple.sensiolabs.org/>`_ usage.
+
+1) Initialize container.
+````````````````````````
+
+.. code-block:: php
+
+    require "vendor/autoload.php";
+
+    $redis = new \Redis();
+    $redis->connect('127.0.0.1'); // support \Redis or PRedis (other not tested).
+
+    $serviceLocator = new \Spy\Timeline\ServiceLocator();
+    $serviceLocator->addRedisDriver($redis);
+
+    $c = $serviceLocator->getContainer();
+
+2) Add spreads
+````````````````````````
 
 @todo
+
+3) Add an action.
+````````````````````````
+
+.. code-block:: php
+
+    $actionmanager = $c['action_manager'];
+    $chuck         = $actionManager->findOrCreateComponent('User', 'ChuckNorris');
+    $bruceLee      = $actionManager->findOrCreateComponent('User', 'BruceLee');
+
+    $action = $actionManager->create($chuck, 'kick', array('directComplement' => $bruceLee))
+    $actionManager->updateAction($action);
+
+You should see some keys inserted on redis ;)
+
+4) Fetch timeline of chuck norris.
+``````````````````````````````````
+
+.. code-block:: php
+
+    $actionManager   = $c['action_manager'];
+    $timelineManager = $c['timeline_manager'];
+    $chuck           = $actionManager->findOrCreateComponent('User', 'ChuckNorris');
+
+    $timeline = $timelineManager->getTimeline($chuck);
+
+5) Fetch actions of chuck norris.
+`````````````````````````````````
+
+.. code-block:: php
+
+    $actionManager   = $c['action_manager'];
+    $chuck           = $actionManager->findOrCreateComponent('User', 'ChuckNorris');
+
+    $timeline = $actionManager->getSubjectActions($chuck);
+
 
 Documentation
 -------------

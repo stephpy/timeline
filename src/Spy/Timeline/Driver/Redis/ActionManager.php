@@ -59,11 +59,12 @@ class ActionManager extends AbstractActionManager implements ActionManagerInterf
     public function __construct($client, PagerInterface $pager, $prefix, $actionClass, $componentClass, $actionComponentClass)
     {
         $this->client               = $client;
-        $this->pager                = $pager;
         $this->prefix               = $prefix;
         $this->actionClass          = $actionClass;
         $this->componentClass       = $componentClass;
         $this->actionComponentClass = $actionComponentClass;
+        $this->pager                = $pager;
+        $this->pager->setActionManager($this);
     }
 
     /**
@@ -190,6 +191,17 @@ class ActionManager extends AbstractActionManager implements ActionManagerInterf
         }
 
         return $components;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findComponentWithHash($hash)
+    {
+        $component = new $this->componentClass();
+        $component = $component->createFromHash($hash);
+
+        return $component;
     }
 
     /**

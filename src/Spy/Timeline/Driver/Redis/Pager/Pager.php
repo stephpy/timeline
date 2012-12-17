@@ -32,12 +32,18 @@ class Pager implements PagerInterface, \IteratorAggregate, \Countable
     /**
      * @param FilterManagerInterface      $filterManager filterManager
      * @param PredisClient|PhpredisClient $client        client
-     * @param ActionManagerInterface      $actionManager actionManager
      */
-    public function __construct(FilterManagerInterface $filterManager, $client, ActionManagerInterface $actionManager)
+    public function __construct(FilterManagerInterface $filterManager, $client)
     {
         $this->filterManager = $filterManager;
         $this->client        = $client;
+    }
+
+    /**
+     * @param ActionManagerInterface $actionManager actionManager
+     */
+    public function setActionManager(ActionManagerInterface $actionManager)
+    {
         $this->actionManager = $actionManager;
     }
 

@@ -8,6 +8,55 @@ Standalone library to make timeline with php.
 
 At this moment, only one driver is **redis**, use `Symfony2` and `Bundle <https://github.com/stephpy/TimelineBundle>`_ to have other drivers.
 
+Description
+-----------
+
+A timeline is a collection of action which can be represented by:
+
+- **Subject**
+- **Verb**
+- **Components** (directComplement, indirectComplement, etc...)
+
+Example:
+
++--------------+---------+--------------------------------------------------------------------+
+|   Subject    |  Verb   | Complements                                                        |
++==============+=========+====================================================================+
+| Chuck Norris | Own     | the world (directComplement), with Vic Mc Key (indirectComplement) |
++--------------+---------+--------------------------------------------------------------------+
+| Sheldon      | say     | Bazinga (directComplement)                                         |
++--------------+---------+--------------------------------------------------------------------+
+
+There is two type of action list to retrieve:
+
+Timeline
+~~~~~~~~
+
+Wall of a subject is all his actions + all actions of his **SPREADS**, see `spread.rst <https://github.com/stephpy/timeline/tree/master/doc/spread.rst>`_
+
+SubjectAction
+~~~~~~~~~~~~~
+
+All actions of the subject.
+
+Context
+~~~~~~~
+
+Imagine Chuck Norris has 233 friends and follow 20 companies.
+
+If we have one context, like facebook, his wall will return each actions of his friends and companies.
+
+You can too use **Contexts** to filter timelines, for example, we can have 3 contexts:
+
+- GLOBAL: actions of his friends and companies
+- FRIEND: actions of his friends
+- COMPANIES: actions of his companies
+
+You can define as many context as you want.
+If you have only one context, you'll get each actions without being able to easily filter them to return only "OWN" actions or have only actions of friends of ChuckNorris
+
+That's why we have a "GLOBAL" context, and you can easily add other contexts.
+
 Installation
 ------------
 Use `Composer <https://github.com/composer/composer/>`_ to install: ``stephpy/timeline``.
@@ -18,9 +67,12 @@ In your `composer.json` you should have:
 
     {
         "require": {
-            "stephpy/timeline": "1.0.*"
+            "stephpy/timeline": "1.0.*",
+            "pimple/pimple": "*"
         }
     }
+
+Pimple is not mandatory but if you use this library without the bundle, it'll be really easier.
 
 Requirements
 ~~~~~~~~~~~~

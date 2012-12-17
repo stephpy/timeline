@@ -1,7 +1,20 @@
 Redis driver
 ------------
 
-@todo
+Redis driver does not support delivery wait, it must deliverate immediatly actions.
+
+.. code-block:: php
+
+    require "vendor/autoload.php";
+
+    $redis = new \Redis();
+    $redis->connect('127.0.0.1');
+    // support \Redis or PRedis (other not tested).
+
+    $serviceLocator = new \Spy\Timeline\ServiceLocator();
+    $serviceLocator->addRedisDriver($redis);
+
+    $c = $serviceLocator->getContainer();
 
 Documentation
 -------------
