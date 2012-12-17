@@ -76,17 +76,17 @@ class QueryBuilder extends atoum\test
             ;
     }
 
-    public function testSetSort()
+    public function testOrderBy()
     {
         $this->if($qb = new QueryBuilderTested())
             ->exception(function () use ($qb) {
-                $qb->setSort('unknownfield', 'ASC');
+                $qb->orderBy('unknownfield', 'ASC');
             })
                 ->isInstanceOf('\InvalidArgumentException')
                 ->hasMessage('Field "unknownfield" not supported, prefer: context, verb, createdAt, type, text, model, identifier')
             // bad order
             ->exception(function () use ($qb) {
-                $qb->setSort('createdAt', 'badorder');
+                $qb->orderBy('createdAt', 'badorder');
             })
                 ->isInstanceOf('\InvalidArgumentException')
                 ->hasMessage('Order "badorder" not supported, prefer: ASC or DESC')
@@ -153,7 +153,7 @@ class QueryBuilder extends atoum\test
             ->and($resultExpected = new QueryBuilderTested($factory))
             ->and($resultExpected->setPage(10))
             ->and($resultExpected->setMaxPerPage(100))
-            ->and($resultExpected->setSort('createdAt', 'DESC'))
+            ->and($resultExpected->orderBy('createdAt', 'DESC'))
             ->and($resultExpected->setCriterias($criteria))
             ->and($resultExpected->addSubject($component))
             ->and($resultExpected->groupByAction(true))
@@ -174,7 +174,7 @@ class QueryBuilder extends atoum\test
             ->and($qb->setCriterias($criteria))
             ->and($qb->setPage(10))
             ->and($qb->setMaxPerPage(100))
-            ->and($qb->setSort('createdAt', 'DESC'))
+            ->and($qb->orderBy('createdAt', 'DESC'))
             ->and($qb->groupByAction(true))
             ->and($qb->addSubject($subject))
             ->array($qb->toArray())

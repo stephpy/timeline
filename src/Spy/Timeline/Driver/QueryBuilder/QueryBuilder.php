@@ -185,7 +185,7 @@ class QueryBuilder
      *
      * @return QueryBuilder
      */
-    public function setSort($field, $order)
+    public function orderBy($field, $order)
     {
         if (!in_array($field, $this->getAvailableFields())) {
             throw new \InvalidArgumentException(sprintf('Field "%s" not supported, prefer: %s', $field, implode(', ', $this->getAvailableFields())));
@@ -269,7 +269,7 @@ class QueryBuilder
 
         if (isset($data['sort'])) {
             list ($field, $order) = $data['sort'];
-            $this->setSort($field, $order);
+            $this->orderBy($field, $order);
         }
 
         if (isset($data['group_by_action'])) {
