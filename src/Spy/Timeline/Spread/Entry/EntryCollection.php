@@ -55,7 +55,7 @@ class EntryCollection implements \IteratorAggregate
      */
     public function getIterator()
     {
-        return $this->getEntries();
+        return $this->coll;
     }
 
     /**
@@ -150,11 +150,11 @@ class EntryCollection implements \IteratorAggregate
     }
 
     /**
-     * @return \ArrayIterator
+     * @param boolean $v v
      */
-    public function getEntries()
+    public function setDuplicateOnGlobal($v)
     {
-        return $this->coll;
+        $this->duplicateOnGlobal = $v;
     }
 
     /**

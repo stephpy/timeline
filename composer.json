@@ -15,12 +15,14 @@
     },
     "require-dev": {
         "atoum/atoum": "dev-master",
-        "pimple/pimple": "*"
+        "pimple/pimple": "*",
+        "knplabs/knp-components": "1.*",
+        "symfony/event-dispatcher": "2.*"
     },
     "suggest": {
         "pimple/pimple": "Use ServiceLocator",
-        "knplabs/knp-components": "Pagination",
-        "ext-phpredis": "Redis C extension for PHP",
+        "knplabs/knp-components": "Knp Paginator",
+        "ext-redis": "Redis C extension for PHP",
         "predis/predis": "Redis PHP client library"
     },
     "autoload":     {

@@ -51,7 +51,7 @@ class Deployer extends atoum\test
             ->and($component = new \Mock\ComponentInterface())
             ->and($entry = new \Mock\Entry($component))
             ->and($entryCollection = new \Mock\EntryCollection())
-            ->and($entryCollection->getMockController()->getEntries = new \ArrayIterator(array('CONTEXT' => array($entry))))
+            ->and($entryCollection->getMockController()->getIterator = new \ArrayIterator(array('CONTEXT' => array($entry))))
             ->and($entryCollection->getMockController()->loadUnawareEntries = null)
             // ---- managers ----
             ->and($timelineManager = new \Mock\TimelineManagerInterface())
