@@ -146,6 +146,13 @@ interface ActionInterface
     public function getCreatedAt();
 
     /**
+     * @param ActionComponentInterface $actionComponent actionComponent
+     *
+     * @return ActionInterface
+     */
+    public function addActionComponent(ActionComponentInterface $actionComponent);
+
+    /**
      * @return ArrayCollection
      */
     public function getActionComponents();

@@ -37,7 +37,7 @@ class DuplicateKey extends AbstractFilter implements FilterInterface
                     }
 
                     $duplicateKeys[$currentKey]['duplicated'] = true;
-                    unset($actions[$keyToDelete]);
+                    unset($collection[$keyToDelete]);
                 } else {
                     $duplicateKeys[$currentKey] = array(
                         'key'        => $key,

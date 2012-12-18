@@ -46,7 +46,7 @@ class UnreadNotificationManager implements NotifierInterface
      */
     public function getUnreadNotifications(ComponentInterface $subject, $context = "GLOBAL", array $options = array())
     {
-        $topions['context'] = $context;
+        $options['context'] = $context;
         $options['type']    = 'notification';
 
         return $this->timelineManager->getTimeline($subject, $options);
@@ -99,9 +99,7 @@ class UnreadNotificationManager implements NotifierInterface
         );
 
         foreach ($actions as $action) {
-            $context  = $timelineAction[0];
-            $subject  = $timelineAction[1];
-            $actionId = $timelineAction[2];
+            list($context, $subject, $actionId) = $action;
 
             $options['context'] = $context;
 

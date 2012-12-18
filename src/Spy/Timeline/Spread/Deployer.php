@@ -95,7 +95,7 @@ class Deployer implements DeployerInterface
             }
         }
 
-        if ($i > 0) {
+        if ($i > 1) {
             $this->timelineManager->flush();
         }
 

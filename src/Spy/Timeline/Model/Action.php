@@ -301,21 +301,20 @@ class Action implements ActionInterface
     }
 
     /**
-     * @param  ActionComponentInterface $actionComponents
-     * @return Action
+     * {@inheritdoc}
      */
-    public function addActionComponent(ActionComponentInterface $actionComponents)
+    public function addActionComponent(ActionComponentInterface $actionComponent)
     {
-        $actionComponents->setAction($this);
-        $type = $actionComponents->getType();
+        $actionComponent->setAction($this);
+        $type = $actionComponent->getType();
 
-        foreach ($this->actionComponents as $key => $actionComponent) {
-            if ($actionComponent->getType() == $type) {
+        foreach ($this->actionComponents as $key => $ac) {
+            if ($ac->getType() == $type) {
                 unset($this->actionComponents[$key]);
             }
         }
 
-        $this->actionComponents[] = $actionComponents;
+        $this->actionComponents[] = $actionComponent;
 
         return $this;
     }

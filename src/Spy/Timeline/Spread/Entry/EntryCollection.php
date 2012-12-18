@@ -55,7 +55,7 @@ class EntryCollection implements \IteratorAggregate
      */
     public function getIterator()
     {
-        return $this->coll;
+        return $this->getEntries();
     }
 
     /**
