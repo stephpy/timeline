@@ -89,6 +89,18 @@ class Action implements ActionInterface
     /**
      * {@inheritdoc}
      */
+    public function getComponent($type)
+    {
+        foreach ($this->getActionComponents() as $actionComponent) {
+            if ($actionComponent->getType() == $type) {
+                return $actionComponent->getText() ?: $actionComponent->getComponent();
+            }
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getSpreadTime()
     {
         return time();
@@ -144,20 +156,6 @@ class Action implements ActionInterface
     public function isValidStatus($status)
     {
         return in_array((string) $status, $this->getValidStatus());
-    }
-
-    /**
-     * @param string $type type
-     *
-     * @return ComponentInterface|null
-     */
-    public function getComponent($type)
-    {
-        foreach ($this->getActionComponents() as $actionComponent) {
-            if ($actionComponent->getType() == $type) {
-                return $actionComponent->getText() ?: $actionComponent->getComponent();
-            }
-        }
     }
 
     /**
@@ -309,6 +307,14 @@ class Action implements ActionInterface
     public function addActionComponent(ActionComponentInterface $actionComponents)
     {
         $actionComponents->setAction($this);
+        $type = $actionComponents->getType();
+
+        foreach ($this->actionComponents as $key => $actionComponent) {
+            if ($actionComponent->getType() == $type) {
+                unset($this->actionComponents[$key]);
+            }
+        }
+
         $this->actionComponents[] = $actionComponents;
 
         return $this;

@@ -23,6 +23,13 @@ interface ActionInterface
     public function addComponent($type, $component, $actionComponentClass);
 
     /**
+     * @param string $type type
+     *
+     * @return ComponentInterface|null
+     */
+    public function getComponent($type);
+
+    /**
      * @return integer
      */
     public function getSpreadTime();
@@ -48,13 +55,6 @@ interface ActionInterface
      * @return boolean
      */
     public function isDuplicated();
-
-    /**
-     * @param string $type type
-     *
-     * @return ComponentInterface|null
-     */
-    public function getComponent($type);
 
     /**
      * @return ComponentInterface|null

@@ -44,7 +44,7 @@ class EntryUnaware implements EntryInterface
         if (is_scalar($subjectId)) {
             $subjectId = (string) $subjectId;
         } elseif (!is_array($subjectId)) {
-            throw new \InvalidArgumentException('SubjectId has to be a scalar or an array');
+            throw new \InvalidArgumentException('subjectId has to be a scalar or an array');
         }
 
         $this->subjectId    = $subjectId;

@@ -29,7 +29,7 @@ class Entry implements EntryInterface
      */
     public function getIdent()
     {
-        return sprintf('%s:%s', $this->subject->getModel(), serialize($this->subject->getIdentifier()));
+        return $this->subject->getHash();
     }
 
     /**

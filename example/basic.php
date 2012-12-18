@@ -11,6 +11,8 @@ $serviceLocator->addRedisDriver($redis);
 $c = $serviceLocator->getContainer();
 $c['notification_manager']->addNotifier($c['unread_notifications']);
 
+// define spreads
+
 // Push an action
 
 $actionManager = $c['action_manager'];

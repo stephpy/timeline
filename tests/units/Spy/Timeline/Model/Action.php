@@ -29,14 +29,40 @@ class Action extends atoum\test
 
     public function testAddComponent()
     {
+        $this->if($action = new TestedModel())
+            ->exception(function() use ($action) {
+                $action->addComponent('subject', new \stdClass(), '\Spy\Timeline\Model\ActionComponent');
+            })
+            ->isInstanceOf('\InvalidArgumentException')
+            ->hasMessage('Component has to be a ComponentInterface or a scalar')
+            // scalar
+            ->when($action->addComponent('cod', 'chuckNorris', '\Spy\Timeline\Model\ActionComponent'))
+            ->string($action->getComponent('cod'))->isEqualTo('chuckNorris')
+            // componentInterface
+            ->if($this->mockClass('\Spy\Timeline\Model\ComponentInterface', '\Mock'))
+            ->and($component = new \Mock\ComponentInterface())
+            ->when($action->addComponent('coi', $component, '\Spy\Timeline\Model\ActionComponent'))
+            ->object($action->getComponent('coi'))->isIdenticalTo($component)
+            // two times same componen
+            ->when($action->addComponent('coi', 'text', '\Spy\Timeline\Model\ActionComponent'))
+            ->integer(count($action->getActionComponents()))->isEqualTo(2)
+            ;
     }
 
     public function testIsPublished()
     {
+        $this->if($action = new TestedModel())
+            ->boolean($action->isPublished())->isFalse()
+            ->when($action->setStatusCurrent(TestedModel::STATUS_PUBLISHED))
+            ->boolean($action->isPublished())->isTrue();
     }
 
     public function testHasDuplicateKey()
     {
+        $this->if($action = new TestedModel())
+            ->boolean($action->hasDuplicateKey())->isFalse()
+            ->when($action->setDuplicateKey(uniqid()))
+            ->boolean($action->hasDuplicateKey())->isTrue();
     }
 
     public function testGetValidStatus()
@@ -58,9 +84,33 @@ class Action extends atoum\test
 
     public function testGetComponent()
     {
+        // this is almost the same test than addComponent
+        $this->if($action = new TestedModel())
+            ->variable($action->getComponent('complement'))->isNull()
+            // scalar
+            ->when($action->addComponent('cod', 'chuckNorris', '\Spy\Timeline\Model\ActionComponent'))
+            ->string($action->getComponent('cod'))->isEqualTo('chuckNorris')
+            // componentInterface
+            ->if($this->mockClass('\Spy\Timeline\Model\ComponentInterface', '\Mock'))
+            ->and($component = new \Mock\ComponentInterface())
+            ->when($action->addComponent('coi', $component, '\Spy\Timeline\Model\ActionComponent'))
+            ->object($action->getComponent('coi'))->isIdenticalTo($component)
+            ;
     }
 
     public function testGetSubject()
     {
+        // this is almost the same test than getComponent
+        $this->if($action = new TestedModel())
+            ->variable($action->getComponent('subject'))->isNull()
+            // scalar
+            ->when($action->addComponent('subject', 'chuckNorris', '\Spy\Timeline\Model\ActionComponent'))
+            ->string($action->getComponent('subject'))->isEqualTo('chuckNorris')
+            // componentInterface
+            ->if($this->mockClass('\Spy\Timeline\Model\ComponentInterface', '\Mock'))
+            ->and($component = new \Mock\ComponentInterface())
+            ->when($action->addComponent('subject', $component, '\Spy\Timeline\Model\ActionComponent'))
+            ->object($action->getComponent('subject'))->isIdenticalTo($component)
+            ;
     }
 }

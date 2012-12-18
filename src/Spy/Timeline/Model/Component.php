@@ -60,7 +60,7 @@ class Component implements ComponentInterface
     {
         $data = explode('#', $hash);
         if (count($data) == 1) {
-            throw new \InvalidArgumentException('Invalid hash');
+            throw new \InvalidArgumentException('Invalid hash, must be formated {model}#{hash or identifier}');
         }
 
         $model      = array_shift($data);
