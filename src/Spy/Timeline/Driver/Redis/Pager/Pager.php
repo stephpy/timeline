@@ -4,7 +4,7 @@ namespace Spy\Timeline\Driver\Redis\Pager;
 
 use Spy\Timeline\Driver\ActionManagerInterface;
 use Spy\Timeline\Filter\FilterManagerInterface;
-use Spy\Timeline\Pager\PagerInterface;
+use Spy\Timeline\ResultBuilder\Pager\PagerInterface;
 
 /**
  * Pager

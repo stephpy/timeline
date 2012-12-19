@@ -1,10 +1,10 @@
 <?php
 
-namespace Spy\Timeline\Pager;
+namespace Spy\Timeline\ResultBuilder\Pager;
 
 use Knp\Component\Pager\Paginator;
 use Spy\Timeline\Filter\FilterManagerInterface;
-use Spy\Timeline\Pager\PagerInterface;
+use Spy\Timeline\ResultBuilder\Pager\PagerInterface;
 
 /**
  * KnpPager

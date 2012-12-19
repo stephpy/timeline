@@ -1,6 +1,6 @@
 <?php
 
-namespace Spy\Timeline\Pager;
+namespace Spy\Timeline\ResultBuilder\Pager;
 
 /**
  * PagerInterface
@@ -20,7 +20,17 @@ interface PagerInterface
     public function paginate($target, $page = 1, $limit = 10, $options = array());
 
     /**
-     * filter items
+     * @return integer
      */
-    public function filter($pager);
+    public function getLastPage();
+
+    /**
+     * @return boolean
+     */
+    public function haveToPaginate();
+
+    /**
+     * @return integer
+     */
+    public function getNbResults();
 }
