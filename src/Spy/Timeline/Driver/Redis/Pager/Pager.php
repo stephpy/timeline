@@ -2,51 +2,18 @@
 
 namespace Spy\Timeline\Driver\Redis\Pager;
 
-use Spy\Timeline\Driver\ActionManagerInterface;
 use Spy\Timeline\Filter\FilterManagerInterface;
 use Spy\Timeline\ResultBuilder\Pager\PagerInterface;
 
 /**
  * Pager
  *
+ * @uses AbstractPager
  * @uses PagerInterface
  * @author Stephane PY <py.stephane1@gmail.com>
  */
-class Pager implements PagerInterface, \IteratorAggregate, \Countable
+class Pager extends AbstractPager implements PagerInterface, \IteratorAggregate, \Countable
 {
-    /**
-     * @var FilterManagerInterface
-     */
-    protected $filterManager;
-
-    /**
-     * @var PredisClient|PhpredisClient
-     */
-    protected $client;
-
-    /**
-     * @var ActionManagerInterface
-     */
-    protected $actionManager;
-
-    /**
-     * @param FilterManagerInterface      $filterManager filterManager
-     * @param PredisClient|PhpredisClient $client        client
-     */
-    public function __construct(FilterManagerInterface $filterManager, $client)
-    {
-        $this->filterManager = $filterManager;
-        $this->client        = $client;
-    }
-
-    /**
-     * @param ActionManagerInterface $actionManager actionManager
-     */
-    public function setActionManager(ActionManagerInterface $actionManager)
-    {
-        $this->actionManager = $actionManager;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -61,7 +28,9 @@ class Pager implements PagerInterface, \IteratorAggregate, \Countable
 
         $ids    = $this->client->zRevRange($target->key, $offset, ($offset + $limit));
 
-        $this->items = $this->actionManager->findActionsForIds($ids);
+        $this->items     = $this->findActionsForIds($ids);
+        $this->nbResults = $this->client->zCard($target->key);
+        $this->lastPage  = intval(ceil($this->nbResults / ($limit + 1)));
 
         return $this;
     }
@@ -69,17 +38,33 @@ class Pager implements PagerInterface, \IteratorAggregate, \Countable
     /**
      * {@inheritdoc}
      */
-    public function filter($pager)
+    public function getLastPage()
     {
-        return $this->filterManager->filter($pager->getItems());
+        return $this->lastPage;
     }
 
     /**
-     * @return rray
+     * {@inheritdoc}
      */
-    public function getItems()
+    public function haveToPaginate()
     {
-        return $this->items;
+        return $this->getLastPage() > 1;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getNbResults()
+    {
+        return $this->nbResults;
+    }
+
+    /**
+     * @param array $items items
+     */
+    public function setItems(array $items)
+    {
+        $this->items = $items;
     }
 
     /**

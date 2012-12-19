@@ -3,7 +3,6 @@
 namespace Spy\Timeline\ResultBuilder\Pager;
 
 use Knp\Component\Pager\Paginator;
-use Spy\Timeline\Filter\FilterManagerInterface;
 use Spy\Timeline\ResultBuilder\Pager\PagerInterface;
 
 /**
@@ -12,7 +11,7 @@ use Spy\Timeline\ResultBuilder\Pager\PagerInterface;
  * @uses PagerInterface
  * @author Stephane PY <py.stephane1@gmail.com>
  */
-class KnpPager implements PagerInterface
+class KnpPager implements PagerInterface, \IteratorAggregate, \Countable
 {
     /**
      * @var Paginator
@@ -20,18 +19,21 @@ class KnpPager implements PagerInterface
     protected $paginator;
 
     /**
-     * @var FilterManagerInterface
+     * @var array
      */
-    protected $filterManager;
+    protected $pager;
 
     /**
-     * @param Paginator              $paginator     paginator
-     * @param FilterManagerInterface $filterManager filterManager
+     * @var array
      */
-    public function __construct(Paginator $paginator, FilterManagerInterface $filterManager)
+    protected $data;
+
+    /**
+     * @param Paginator $paginator paginator
+     */
+    public function __construct(Paginator $paginator)
     {
         $this->paginator     = $paginator;
-        $this->filterManager = $filterManager;
     }
 
     /**
@@ -39,14 +41,61 @@ class KnpPager implements PagerInterface
      */
     public function paginate($target, $page = 1, $limit = 10, $options = array())
     {
-        return $this->paginator->paginate($target, $page, $limit, $options);
+        $this->pager = $this->paginator->paginate($target, $page, $limit, $options);
+        $this->data  = $this->pager->getPaginationData();
+
+        return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function filter($pager)
+    public function getLastPage()
     {
-        return $this->filterManager->filter($pager);
+        return $this->data['last'];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function haveToPaginate()
+    {
+        return $this->getLastPage() > 1;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getNbResults()
+    {
+        return $this->data['totalCount'];
+    }
+
+    /**
+     * @param array $items items
+     */
+    public function setItems(array $items)
+    {
+        if (!$this->pager) {
+            throw new \Exception('Paginate before set items');
+        }
+
+        $this->pager->setItems($items);
+    }
+
+    /**
+     * @return \ArrayIterator
+     */
+    public function getIterator()
+    {
+        return $this->pager;
+    }
+
+    /**
+     * @return integer
+     */
+    public function count()
+    {
+        return $this->data['currentItemCount'];
     }
 }

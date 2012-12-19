@@ -4,36 +4,16 @@ namespace Spy\Timeline\Driver\Redis\Pager;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Knp\Component\Pager\Event\ItemsEvent;
-use Spy\Timeline\Driver\ActionManagerInterface;
 
 /**
  * KnpSubscriber
  *
+ * @uses AbstractPager
  * @uses EventSubscriberInterface
  * @author Stephane PY <py.stephane1@gmail.com>
  */
-class KnpSubscriber implements EventSubscriberInterface
+class KnpSubscriber extends AbstractPager implements EventSubscriberInterface
 {
-    /**
-     * @var PredisClient|PhpredisClient
-     */
-    protected $client;
-
-    /**
-     * @var ActionManagerInterface
-     */
-    protected $actionManager;
-
-    /**
-     * @param PredisClient|PhpredisClient $client        client
-     * @param ActionManagerInterface      $actionManager actionManager
-     */
-    public function __construct($client, ActionManagerInterface $actionManager)
-    {
-        $this->client        = $client;
-        $this->actionManager = $actionManager;
-    }
-
     /**
      * @param ItemsEvent $event event
      */
