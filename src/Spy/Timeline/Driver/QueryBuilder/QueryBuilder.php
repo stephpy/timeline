@@ -156,6 +156,14 @@ class QueryBuilder
     }
 
     /**
+     * @return CriteriaInterface|null
+     */
+    public function getCriterias()
+    {
+        return $this->criterias;
+    }
+
+    /**
      * @param integer $page page
      *
      * @return QueryBuilder

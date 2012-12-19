@@ -7,7 +7,7 @@ use Spy\Timeline\Driver\TimelineManagerInterface;
 use Spy\Timeline\Model\ActionInterface;
 use Spy\Timeline\Model\ComponentInterface;
 use Spy\Timeline\Model\TimelineInterface;
-use Spy\Timeline\Pager\PagerInterface;
+use Spy\Timeline\ResultBuilder\ResultBuilderInterface;
 
 /**
  * TimelineManager
@@ -23,9 +23,9 @@ class TimelineManager implements TimelineManagerInterface
     protected $client;
 
     /**
-     * @var PagerInterface
+     * @var ResultBuilderInterface
      */
-    protected $pager;
+    protected $resultBuilder;
 
     /**
      * @var string
@@ -43,15 +43,15 @@ class TimelineManager implements TimelineManagerInterface
     protected $persistedDatas = array();
 
     /**
-     * @param object         $client   client
-     * @param PagerInterface $pager    pager
-     * @param string         $prefix   prefix
-     * @param boolean        $pipeline pipeline
+     * @param object                 $client        client
+     * @param ResultBuilderInterface $resultBuilder resultBuilder
+     * @param string                 $prefix        prefix
+     * @param boolean                $pipeline      pipeline
      */
-    public function __construct($client, PagerInterface $pager, $prefix, $pipeline = true)
+    public function __construct($client, ResultBuilderInterface $resultBuilder, $prefix, $pipeline = true)
     {
         $this->client        = $client;
-        $this->pager         = $pager;
+        $this->resultBuilder = $resultBuilder;
         $this->prefix        = $prefix;
         $this->pipeline      = $pipeline;
     }
@@ -65,21 +65,17 @@ class TimelineManager implements TimelineManagerInterface
         $resolver->setDefaults(array(
             'page'         => 1,
             'max_per_page' => 10,
-            'type'    => TimelineInterface::TYPE_TIMELINE,
-            'context' => 'GLOBAL',
-            'filter'  => true,
+            'type'         => TimelineInterface::TYPE_TIMELINE,
+            'context'      => 'GLOBAL',
+            'filter'       => true,
+            'paginate'     => false,
         ));
 
         $options = $resolver->resolve($options);
 
         $token   = new Pager\PagerToken($this->getRedisKey($subject, $options['context'], $options['type']));
-        $pager   = $this->pager->paginate($token, $options['page'], $options['max_per_page']);
 
-        if ($options['filter']) {
-            return $this->pager->filter($pager);
-        }
-
-        return $pager;
+        return $this->resultBuilder->fetchResults($token, $options['page'], $options['max_per_page'], $options['filter'], $options['paginate']);
     }
 
     /**
