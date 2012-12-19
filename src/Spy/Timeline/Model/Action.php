@@ -308,7 +308,7 @@ class Action implements ActionInterface
         $actionComponent->setAction($this);
         $type = $actionComponent->getType();
 
-        foreach ($this->actionComponents as $key => $ac) {
+        foreach ($this->getActionComponents() as $key => $ac) {
             if ($ac->getType() == $type) {
                 unset($this->actionComponents[$key]);
             }
