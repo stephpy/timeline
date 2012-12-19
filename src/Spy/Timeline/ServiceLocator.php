@@ -50,6 +50,9 @@ class ServiceLocator
         $c['query_builder.asserter.class']           = 'Spy\Timeline\Driver\QueryBuilder\Criteria\Asserter';
         $c['query_builder.operator.class']           = 'Spy\Timeline\Driver\QueryBuilder\Criteria\Operator';
 
+        // result builder
+        $c['result_builder.class']                   = 'Spy\Timeline\ResultBuilder\ResultBuilder';
+
         // deployer
         $c['spread.deployer.class']                  = 'Spy\Timeline\Spread\Deployer';
         $c['spread.entry_collection.class']          = 'Spy\Timeline\Spread\Entry\EntryCollection';
@@ -97,6 +100,18 @@ class ServiceLocator
             );
         });
 
+        // result builder
+
+        $c['result_builder'] = $c->share(function($c) {
+            $instance = new $c['result_builder.class'](
+                $c['query_executor'],
+                $c['filter.manager']
+            );
+
+            $instance->setPager($c['pager']);
+
+            return $instance;
+        });
 
         // deployers
 
@@ -130,6 +145,7 @@ class ServiceLocator
 
         $c['timeline_manager.class']  = 'Spy\Timeline\Driver\Redis\TimelineManager';
         $c['action_manager.class']    = 'Spy\Timeline\Driver\Redis\ActionManager';
+        $c['query_executor.class']    = 'Spy\Timeline\Driver\Redis\QueryExecutor';
         $c['pager.class']             = 'Spy\Timeline\Driver\Redis\Pager\Pager';
         $c['redis.prefix']            = 'spy_timeline';
         $c['redis.pipeline']          = true;
@@ -142,7 +158,7 @@ class ServiceLocator
         $c['timeline_manager'] = $c->share(function($c) {
             return new $c['timeline_manager.class'](
                 $c['redis.client'],
-                $c['pager'],
+                $c['result_builder'],
                 $c['redis.prefix'],
                 $c['redis.pipeline']
             );
@@ -151,7 +167,7 @@ class ServiceLocator
         $c['action_manager'] = $c->share(function($c) {
             $instance = new $c['action_manager.class'](
                 $c['redis.client'],
-                $c['pager'],
+                $c['result_builder'],
                 $c['redis.prefix'],
                 $c['class.action'],
                 $c['class.component'],
@@ -163,10 +179,17 @@ class ServiceLocator
             return $instance;
         });
 
+        $c['query_executor'] = $c->share(function($c) {
+            return new $c['query_executor.class'](
+                $c['redis.client'],
+                $c['redis.prefix']
+            );
+        });
+
         $c['pager'] = $c->share(function($c) {
             return new $c['pager.class'](
-                $c['filter.manager'],
-                $c['redis.client']
+                $c['redis.client'],
+                $c['redis.prefix']
             );
         });
 

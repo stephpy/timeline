@@ -7,7 +7,7 @@ use Spy\Timeline\Driver\AbstractActionManager;
 use Spy\Timeline\Driver\ActionManagerInterface;
 use Spy\Timeline\Model\ActionInterface;
 use Spy\Timeline\Model\ComponentInterface;
-use Spy\Timeline\Pager\PagerInterface;
+use Spy\Timeline\ResultBuilder\ResultBuilderInterface;
 
 /**
  * ActionManager
@@ -24,9 +24,9 @@ class ActionManager extends AbstractActionManager implements ActionManagerInterf
     protected $client;
 
     /**
-     * @var PagerInterface
+     * @var ResultBuilderInterface
      */
-    protected $pager;
+    protected $resultBuilder;
 
     /**
      * @var string
@@ -49,40 +49,21 @@ class ActionManager extends AbstractActionManager implements ActionManagerInterf
     protected $actionComponentClass;
 
     /**
-     * @param object         $client               client
-     * @param PagerInterface $pager                pager
-     * @param string         $prefix               prefix
-     * @param string         $actionClass          actionClass
-     * @param string         $componentClass       componentClass
-     * @param string         $actionComponentClass actionComponentClass
+     * @param object                  $client               client
+     * @param ResultBuilderInterface $resultBuilder        resultBuilder
+     * @param string                  $prefix               prefix
+     * @param string                  $actionClass          actionClass
+     * @param string                  $componentClass       componentClass
+     * @param string                  $actionComponentClass actionComponentClass
      */
-    public function __construct($client, PagerInterface $pager, $prefix, $actionClass, $componentClass, $actionComponentClass)
+    public function __construct($client, ResultBuilderInterface $resultBuilder, $prefix, $actionClass, $componentClass, $actionComponentClass)
     {
         $this->client               = $client;
         $this->prefix               = $prefix;
         $this->actionClass          = $actionClass;
         $this->componentClass       = $componentClass;
         $this->actionComponentClass = $actionComponentClass;
-        $this->pager                = $pager;
-        $this->pager->setActionManager($this);
-    }
-
-    /**
-     * @param array $ids ids
-     *
-     * @return array
-     */
-    public function findActionsForIds(array $ids)
-    {
-        if (empty($ids)) {
-            return array();
-        }
-
-        $datas = $this->client->hmget($this->getActionKey(), $ids);
-
-        return array_values(array_map(function($v) {
-            return unserialize($v);
-        }, $datas));
+        $this->resultBuilder        = $resultBuilder;
     }
 
     /**
@@ -117,18 +98,14 @@ class ActionManager extends AbstractActionManager implements ActionManagerInterf
             'page'         => 1,
             'max_per_page' => 10,
             'filter'       => true,
+            'paginate'     => false,
         ));
 
         $options = $resolver->resolve($options);
 
         $token   = new Pager\PagerToken($this->getSubjectRedisKey($subject));
-        $pager   = $this->pager->paginate($token, $options['page'], $options['max_per_page']);
 
-        if ($options['filter']) {
-            return $this->pager->filter($pager);
-        }
-
-        return $pager;
+        return $this->resultBuilder->fetchResults($token, $options['page'], $options['max_per_page'], $options['filter'], $options['paginate']);
     }
 
     /**
