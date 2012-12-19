@@ -15,6 +15,11 @@ use Spy\Timeline\ResultBuilder\Pager\PagerInterface;
 class Pager extends AbstractPager implements PagerInterface, \IteratorAggregate, \Countable
 {
     /**
+     * @var integer
+     */
+    protected $page;
+
+    /**
      * {@inheritdoc}
      */
     public function paginate($target, $page = 1, $limit = 10, $options = array())
@@ -28,6 +33,7 @@ class Pager extends AbstractPager implements PagerInterface, \IteratorAggregate,
 
         $ids    = $this->client->zRevRange($target->key, $offset, ($offset + $limit));
 
+        $this->page      = $page;
         $this->items     = $this->findActionsForIds($ids);
         $this->nbResults = $this->client->zCard($target->key);
         $this->lastPage  = intval(ceil($this->nbResults / ($limit + 1)));
@@ -41,6 +47,14 @@ class Pager extends AbstractPager implements PagerInterface, \IteratorAggregate,
     public function getLastPage()
     {
         return $this->lastPage;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPage()
+    {
+        return $this->page;
     }
 
     /**

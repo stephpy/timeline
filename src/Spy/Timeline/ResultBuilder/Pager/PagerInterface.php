@@ -22,6 +22,11 @@ interface PagerInterface
     /**
      * @return integer
      */
+    public function getPage();
+
+    /**
+     * @return integer
+     */
     public function getLastPage();
 
     /**

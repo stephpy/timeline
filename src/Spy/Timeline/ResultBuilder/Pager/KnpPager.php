@@ -24,6 +24,11 @@ class KnpPager implements PagerInterface, \IteratorAggregate, \Countable
     protected $pager;
 
     /**
+     * @var integer
+     */
+    protected $page;
+
+    /**
      * @var array
      */
     protected $data;
@@ -41,10 +46,19 @@ class KnpPager implements PagerInterface, \IteratorAggregate, \Countable
      */
     public function paginate($target, $page = 1, $limit = 10)
     {
+        $this->page  = $page;
         $this->pager = $this->paginator->paginate($target, $page, $limit);
         $this->data  = $this->pager->getPaginationData();
 
         return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPage()
+    {
+        return $this->page;
     }
 
     /**
