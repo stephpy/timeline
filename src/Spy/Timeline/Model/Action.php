@@ -55,14 +55,15 @@ class Action implements ActionInterface
     /**
      * @var array
      */
-    protected $actionComponents = array();
+    protected $actionComponents;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->createdAt = new DateTime();
+        $this->createdAt        = new DateTime();
+        $this->actionComponents = array();
     }
 
     /**
