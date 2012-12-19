@@ -39,9 +39,9 @@ class KnpPager implements PagerInterface, \IteratorAggregate, \Countable
     /**
      * {@inheritdoc}
      */
-    public function paginate($target, $page = 1, $limit = 10, $options = array())
+    public function paginate($target, $page = 1, $limit = 10)
     {
-        $this->pager = $this->paginator->paginate($target, $page, $limit, $options);
+        $this->pager = $this->paginator->paginate($target, $page, $limit);
         $this->data  = $this->pager->getPaginationData();
 
         return $this;
