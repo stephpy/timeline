@@ -287,17 +287,14 @@ class QueryBuilder
         if (isset($data['subject'])) {
             $subjects = $data['subject'];
 
-            foreach ($subjects as $hash) {
-                if ($actionManager) {
-                    $component = $actionManager->findComponentWithHash($hash);
-                } else {
-                    $component = new Component();
-                    $component->createFromHash($hash);
-                }
+            if (!$actionManager) {
+                throw new \Exception('Please provide the actionManager to retrieve components');
+            }
 
-                if ($component) {
-                    $this->addSubject($component);
-                }
+            $components = $actionManager->findComponents($subjects);
+
+            foreach ($components as $component) {
+                $this->addSubject($component);
             }
         }
 
