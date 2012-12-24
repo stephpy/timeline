@@ -48,34 +48,46 @@ class Asserter implements CriteriaInterface
         return $this;
     }
 
+    /**
+     * Allow to transform value easily for each assertions.
+     *
+     * @param mixed $value value
+     *
+     * @return mixed
+     */
+    public function transform($value)
+    {
+        return $value;
+    }
+
     public function equals($value)
     {
-        return $this->create(self::ASSERTER_EQUAL, $value);
+        return $this->create(self::ASSERTER_EQUAL, $this->transform($value));
     }
 
     public function notEquals($value)
     {
-        return $this->create(self::ASSERTER_NOT_EQUAL, $value);
+        return $this->create(self::ASSERTER_NOT_EQUAL, $this->transform($value));
     }
 
     public function in(array $values)
     {
-        return $this->create(self::ASSERTER_IN, $values);
+        return $this->create(self::ASSERTER_IN, $this->transform($values));
     }
 
     public function notIn(array $values)
     {
-        return $this->create(self::ASSERTER_NOT_IN, $values);
+        return $this->create(self::ASSERTER_NOT_IN, $this->transform($values));
     }
 
     public function like($value)
     {
-        return $this->create(self::ASSERTER_LIKE, $value);
+        return $this->create(self::ASSERTER_LIKE, $this->transform($value));
     }
 
     public function notLike($value)
     {
-        return $this->create(self::ASSERTER_NOT_LIKE, $value);
+        return $this->create(self::ASSERTER_NOT_LIKE, $this->transform($value));
     }
 
     /**
@@ -87,7 +99,7 @@ class Asserter implements CriteriaInterface
      */
     public function lt($value)
     {
-        return $this->create(self::ASSERTER_LOWER_THAN, $value);
+        return $this->create(self::ASSERTER_LOWER_THAN, $this->transform($value));
     }
 
     /**
@@ -99,7 +111,7 @@ class Asserter implements CriteriaInterface
      */
     public function lte($value)
     {
-        return $this->create(self::ASSERTER_LOWER_THAN_EQUAL, $value);
+        return $this->create(self::ASSERTER_LOWER_THAN_EQUAL, $this->transform($value));
     }
 
     /**
@@ -111,7 +123,7 @@ class Asserter implements CriteriaInterface
      */
     public function gt($value)
     {
-        return $this->create(self::ASSERTER_GREATHER_THAN, $value);
+        return $this->create(self::ASSERTER_GREATHER_THAN, $this->transform($value));
     }
 
     /**
@@ -123,7 +135,7 @@ class Asserter implements CriteriaInterface
      */
     public function gte($value)
     {
-        return $this->create(self::ASSERTER_GREATHER_THAN_EQUAL, $value);
+        return $this->create(self::ASSERTER_GREATHER_THAN_EQUAL, $this->transform($value));
     }
 
 

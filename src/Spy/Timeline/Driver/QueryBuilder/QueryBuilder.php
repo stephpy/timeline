@@ -315,7 +315,7 @@ class QueryBuilder
             ),
             'page'            => $this->page,
             'max_per_page'    => $this->maxPerPage,
-            'criterias'       => $this->criterias->toArray(),
+            'criterias'       => $this->criterias ? $this->criterias->toArray() : null,
             'sort'            => $this->sort,
             'group_by_action' => $this->groupByAction,
         );
