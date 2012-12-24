@@ -284,7 +284,7 @@ class QueryBuilder
             $this->groupByAction($data['group_by_action']);
         }
 
-        if (isset($data['subject'])) {
+        if (isset($data['subject']) && !empty($data['subject'])) {
             $subjects = $data['subject'];
 
             if (!$actionManager) {
