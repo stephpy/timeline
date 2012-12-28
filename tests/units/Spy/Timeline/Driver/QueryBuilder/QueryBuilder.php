@@ -148,7 +148,6 @@ class QueryBuilder extends atoum\test
                 'criterias' => array(
                     'type' => 'expr',
                 ),
-                'group_by_action' => true,
             ))
             ->and($resultExpected = new QueryBuilderTested($factory))
             ->and($resultExpected->setPage(10))
@@ -156,7 +155,6 @@ class QueryBuilder extends atoum\test
             ->and($resultExpected->orderBy('createdAt', 'DESC'))
             ->and($resultExpected->setCriterias($criteria))
             ->and($resultExpected->addSubject($component))
-            ->and($resultExpected->groupByAction(true))
             ->object($data = $qb->fromArray($data, $actionManager))
             ->isEqualTo($resultExpected)
             ;
@@ -175,7 +173,6 @@ class QueryBuilder extends atoum\test
             ->and($qb->setPage(10))
             ->and($qb->setMaxPerPage(100))
             ->and($qb->orderBy('createdAt', 'DESC'))
-            ->and($qb->groupByAction(true))
             ->and($qb->addSubject($subject))
             ->array($qb->toArray())
             ->isIdenticalTo(
@@ -190,7 +187,6 @@ class QueryBuilder extends atoum\test
                         'createdAt',
                         'DESC',
                     ),
-                    'group_by_action' => true,
                 )
             )
             ;
