@@ -215,7 +215,7 @@ class ActionManager extends AbstractActionManager implements ActionManagerInterf
      */
     protected function resolveModelAndIdentifier($model, $identifier)
     {
-        if (!is_object($model) && empty($identifier)) {
+        if (!is_object($model) && (null === $identifier || '' === $identifier)) {
             throw new \LogicException('Model has to be an object or a scalar + an identifier in 2nd argument');
         }
 
