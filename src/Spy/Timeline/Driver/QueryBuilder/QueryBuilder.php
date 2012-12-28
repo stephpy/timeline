@@ -272,6 +272,10 @@ class QueryBuilder
 
             $components = $actionManager->findComponents($subjects);
 
+            if (count($components) != count($subjects)) {
+                throw new \Exception('One of subject does not exists in database');
+            }
+
             foreach ($components as $component) {
                 $this->addSubject($component);
             }
