@@ -31,11 +31,6 @@ class QueryBuilder
     protected $maxPerPage = 10;
 
     /**
-     * @var boolean
-     */
-    protected $groupByAction = false;
-
-    /**
      * @var array
      */
     protected $criterias;
@@ -55,7 +50,7 @@ class QueryBuilder
      */
     protected static $fieldLocation = array(
         'context'    => 'timeline',
-        'createdAt'  => 'timeline',
+        'createdAt'  => 'action',
         'verb'       => 'action',
         'type'       => 'actionComponent',
         'text'       => 'actionComponent',
@@ -209,18 +204,6 @@ class QueryBuilder
     }
 
     /**
-     * @param boolean $value value
-     *
-     * @return QueryBuilder
-     */
-    public function groupByAction($value = true)
-    {
-        $this->groupByAction = $value;
-
-        return $this;
-    }
-
-    /**
      * @param string $field field
      *
      * @return string
@@ -280,10 +263,6 @@ class QueryBuilder
             $this->orderBy($field, $order);
         }
 
-        if (isset($data['group_by_action'])) {
-            $this->groupByAction($data['group_by_action']);
-        }
-
         if (isset($data['subject']) && !empty($data['subject'])) {
             $subjects = $data['subject'];
 
@@ -314,7 +293,6 @@ class QueryBuilder
             'max_per_page'    => $this->maxPerPage,
             'criterias'       => $this->criterias ? $this->criterias->toArray() : null,
             'sort'            => $this->sort,
-            'group_by_action' => $this->groupByAction,
         );
     }
 }

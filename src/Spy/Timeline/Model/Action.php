@@ -58,12 +58,18 @@ class Action implements ActionInterface
     protected $actionComponents;
 
     /**
+     * @var array
+     */
+    protected $timelines;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->createdAt        = new DateTime();
         $this->actionComponents = array();
+        $this->timelines        = array();
     }
 
     /**
@@ -328,4 +334,23 @@ class Action implements ActionInterface
         return $this->actionComponents;
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function addTimeline(TimelineInterface $timeline)
+    {
+        $timeline->setAction($this);
+
+        $this->timelines[] = $timeline;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getTimelines()
+    {
+        return $this->timelines;
+    }
 }
