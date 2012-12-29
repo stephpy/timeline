@@ -133,7 +133,7 @@ class QueryBuilder extends atoum\test
             ->and($factory->getMockController()->createAsserterFromArray = $criteria)
             ->and($component = new \Mock\ComponentInterface())
             ->and($actionManager = new \Mock\ActionManagerInterface())
-            ->and($actionManager->getMockController()->findComponentWithHash = $component)
+            ->and($actionManager->getMockController()->findComponents = array($component))
             ->and($qb = new QueryBuilderTested($factory))
             ->and($data = array(
                 'subject' => array(
