@@ -2,7 +2,6 @@
 
 namespace Spy\Timeline\Filter;
 
-use Spy\Timeline\Model\TimelineInterface;
 
 /**
  * Defined on "Resources/doc/filter.markdown"
@@ -23,10 +22,6 @@ class DuplicateKey extends AbstractFilter implements FilterInterface
         $duplicateKeys = array();
 
         foreach ($collection as $key => $action) {
-            if ($action instanceof TimelineInterface) {
-                $action = $action->getAction();
-            }
-
             if ($action->hasDuplicateKey()) {
                 $currentKey      = $action->getDuplicateKey();
                 $currentPriority = $action->getDuplicatePriority();
@@ -57,12 +52,7 @@ class DuplicateKey extends AbstractFilter implements FilterInterface
         foreach ($duplicateKeys as $key => $values) {
             if ($values['duplicated']) {
                 $action = $collection[$values['key']];
-
-                if ($action instanceof TimelineInterface) {
-                    $action->getAction()->setIsDuplicated(true);
-                } else {
-                    $action->setIsDuplicated(true);
-                }
+                $action->setIsDuplicated(true);
             }
         }
 

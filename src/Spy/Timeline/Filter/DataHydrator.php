@@ -5,7 +5,6 @@ namespace Spy\Timeline\Filter;
 use Spy\Timeline\Filter\DataHydrator\Locator\LocatorInterface;
 use Spy\Timeline\Filter\DataHydrator\Entry;
 use Spy\Timeline\Filter\FilterInterface;
-use Spy\Timeline\Model\TimelineInterface;
 
 /**
  * DataHydrator
@@ -62,10 +61,6 @@ class DataHydrator extends AbstractFilter implements FilterInterface
         }
 
         foreach ($collection as $key => $action) {
-            if ($action instanceof TimelineInterface) {
-                $action = $action->getAction();
-            }
-
             $entry = new Entry($action, $key);
             $entry->build();
 
@@ -116,10 +111,6 @@ class DataHydrator extends AbstractFilter implements FilterInterface
         }
 
         foreach ($collection as $key => $action) {
-            if ($action instanceof TimelineInterface) {
-                $action = $action->getAction();
-            }
-
             foreach ($action->getActionComponents() as $actionComponent) {
                 $component = $actionComponent->getComponent();
                 if (!$actionComponent->isText() && is_object($component) && null === $component->getData()) {

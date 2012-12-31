@@ -4,6 +4,7 @@ namespace Spy\Timeline\Filter;
 
 use Spy\Timeline\Filter\FilterInterface;
 use Spy\Timeline\Filter\FilterManagerInterface;
+use Spy\Timeline\Model\ActionInterface;
 
 /**
  * FilterManager
@@ -44,6 +45,12 @@ class FilterManager implements FilterManagerInterface
 
         if (!is_array($collection) && !$collection instanceof \Traversable) {
             throw new \Exception('Collection must be an array or traversable');
+        }
+
+        foreach ($collection as $action) {
+            if (!$action instanceof ActionInterface) {
+                throw new \LogicException('Filter manager must filter a collection of ActionInterface');
+            }
         }
 
         foreach ($this->filters as $filter) {
