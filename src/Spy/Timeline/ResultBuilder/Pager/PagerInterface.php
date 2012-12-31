@@ -38,4 +38,9 @@ interface PagerInterface
      * @return integer
      */
     public function getNbResults();
+
+    /**
+     * @param array $items items
+     */
+    public function setItems(array $items);
 }

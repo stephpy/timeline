@@ -5,6 +5,8 @@ namespace Spy\Timeline\Filter;
 use Spy\Timeline\Filter\DataHydrator\Locator\LocatorInterface;
 use Spy\Timeline\Filter\DataHydrator\Entry;
 use Spy\Timeline\Filter\FilterInterface;
+use Spy\Timeline\Model\TimelineInterface;
+use Spy\Timeline\ResultBuilder\Pager\PagerInterface;
 
 /**
  * DataHydrator
@@ -61,6 +63,10 @@ class DataHydrator extends AbstractFilter implements FilterInterface
         }
 
         foreach ($collection as $key => $action) {
+            if ($action instanceof TimelineInterface) {
+                $action = $action->getAction();
+            }
+
             $entry = new Entry($action, $key);
             $entry->build();
 
@@ -111,16 +117,28 @@ class DataHydrator extends AbstractFilter implements FilterInterface
         }
 
         foreach ($collection as $key => $action) {
+            if ($action instanceof TimelineInterface) {
+                $action = $action->getAction();
+            }
+
             foreach ($action->getActionComponents() as $actionComponent) {
                 $component = $actionComponent->getComponent();
                 if (!$actionComponent->isText() && is_object($component) && null === $component->getData()) {
                     $hash = $component->getHash();
 
-                    if (array_key_exists($hash, $componentsLocated) && !empty($componentsLocated[$hash])) {
+                    if (array_key_exists($hash, $componentsLocated) && !empty($componentsLocated[$hash]) && null !== $componentsLocated[$hash]->getData()) {
                         $actionComponent->setComponent($componentsLocated[$hash]);
                     } else {
                         if ($this->filterUnresolved) {
-                            unset($collection[$key]);
+                            if ($collection instanceof PagerInterface) {
+                                $items = iterator_to_array($collection->getIterator());
+                                unset($items[$key]);
+                                $collection->setItems($items);
+                            } elseif (is_array($collection)) {
+                                unset($collection[$key]);
+                            } else {
+                                throw new \Exception('Collection must be an array or a PagerInterface');
+                            }
                             break;
                         }
                     }
