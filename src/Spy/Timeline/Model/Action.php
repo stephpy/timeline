@@ -96,6 +96,20 @@ class Action implements ActionInterface
     /**
      * {@inheritdoc}
      */
+    public function hasComponent($type)
+    {
+        foreach ($this->getActionComponents() as $actionComponent) {
+            if ($actionComponent->getType() == $type) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getComponent($type)
     {
         foreach ($this->getActionComponents() as $actionComponent) {

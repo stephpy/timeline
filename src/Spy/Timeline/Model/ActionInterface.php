@@ -25,6 +25,13 @@ interface ActionInterface
     /**
      * @param string $type type
      *
+     * @return boolean
+     */
+    public function hasComponent($type);
+
+    /**
+     * @param string $type type
+     *
      * @return ComponentInterface|null
      */
     public function getComponent($type);
