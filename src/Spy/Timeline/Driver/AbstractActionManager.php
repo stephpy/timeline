@@ -23,7 +23,8 @@ abstract class AbstractActionManager implements ActionManagerInterface
      */
     public function create($subject, $verb, array $components = array())
     {
-        $action = new $this->actionClass();
+        $actionClass = $this->metadata->getClass('action');
+        $action = new $actionClass();
         $action->setVerb($verb);
 
         if (!$subject instanceof ComponentInterface AND !is_object($subject)) {
@@ -54,7 +55,7 @@ abstract class AbstractActionManager implements ActionManagerInterface
             }
         }
 
-        $action->addComponent($type, $component, $this->actionComponentClass);
+        $action->addComponent($type, $component, $this->metadata->getClass('action_component'));
     }
 
     /**

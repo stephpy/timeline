@@ -7,6 +7,7 @@ use Spy\Timeline\Driver\AbstractActionManager;
 use Spy\Timeline\Driver\ActionManagerInterface;
 use Spy\Timeline\Model\ActionInterface;
 use Spy\Timeline\Model\ComponentInterface;
+use Spy\Timeline\Metadata;
 use Spy\Timeline\ResultBuilder\ResultBuilderInterface;
 
 /**
@@ -34,36 +35,22 @@ class ActionManager extends AbstractActionManager implements ActionManagerInterf
     protected $prefix;
 
     /**
-     * @var string
+     * @var Metadata
      */
-    protected $actionClass;
+    protected $metadata;
 
     /**
-     * @var string
+     * @param object                  $client       client
+     * @param ResultBuilderInterface $resultBuilder resultBuilder
+     * @param string                  $prefix       prefix
+     * @param Metadata                $metadata     metadata
      */
-    protected $componentClass;
-
-    /**
-     * @var string
-     */
-    protected $actionComponentClass;
-
-    /**
-     * @param object                  $client               client
-     * @param ResultBuilderInterface $resultBuilder        resultBuilder
-     * @param string                  $prefix               prefix
-     * @param string                  $actionClass          actionClass
-     * @param string                  $componentClass       componentClass
-     * @param string                  $actionComponentClass actionComponentClass
-     */
-    public function __construct($client, ResultBuilderInterface $resultBuilder, $prefix, $actionClass, $componentClass, $actionComponentClass)
+    public function __construct($client, ResultBuilderInterface $resultBuilder, $prefix, Metadata $metadata)
     {
         $this->client               = $client;
-        $this->prefix               = $prefix;
-        $this->actionClass          = $actionClass;
-        $this->componentClass       = $componentClass;
-        $this->actionComponentClass = $actionComponentClass;
         $this->resultBuilder        = $resultBuilder;
+        $this->prefix               = $prefix;
+        $this->metadata             = $metadata;
     }
 
     /**
@@ -140,7 +127,8 @@ class ActionManager extends AbstractActionManager implements ActionManagerInterf
         }
 
         // we do not persist component on redis driver.
-        $component = new $this->componentClass();
+        $componentClass = $this->metadata->getClass('component');
+        $component = new $componentClass();
         $component->setModel($model);
         $component->setIdentifier($identifier);
         $component->setData($data);
@@ -163,8 +151,7 @@ class ActionManager extends AbstractActionManager implements ActionManagerInterf
         $components = array();
 
         foreach ($concatIdents as $concatIdent) {
-            $component    = new $this->componentClass();
-            $components[] = $component->createFromHash($concatIdent);
+            $components[] = $this->findComponentWithHash($concatIdent);
         }
 
         return $components;
@@ -175,8 +162,9 @@ class ActionManager extends AbstractActionManager implements ActionManagerInterf
      */
     public function findComponentWithHash($hash)
     {
-        $component = new $this->componentClass();
-        $component = $component->createFromHash($hash);
+        $componentClass = $this->metadata->getClass('component');
+        $component      = new $componentClass();
+        $component      = $component->createFromHash($hash);
 
         return $component;
     }

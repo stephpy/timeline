@@ -40,6 +40,10 @@ class ServiceLocator
         $c['filter.data_hydrator.class']             = 'Spy\Timeline\Filter\DataHydrator';
         $c['filter.data_hydrator.filter_unresolved'] = false;
 
+        // metadatas
+
+        $c['metadata.class']                         = 'Spy\Timeline\Metadata';
+
         // notifications
         $c['notification_manager.class']             = 'Spy\Timeline\Notification\NotificationManager';
         $c['unread_notifications.class']             = 'Spy\Timeline\Notification\Unread\UnreadNotificationManager';
@@ -76,6 +80,12 @@ class ServiceLocator
             return new $c['filter.data_hydrator.class'](
                 $c['filter.data_hydrator.filter_unresolved']
             );
+        });
+
+        // metadatas
+
+        $c['metadata'] = $c->share(function($c) {
+            return new $c['metadata.class']();
         });
 
         // notifications
@@ -149,11 +159,11 @@ class ServiceLocator
         $c['pager.class']             = 'Spy\Timeline\Driver\Redis\Pager\Pager';
         $c['redis.prefix']            = 'spy_timeline';
         $c['redis.pipeline']          = true;
-        $c['class.action']            = 'Spy\Timeline\Model\Action';
-        $c['class.component']         = 'Spy\Timeline\Model\Component';
-        $c['class.action_component']  = 'Spy\Timeline\Model\ActionComponent';
+        $c['redis.client']            = $client;
 
-        $c['redis.client'] = $client;
+        $c['metadata']->setClass('action', 'Spy\Timeline\Model\Action');
+        $c['metadata']->setClass('component', 'Spy\Timeline\Model\Component');
+        $c['metadata']->setClass('action_component', 'Spy\Timeline\Model\ActionComponent');
 
         $c['timeline_manager'] = $c->share(function($c) {
             return new $c['timeline_manager.class'](
@@ -169,9 +179,7 @@ class ServiceLocator
                 $c['redis.client'],
                 $c['result_builder'],
                 $c['redis.prefix'],
-                $c['class.action'],
-                $c['class.component'],
-                $c['class.action_component']
+                $c['metadata']
             );
 
             $instance->setDeployer($c['spread.deployer']);
