@@ -6,6 +6,8 @@ require_once __DIR__ . '/../../../../../../vendor/autoload.php';
 
 use mageekguy\atoum;
 use Spy\Timeline\Notification\Unread\UnreadNotificationManager as TestedModel;
+use Spy\Timeline\Spread\Entry\EntryCollection;
+use Spy\Timeline\Spread\Entry\Entry;
 
 /**
  * UnreadNotificationManager
@@ -23,11 +25,22 @@ class UnreadNotificationManager extends atoum\test
             ->and($manager = new \Mock\TimelineManagerInterface())
             ->and($notifier = new TestedModel($manager))
             ->and($action = new \Mock\ActionInterface())
-            ->and($component = new \Mock\ComponentInterface())
-            ->when($notifier->notify($action, 'GLOBAL', $component))
+            ->and($ec = new EntryCollection())
+            ->when($notifier->notify($action, $ec))
                 ->mock($manager)
                     ->call('createAndPersist')
-                    ->withArguments($action, $component, 'GLOBAL', 'notification')
+                    ->never()
+                ->mock($manager)
+                    ->call('flush')
+                    ->never()
+            ->and($component = new \Mock\ComponentInterface())
+            ->and($component->getMockController()->getModel = 'User')
+            ->and($component->getMockController()->getIdentifier  = '1337')
+            ->and($ec->add(new Entry($component)))
+            ->when($notifier->notify($action, $ec))
+                ->mock($manager)
+                    ->call('createAndPersist')
+                        ->withArguments($action, $component, 'GLOBAL', 'notification')
                     ->once()
                 ->mock($manager)
                     ->call('flush')

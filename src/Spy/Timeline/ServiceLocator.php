@@ -41,7 +41,6 @@ class ServiceLocator
         $c['filter.data_hydrator.filter_unresolved'] = false;
 
         // notifications
-        $c['notification_manager.class']             = 'Spy\Timeline\Notification\NotificationManager';
         $c['unread_notifications.class']             = 'Spy\Timeline\Notification\Unread\UnreadNotificationManager';
 
         // query builder
@@ -79,10 +78,6 @@ class ServiceLocator
         });
 
         // notifications
-
-        $c['notification_manager'] = $c->share(function($c) {
-            return new $c['notification_manager.class'];
-        });
 
         $c['unread_notifications'] = $c->share(function($c) {
             return new $c['unread_notifications.class'](
@@ -124,7 +119,6 @@ class ServiceLocator
             );
 
             $instance->setDelivery($c['spread.delivery']);
-            $instance->setNotificationManager($c['notification_manager']);
 
             return $instance;
         });

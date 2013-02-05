@@ -9,7 +9,7 @@ $serviceLocator = new \Spy\Timeline\ServiceLocator();
 $serviceLocator->addRedisDriver($redis);
 
 $c = $serviceLocator->getContainer();
-$c['notification_manager']->addNotifier($c['unread_notifications']);
+$c['spread.deployer']->addNotifier($c['unread_notifications']);
 
 // define spreads
 

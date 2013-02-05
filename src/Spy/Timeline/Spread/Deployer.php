@@ -8,9 +8,9 @@ use Spy\Timeline\Driver\ActionManagerInterface;
 use Spy\Timeline\Driver\TimelineManagerInterface;
 use Spy\Timeline\Spread\DeployerInterface;
 use Spy\Timeline\Spread\SpreadInterface;
-use Spy\Timeline\Notification\NotificationManagerInterface;
 use Spy\Timeline\Spread\Entry\Entry;
 use Spy\Timeline\Spread\Entry\EntryCollection;
+use Spy\Timeline\Notification\NotifierInterface;
 
 /**
  * Deployer
@@ -23,6 +23,11 @@ class Deployer implements DeployerInterface
      * @var \ArrayIterator
      */
     protected $spreads;
+
+    /**
+     * @var array
+     */
+    protected $notifiers = array();
 
     /**
      * @var integer
@@ -38,11 +43,6 @@ class Deployer implements DeployerInterface
      * @var boolean
      */
     protected $onSubject;
-
-    /**
-     * @var NotificationManagerInterface
-     */
-    protected $notificationManager;
 
     /**
      * @var TimelineManagerInterface
@@ -84,10 +84,6 @@ class Deployer implements DeployerInterface
 
                 $this->timelineManager->createAndPersist($action, $entry->getSubject(), $context, TimelineInterface::TYPE_TIMELINE);
 
-                if ($this->notificationManager) {
-                    $this->notificationManager->notify($action, $context, $entry->getSubject());
-                }
-
                 if (($i % $this->batchSize) == 0) {
                     $this->timelineManager->flush();
                 }
@@ -99,20 +95,16 @@ class Deployer implements DeployerInterface
             $this->timelineManager->flush();
         }
 
+        foreach ($this->notifiers as $notifier) {
+            $notifier->notify($action, $results);
+        }
+
         $action->setStatusCurrent(ActionInterface::STATUS_PUBLISHED);
         $action->setStatusWanted(ActionInterface::STATUS_FROZEN);
 
         $actionManager->updateAction($action);
 
         $this->entryCollection->clear();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setNotificationManager(NotificationManagerInterface $notificationManager)
-    {
-        $this->notificationManager = $notificationManager;
     }
 
     /**
@@ -163,6 +155,14 @@ class Deployer implements DeployerInterface
         }
 
         return $this->getEntryCollection();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addNotifier(NotifierInterface $notifier)
+    {
+        $this->notifiers[] = $notifier;
     }
 
     /**
