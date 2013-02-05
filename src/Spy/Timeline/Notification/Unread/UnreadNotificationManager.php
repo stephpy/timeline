@@ -5,7 +5,8 @@ namespace Spy\Timeline\Notification\Unread;
 use Spy\Timeline\Driver\TimelineManagerInterface;
 use Spy\Timeline\Model\ActionInterface;
 use Spy\Timeline\Model\ComponentInterface;
-use Spy\Timeline\Notification\Notifier\NotifierInterface;
+use Spy\Timeline\Notification\NotifierInterface;
+use Spy\Timeline\Spread\Entry\EntryCollection;
 
 /**
  * UnreadNotificationManager
@@ -31,10 +32,19 @@ class UnreadNotificationManager implements NotifierInterface
     /**
      * {@inheritdoc}
      */
-    public function notify(ActionInterface $action, $context, ComponentInterface $subject)
+    public function notify(ActionInterface $action, EntryCollection $entryCollection)
     {
-        $this->timelineManager->createAndPersist($action, $subject, $context, 'notification');
-        $this->timelineManager->flush();
+        $i = 0;
+        foreach ($entryCollection as $context => $entries) {
+            foreach ($entries as $entry) {
+                $i++;
+                $this->timelineManager->createAndPersist($action, $entry->getSubject(), $context, 'notification');
+            }
+        }
+
+        if ($i > 0) {
+            $this->timelineManager->flush();
+        }
     }
 
     /**

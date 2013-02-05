@@ -4,7 +4,7 @@ namespace Spy\Timeline\Spread;
 
 use Spy\Timeline\Driver\ActionManagerInterface;
 use Spy\Timeline\Model\ActionInterface;
-use Spy\Timeline\Notification\NotificationManagerInterface;
+use Spy\Timeline\Notification\NotifierInterface;
 
 /**
  * Deployer
@@ -28,11 +28,6 @@ interface DeployerInterface
     public function setDelivery($delivery);
 
     /**
-     * @param NotificationManagerInterface $notificationManager notificationManager
-     */
-    public function setNotificationManager(NotificationManagerInterface $notificationManager);
-
-    /**
      * @return boolean
      */
     public function isDeliveryImmediate();
@@ -41,6 +36,11 @@ interface DeployerInterface
      * @param SpreadInterface $spread spread
      */
     public function addSpread(SpreadInterface $spread);
+
+    /**
+     * @param NotifierInterface $notifier notifier
+     */
+    public function addNotifier(NotifierInterface $notifier);
 
     /**
      * @return \ArrayIterator of SpreadInterface

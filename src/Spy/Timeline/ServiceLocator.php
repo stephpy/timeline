@@ -45,7 +45,6 @@ class ServiceLocator
         $c['metadata.class']                         = 'Spy\Timeline\Metadata';
 
         // notifications
-        $c['notification_manager.class']             = 'Spy\Timeline\Notification\NotificationManager';
         $c['unread_notifications.class']             = 'Spy\Timeline\Notification\Unread\UnreadNotificationManager';
 
         // query builder
@@ -90,10 +89,6 @@ class ServiceLocator
 
         // notifications
 
-        $c['notification_manager'] = $c->share(function($c) {
-            return new $c['notification_manager.class'];
-        });
-
         $c['unread_notifications'] = $c->share(function($c) {
             return new $c['unread_notifications.class'](
                 $c['timeline_manager']
@@ -134,7 +129,6 @@ class ServiceLocator
             );
 
             $instance->setDelivery($c['spread.delivery']);
-            $instance->setNotificationManager($c['notification_manager']);
 
             return $instance;
         });

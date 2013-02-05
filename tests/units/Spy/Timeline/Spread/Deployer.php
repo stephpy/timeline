@@ -40,7 +40,6 @@ class Deployer extends atoum\test
             ->and($this->mockClass('\Spy\Timeline\Spread\Entry\EntryCollection', '\Mock'))
             ->and($this->mockClass('\Spy\Timeline\Spread\Entry\Entry', '\Mock'))
             ->and($this->mockClass('\Spy\Timeline\Driver\ActionManagerInterface', '\Mock'))
-            ->and($this->mockClass('\Spy\Timeline\Notification\NotificationManagerInterface', '\Mock'))
             ->and($this->mockClass('\Spy\Timeline\Model\ActionInterface', '\Mock'))
             ->and($this->mockClass('\Spy\Timeline\Model\ComponentInterface', '\Mock'))
             ->and($this->mockClass('\Spy\Timeline\Spread\Deployer', '\Mock'))
@@ -62,10 +61,8 @@ class Deployer extends atoum\test
             // ---- deployer ----
             ->and($deployer = new \Mock\Deployer($timelineManager, $entryCollection))
             ->and($deployer->getMockController()->processSpreads     = $entryCollection)
-            ->and($deployer->setNotificationManager($notifManager))
             ->when($deployer->deploy($action, $actionManager))
                 ->mock($timelineManager)->call('createAndPersist')->withArguments($action, $component, 'CONTEXT', TimelineInterface::TYPE_TIMELINE)->once()
-                ->mock($notifManager)->call('notify')->withArguments($action, 'CONTEXT', $component)->once()
                 ->mock($timelineManager)->call('flush')->once()
                 ->mock($action)->call('setStatusWanted')->withArguments(ActionInterface::STATUS_FROZEN)->once()
                 ->mock($action)->call('setStatusCurrent')->withArguments(ActionInterface::STATUS_PUBLISHED)->once()
