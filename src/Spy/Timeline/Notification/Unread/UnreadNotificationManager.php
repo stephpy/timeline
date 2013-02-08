@@ -19,7 +19,7 @@ class UnreadNotificationManager implements NotifierInterface
     /**
      * @var TimelineManager
      */
-    private $timelineManager;
+    protected $timelineManager;
 
     /**
      * @param TimelineManagerInterface $timelineManager timelineManager
