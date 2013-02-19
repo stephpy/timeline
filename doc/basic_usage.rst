@@ -28,7 +28,7 @@ Example with `Pimple <http://pimple.sensiolabs.org/>`_ usage.
 
 .. code-block:: php
 
-    $actionmanager = $c['action_manager'];
+    $actionManager = $c['action_manager'];
     $chuck         = $actionManager->findOrCreateComponent('User', 'ChuckNorris');
     $bruceLee      = $actionManager->findOrCreateComponent('User', 'BruceLee');
 
