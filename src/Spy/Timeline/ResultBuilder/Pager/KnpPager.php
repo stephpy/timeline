@@ -8,20 +8,18 @@ use Spy\Timeline\ResultBuilder\Pager\PagerInterface;
 /**
  * KnpPager
  *
+ * @uses AbstractPager
  * @uses PagerInterface
+ * @uses \IteratorAggregate
+ * @uses \Countable
  * @author Stephane PY <py.stephane1@gmail.com>
  */
-class KnpPager implements PagerInterface, \IteratorAggregate, \Countable
+class KnpPager extends AbstractPager implements PagerInterface, \IteratorAggregate, \Countable
 {
     /**
      * @var Paginator
      */
     protected $paginator;
-
-    /**
-     * @var array
-     */
-    protected $pager;
 
     /**
      * @var integer
@@ -38,7 +36,7 @@ class KnpPager implements PagerInterface, \IteratorAggregate, \Countable
      */
     public function __construct(Paginator $paginator)
     {
-        $this->paginator     = $paginator;
+        $this->paginator = $paginator;
     }
 
     /**
