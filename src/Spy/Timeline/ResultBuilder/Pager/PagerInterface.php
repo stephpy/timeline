@@ -7,7 +7,7 @@ namespace Spy\Timeline\ResultBuilder\Pager;
  *
  * @author Stephane PY <py.stephane1@gmail.com>
  */
-interface PagerInterface extends \ArrayAccess
+interface PagerInterface
 {
     /**
      * @param mixed $target  target
