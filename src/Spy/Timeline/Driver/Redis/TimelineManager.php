@@ -198,16 +198,17 @@ class TimelineManager implements TimelineManagerInterface
                     break;
             }
         }
-        
-        $this->persistedDatas = array();
+
         if ($this->pipeline) {
             //Predis as a specific way to flush pipeline.
             if ($client instanceof \Predis\Pipeline\PipelineContext) {
-                return $client->execute();
+                $replies = $client->execute();
             } else {
-                return $client->exec();
+                $replies = $client->exec();
             }
         }
+
+        $this->persistedDatas = array();
 
         return $replies;
     }
