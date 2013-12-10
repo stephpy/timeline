@@ -47,7 +47,7 @@ $actions       = $actionManager->getSubjectActions($chuck);
 
 print sprintf("---- Actions Results = (%s) -----\n", count($actions));
 
-foreach ($timeline as $action) {
+foreach ($actions as $action) {
     $subject          = $action->getSubject();
     $directComplement = $action->getComponent('directComplement');
     //.....
