@@ -4,6 +4,7 @@ namespace Spy\Timeline\Driver;
 
 use Spy\Timeline\Model\ActionInterface;
 use Spy\Timeline\Model\ComponentInterface;
+use Spy\Timeline\ResultBuilder\Pager\PagerInterface;
 
 /**
  * ActionManagerInterface
@@ -30,6 +31,9 @@ interface ActionManagerInterface
     /**
      * @param ComponentInterface $subject subject
      * @param array              $options page, max_per_page, status, filter, paginate
+     *
+     * @return ActionInterface[]|PagerInterface When option paginate is true this will return a PagerInterface,
+     *                                          else this will return an ActionInterface[].
      */
     public function getSubjectActions(ComponentInterface $subject, array $options = array());
 
