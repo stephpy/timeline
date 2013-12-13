@@ -13,15 +13,15 @@ use Spy\Timeline\Model\ComponentInterface;
 interface ActionManagerInterface
 {
     /**
-     * @param int $limit limit
+     * @param integer $limit limit
      *
-     * @return array
+     * @return ActionInterface[]
      */
     public function findActionsWithStatusWantedPublished($limit = 100);
 
     /**
      * @param ComponentInterface $subject subject
-     * @param array              $status  status
+     * @param string             $status  status
      *
      * @return integer
      */
@@ -29,30 +29,32 @@ interface ActionManagerInterface
 
     /**
      * @param ComponentInterface $subject subject
-     * @param array              $options offset, limit, status
-     *
-     * @return array
+     * @param array              $options page, max_per_page, status, filter, paginate
      */
     public function getSubjectActions(ComponentInterface $subject, array $options = array());
 
     /**
+     * Saves an action.
+     *
      * @param ActionInterface $action action
      */
     public function updateAction(ActionInterface $action);
 
     /**
+     * Creates a new action.
+     *
      * @param object $subject    Can be a ComponentInterface or an other one object.
-     * @param string $verb       verb
+     * @param string $verb       The verb
      * @param array  $components An array of ComponentInterface or other objects.
      *
-     * @return Action
+     * @return ActionInterface
      */
     public function create($subject, $verb, array $components = array());
 
     /**
      * Find a component or create it.
      *
-     * @param string|object $model pass an object and second argument will be ignored.
+     * @param string|object     $model      pass an object and second argument will be ignored.
      * it'll be replaced by $model->getId();
      * @param null|string|array $identifier pass an array for composite keys.
      * @param boolean           $flush      is component flushed with this method ?
@@ -64,7 +66,7 @@ interface ActionManagerInterface
     /**
      * create component.
      *
-     * @param string|object $model pass an object and second argument will be ignored.
+     * @param string|object     $model      pass an object and second argument will be ignored.
      * it'll be replaced by $model->getId();
      * @param null|string|array $identifier pass an array for composite keys.
      * @param boolean           $flush      is component flushed with this method ?
@@ -81,14 +83,14 @@ interface ActionManagerInterface
     /**
      * @param array $hashes hashes
      *
-     * @return array
+     * @return ComponentInterface[]
      */
     public function findComponents(array $hashes);
 
     /**
      * @param string $hash hash
      *
-     * @return ComponentInterface
+     * @return ComponentInterface|null
      */
     public function findComponentWithHash($hash);
 }
