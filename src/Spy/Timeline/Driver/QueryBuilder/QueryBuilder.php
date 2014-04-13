@@ -273,7 +273,16 @@ class QueryBuilder
             $components = $actionManager->findComponents($subjects);
 
             if (count($components) != count($subjects)) {
-                throw new \Exception('One of subject does not exists in database');
+                foreach ($components as $component) {
+                    // remove existings components from subjects to keep only new one components
+                    unset($subjects[array_search($component->getHash(), $subjects)]);
+                }
+
+                // create new components
+                foreach ($subjects as $subject) {
+                    list ($model, $identifier) = explode('#', $subject);
+                    $components[] = $actionManager->createComponent($model, unserialize($identifier));
+                }
             }
 
             foreach ($components as $component) {
