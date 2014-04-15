@@ -6,8 +6,6 @@ use Spy\Timeline\Model\TimelineInterface;
 use Spy\Timeline\Model\ActionInterface;
 use Spy\Timeline\Driver\ActionManagerInterface;
 use Spy\Timeline\Driver\TimelineManagerInterface;
-use Spy\Timeline\Spread\DeployerInterface;
-use Spy\Timeline\Spread\SpreadInterface;
 use Spy\Timeline\Spread\Entry\Entry;
 use Spy\Timeline\Spread\Entry\EntryCollection;
 use Spy\Timeline\Notification\NotifierInterface;
@@ -20,12 +18,12 @@ use Spy\Timeline\Notification\NotifierInterface;
 class Deployer implements DeployerInterface
 {
     /**
-     * @var \ArrayIterator
+     * @var SpreadInterface[]
      */
     protected $spreads;
 
     /**
-     * @var array
+     * @var NotifierInterface[]
      */
     protected $notifiers = array();
 
@@ -48,6 +46,11 @@ class Deployer implements DeployerInterface
      * @var TimelineManagerInterface
      */
     protected $timelineManager;
+
+    /**
+     * @var string One of the delivery constants in DeployerInterface
+     */
+    protected $delivery;
 
     /**
      * @param TimelineManagerInterface $timelineManager timelineManager
@@ -140,7 +143,7 @@ class Deployer implements DeployerInterface
     /**
      * @param ActionInterface $action action
      *
-     * @return \ArrayIterator
+     * @return EntryCollection
      */
     public function processSpreads(ActionInterface $action)
     {
