@@ -160,7 +160,7 @@ interface ActionInterface
     public function addActionComponent(ActionComponentInterface $actionComponent);
 
     /**
-     * @return ArrayCollection
+     * @return ActionComponentInterface[]
      */
     public function getActionComponents();
 }
