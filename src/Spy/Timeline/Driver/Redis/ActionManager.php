@@ -2,7 +2,7 @@
 
 namespace Spy\Timeline\Driver\Redis;
 
-use Spy\TimelineBundle\Driver\Doctrine\ValueObject\ResolvedComponentData;
+use Spy\Timeline\Driver\Doctrine\ValueObject\ResolvedComponentData;
 use Spy\Timeline\Driver\AbstractActionManager;
 use Spy\Timeline\Driver\ActionManagerInterface;
 use Spy\Timeline\Model\ActionInterface;
@@ -136,7 +136,8 @@ class ActionManager extends AbstractActionManager implements ActionManagerInterf
     {
         $resolvedComponentData = $this->resolveModelAndIdentifier($model, $identifier);
 
-        return $this->createComponentFromResolvedComponentData($resolvedComponentData, $flush);
+        // we do not persist component on redis driver.
+        return $this->getComponentFromResolvedComponentData($resolvedComponentData);
     }
 
     /**
@@ -238,27 +239,6 @@ class ActionManager extends AbstractActionManager implements ActionManagerInterf
         }
 
         return new ResolvedComponentData($model, $identifier, $data);
-    }
-
-    /**
-     * Creates a component from a resolved model and identifier and optionally stores it to the storage engine.
-     *
-     * @param ResolvedComponentData $resolved The resolved component data
-     * @param boolean               $flush    Whether to flush or not, defaults to true
-     *
-     * @return ComponentInterface The newly created and populated component
-     */
-    protected function createComponentFromResolvedComponentData(ResolvedComponentData $resolved, $flush = true)
-    {
-        $component = $this->getComponentFromResolvedComponentData($resolved);
-
-        $this->objectManager->persist($component);
-
-        if ($flush) {
-            $this->flushComponents();
-        }
-
-        return $component;
     }
 
     /**
