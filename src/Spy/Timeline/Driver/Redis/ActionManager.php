@@ -2,12 +2,13 @@
 
 namespace Spy\Timeline\Driver\Redis;
 
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use Spy\TimelineBundle\Driver\Doctrine\ValueObject\ResolvedComponentData;
 use Spy\Timeline\Driver\AbstractActionManager;
 use Spy\Timeline\Driver\ActionManagerInterface;
 use Spy\Timeline\Model\ActionInterface;
 use Spy\Timeline\Model\ComponentInterface;
 use Spy\Timeline\ResultBuilder\ResultBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * ActionManager
@@ -133,19 +134,9 @@ class ActionManager extends AbstractActionManager implements ActionManagerInterf
      */
     public function createComponent($model, $identifier = null, $flush = true)
     {
-        list ($model, $identifier, $data) = $this->resolveModelAndIdentifier($model, $identifier);
+        $resolvedComponentData = $this->resolveModelAndIdentifier($model, $identifier);
 
-        if (empty($model) || empty($identifier)) {
-            return null;
-        }
-
-        // we do not persist component on redis driver.
-        $component = new $this->componentClass();
-        $component->setModel($model);
-        $component->setIdentifier($identifier);
-        $component->setData($data);
-
-        return $component;
+        return $this->createComponentFromResolvedComponentData($resolvedComponentData, $flush);
     }
 
     /**
@@ -208,6 +199,20 @@ class ActionManager extends AbstractActionManager implements ActionManagerInterf
     }
 
     /**
+     * Resolves the model and identifier.
+     *
+     * This function tries to resolve the model and identifier.
+     *
+     * When model is a string:
+     *  - it uses the given model string as model and the given identifier as identifier
+     *
+     * When model is an object:
+     *  - It checks with doctrine if there is class meta data for the given object class
+     *  - If there is class meta data it uses the meta data to retrieve the model and identifier values
+     *  - If there is no class meta data
+     *      - it uses the get_class function to retrieve the model string name
+     *      - it uses the getId method for the object to try and retrieve the identifier
+     *
      * @param string       $model      model
      * @param string|array $identifier identifier
      *
@@ -232,12 +237,45 @@ class ActionManager extends AbstractActionManager implements ActionManagerInterf
             $model      = $modelClass;
         }
 
-        if (is_scalar($identifier)) {
-            $identifier = (string) $identifier;
-        } elseif (!is_array($identifier)) {
-            throw new \InvalidArgumentException('Identifier has to be a scalar or an array');
+        return new ResolvedComponentData($model, $identifier, $data);
+    }
+
+    /**
+     * Creates a component from a resolved model and identifier and optionally stores it to the storage engine.
+     *
+     * @param ResolvedComponentData $resolved The resolved component data
+     * @param boolean               $flush    Whether to flush or not, defaults to true
+     *
+     * @return ComponentInterface The newly created and populated component
+     */
+    protected function createComponentFromResolvedComponentData(ResolvedComponentData $resolved, $flush = true)
+    {
+        $component = $this->getComponentFromResolvedComponentData($resolved);
+
+        $this->objectManager->persist($component);
+
+        if ($flush) {
+            $this->flushComponents();
         }
 
-        return array($model, $identifier, $data);
+        return $component;
+    }
+
+    /**
+     * Creates a new component object from the resolved data.
+     *
+     * @param ResolvedComponentData $resolved The resolved component data
+     *
+     * @return ComponentInterface The newly created and populated component
+     */
+    private function getComponentFromResolvedComponentData(ResolvedComponentData $resolved)
+    {
+        /** @var $component ComponentInterface */
+        $component = new $this->componentClass();
+        $component->setModel($resolved->getModel());
+        $component->setData($resolved->getData());
+        $component->setIdentifier($resolved->getIdentifier());
+
+        return $component;
     }
 }
