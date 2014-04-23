@@ -19,10 +19,38 @@ abstract class AbstractActionManager implements ActionManagerInterface
     protected $deployer;
 
     /**
+     * @var string FQCN af the action class
+     */
+    protected $actionClass;
+
+    /**
+     * @var string FQCN of the action component class
+     */
+    protected $componentClass;
+
+    /**
+     * @var string FQCN of the component class
+     */
+    protected $actionComponentClass;
+
+    /**
+     * @param string $actionClass          FQCN of the action class
+     * @param string $componentClass       FQCN of the component class
+     * @param string $actionComponentClass FQCN of the action component class
+     */
+    public function __construct($actionClass, $componentClass, $actionComponentClass)
+    {
+        $this->actionClass = $actionClass;
+        $this->componentClass = $componentClass;
+        $this->actionComponentClass = $actionComponentClass;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function create($subject, $verb, array $components = array())
     {
+        /** @var $action ActionInterface */
         $action = new $this->actionClass();
         $action->setVerb($verb);
 
