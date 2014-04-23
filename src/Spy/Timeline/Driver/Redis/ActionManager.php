@@ -35,21 +35,6 @@ class ActionManager extends AbstractActionManager implements ActionManagerInterf
     protected $prefix;
 
     /**
-     * @var string
-     */
-    protected $actionClass;
-
-    /**
-     * @var string
-     */
-    protected $componentClass;
-
-    /**
-     * @var string
-     */
-    protected $actionComponentClass;
-
-    /**
      * @param object                  $client               client
      * @param ResultBuilderInterface $resultBuilder        resultBuilder
      * @param string                  $prefix               prefix
@@ -61,10 +46,9 @@ class ActionManager extends AbstractActionManager implements ActionManagerInterf
     {
         $this->client               = $client;
         $this->prefix               = $prefix;
-        $this->actionClass          = $actionClass;
-        $this->componentClass       = $componentClass;
-        $this->actionComponentClass = $actionComponentClass;
         $this->resultBuilder        = $resultBuilder;
+
+        parent::__construct($actionClass, $componentClass, $actionComponentClass);
     }
 
     /**
