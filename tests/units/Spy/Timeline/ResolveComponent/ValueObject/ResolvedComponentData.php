@@ -1,11 +1,11 @@
 <?php
 
-namespace Spy\Timeline\Tests\Units\Driver\Doctrine\ValueObject;
+namespace tests\units\Spy\Timeline\ResolveComponent\ValueObject;
 
-require_once __DIR__ . '/../../../../../../../vendor/autoload.php';
+require_once __DIR__ . '/../../../../../../vendor/autoload.php';
 
 use mageekguy\atoum;
-use Spy\Timeline\Driver\Doctrine\ValueObject\ResolvedComponentData as TestedModel;
+use Spy\Timeline\ResolveComponent\ValueObject\ResolvedComponentData as TestedModel;
 
 /**
  * ResolvedComponentData test

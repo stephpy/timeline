@@ -6,7 +6,7 @@ require_once __DIR__ . '/../../../../../../vendor/autoload.php';
 
 use mageekguy\atoum;
 use Spy\Timeline\Driver\Redis\ActionManager as TestedModel;
-use Spy\Timeline\Driver\Doctrine\ValueObject\ResolvedComponentData;
+use Spy\Timeline\ResolveComponent\ValueObject\ResolvedComponentData;
 
 /**
  * Class ActionManager

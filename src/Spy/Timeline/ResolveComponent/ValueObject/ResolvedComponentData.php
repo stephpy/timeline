@@ -1,6 +1,6 @@
 <?php
 
-namespace Spy\Timeline\Driver\Doctrine\ValueObject;
+namespace Spy\Timeline\ResolveComponent\ValueObject;
 
 use Spy\Timeline\Exception\ResolveComponentDataException;
 
@@ -79,7 +79,7 @@ class ResolvedComponentData
     public function getIdentifier()
     {
         if (is_scalar($this->identifier)) {
-            return (string) $this->identifier;
+            return (string)$this->identifier;
         }
 
         return $this->identifier;

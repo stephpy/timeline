@@ -2,7 +2,7 @@
 
 namespace Spy\Timeline\ResolveComponent;
 
-use Spy\Timeline\Driver\Doctrine\ValueObject\ResolvedComponentData;
+use Spy\Timeline\ResolveComponent\ValueObject\ResolvedComponentData;
 use Spy\Timeline\Exception\ResolveComponentDataException;
 
 /**

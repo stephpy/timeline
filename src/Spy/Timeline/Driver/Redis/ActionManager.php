@@ -2,7 +2,7 @@
 
 namespace Spy\Timeline\Driver\Redis;
 
-use Spy\Timeline\Driver\Doctrine\ValueObject\ResolvedComponentData;
+use Spy\Timeline\ResolveComponent\ValueObject\ResolvedComponentData;
 use Spy\Timeline\Driver\AbstractActionManager;
 use Spy\Timeline\Driver\ActionManagerInterface;
 use Spy\Timeline\Model\ActionInterface;
