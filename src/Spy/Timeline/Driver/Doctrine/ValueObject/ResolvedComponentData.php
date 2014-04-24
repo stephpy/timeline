@@ -2,6 +2,8 @@
 
 namespace Spy\Timeline\Driver\Doctrine\ValueObject;
 
+use Spy\Timeline\Exception\ResolveComponentDataException;
+
 /**
  * ResolvedComponentData
  *
@@ -90,16 +92,16 @@ class ResolvedComponentData
      *
      * @param string $model
      *
-     * @throws \InvalidArgumentException When the model is not a string.
+     * @throws ResolveComponentDataException When the model is not a string.
      */
     private function guardValidModel($model)
     {
         if (empty($model)) {
-            throw new \InvalidArgumentException('The resolved model can not be empty');
+            throw new ResolveComponentDataException('The resolved model can not be empty');
         }
 
         if (!is_string($model)) {
-            throw new \InvalidArgumentException('The resolved model has to be a string');
+            throw new ResolveComponentDataException('The resolved model has to be a string');
         }
     }
 
@@ -110,16 +112,16 @@ class ResolvedComponentData
      *
      * @param string|array $identifier
      *
-     * @throws \InvalidArgumentException
+     * @throws ResolveComponentDataException
      */
     private function guardValidIdentifier($identifier)
     {
         if (null === $identifier || '' === $identifier) {
-            throw new \InvalidArgumentException('No resolved identifier given');
+            throw new ResolveComponentDataException('No resolved identifier given');
         }
 
         if (!is_scalar($identifier) && !is_array($identifier)) {
-            throw new \InvalidArgumentException('Identifier has to be a scalar or an array');
+            throw new ResolveComponentDataException('Identifier has to be a scalar or an array');
         }
     }
 }

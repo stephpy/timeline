@@ -20,7 +20,7 @@ class ResolvedComponentData extends atoum\test
         $this->exception(function() {
             new TestedModel('', 2);
             })
-            ->isInstanceOf('\InvalidArgumentException')
+            ->isInstanceOf('Spy\Timeline\Exception\ResolveComponentDataException')
             ->hasMessage('The resolved model can not be empty')
         ;
     }
@@ -30,7 +30,7 @@ class ResolvedComponentData extends atoum\test
         $this->exception(function () {
                 new TestedModel(array('foo'), 2);
             })
-            ->isInstanceOf('\InvalidArgumentException')
+            ->isInstanceOf('Spy\Timeline\Exception\ResolveComponentDataException')
             ->hasMessage('The resolved model has to be a string')
         ;
     }
@@ -40,7 +40,7 @@ class ResolvedComponentData extends atoum\test
         $this->exception(function () {
                 new TestedModel(new \stdClass(), 2);
             })
-            ->isInstanceOf('\InvalidArgumentException')
+            ->isInstanceOf('Spy\Timeline\Exception\ResolveComponentDataException')
             ->hasMessage('The resolved model has to be a string')
         ;
     }
@@ -53,7 +53,7 @@ class ResolvedComponentData extends atoum\test
             $this->exception(function() use ($invalid) {
                     new TestedModel('user', $invalid);
                 })
-                ->isInstanceOf('\InvalidArgumentException')
+                ->isInstanceOf('Spy\Timeline\Exception\ResolveComponentDataException')
                 ->hasMessage('No resolved identifier given')
             ;
         }
@@ -64,7 +64,7 @@ class ResolvedComponentData extends atoum\test
         $this->exception(function () {
                 new TestedModel('user', new \stdClass());
             })
-            ->isInstanceOf('\InvalidArgumentException')
+            ->isInstanceOf('Spy\Timeline\Exception\ResolveComponentDataException')
             ->hasMessage('Identifier has to be a scalar or an array')
         ;
     }

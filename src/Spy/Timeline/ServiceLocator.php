@@ -146,7 +146,7 @@ class ServiceLocator
         $c['class.action']            = 'Spy\Timeline\Model\Action';
         $c['class.component']         = 'Spy\Timeline\Model\Component';
         $c['class.action_component']  = 'Spy\Timeline\Model\ActionComponent';
-
+        $c['class.component_data_resolver'] = 'Spy\Timeline\ResolveComponent\BasicComponentDataResolver';
         $c['redis.client'] = $client;
 
         $c['timeline_manager'] = $c->share(function($c) {
@@ -168,7 +168,9 @@ class ServiceLocator
                 $c['class.action_component']
             );
 
+
             $instance->setDeployer($c['spread.deployer']);
+            $instance->setComponentDataResolver($c['class.component_data_resolver']);
 
             return $instance;
         });

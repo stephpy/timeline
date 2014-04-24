@@ -2,6 +2,7 @@
 
 namespace Spy\Timeline\Driver;
 
+use Spy\Timeline\ResolveComponent\ComponentDataResolverInterface;
 use Spy\Timeline\Spread\DeployerInterface;
 use Spy\Timeline\Model\ActionInterface;
 use Spy\Timeline\Model\ComponentInterface;
@@ -32,6 +33,11 @@ abstract class AbstractActionManager implements ActionManagerInterface
      * @var string FQCN of the component class
      */
     protected $actionComponentClass;
+
+    /**
+     * @var ComponentDataResolverInterface
+     */
+    private $componentDataResolver;
 
     /**
      * @param string $actionClass          FQCN of the action class
@@ -103,5 +109,31 @@ abstract class AbstractActionManager implements ActionManagerInterface
     public function setDeployer(DeployerInterface $deployer)
     {
         $this->deployer = $deployer;
+    }
+
+    /**
+     * Sets the component data resolver.
+     *
+     * @param ComponentDataResolverInterface $componentDataResolver
+     */
+    public function setComponentDataResolver(ComponentDataResolverInterface $componentDataResolver)
+    {
+        $this->componentDataResolver = $componentDataResolver;
+    }
+
+    /**
+     * Gets the component data resolver.
+     *
+     * @return ComponentDataResolverInterface
+     *
+     * @throws \Exception When no component data resolver has been set
+     */
+    public function getComponentDataResolver()
+    {
+        if (empty($this->componentDataResolver) || !$this->componentDataResolver instanceof ComponentDataResolverInterface ) {
+            throw new \Exception('Component data resolver not set');
+        }
+
+        return $this->componentDataResolver;
     }
 }
