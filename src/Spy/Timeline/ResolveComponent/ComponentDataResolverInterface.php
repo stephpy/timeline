@@ -3,7 +3,9 @@
 namespace Spy\Timeline\ResolveComponent;
 
 use Spy\Timeline\ResolveComponent\ValueObject\ResolvedComponentData;
+use Spy\Timeline\ResolveComponent\ValueObject\ResolveComponentModelIdentifier;
 use Spy\Timeline\Exception\ResolveComponentDataException;
+
 
 /**
  * Interface ComponentDataResolverInterface
@@ -14,15 +16,11 @@ use Spy\Timeline\Exception\ResolveComponentDataException;
 interface ComponentDataResolverInterface
 {
     /**
-     * Resolves the component data (model, identifier, data) from the given model and identifier.
+     * @param ResolveComponentModelIdentifier $resolve The ResolveComponentModelIdentifier value object.
      *
-     * @param string|object     $model      pass an object and second argument will be ignored.
-     *                                      it'll be replaced by $model->getId();
-     * @param null|string|array $identifier pass an array for composite keys.
-     *
-     * @return ResolvedComponentData
+     * @return ResolvedComponentData The resolved component data value object.
      *
      * @throws ResolveComponentDataException When not able to resolve the component data
      */
-    public function resolveComponentData($model, $identifier = '');
+    public function resolveComponentData(ResolveComponentModelIdentifier $resolve);
 }

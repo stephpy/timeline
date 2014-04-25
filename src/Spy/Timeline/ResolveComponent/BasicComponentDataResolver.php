@@ -4,6 +4,7 @@ namespace Spy\Timeline\ResolveComponent;
 
 use Spy\Timeline\ResolveComponent\ValueObject\ResolvedComponentData;
 use Spy\Timeline\Exception\ResolveComponentDataException;
+use Spy\Timeline\ResolveComponent\ValueObject\ResolveComponentModelIdentifier;
 
 /**
  * Basic implementation of a component data resolver.
@@ -25,11 +26,10 @@ class BasicComponentDataResolver implements ComponentDataResolverInterface
     /**
      * {@inheritdoc}
      */
-    public function resolveComponentData($model, $identifier = '')
+    public function resolveComponentData(ResolveComponentModelIdentifier $resolve)
     {
-        if (!is_object($model) && (null === $identifier || '' === $identifier)) {
-            throw new ResolveComponentDataException('Model has to be an object or a scalar + an identifier in 2nd argument');
-        }
+        $model = $resolve->getModel();
+        $identifier = $resolve->getIdentifier();
 
         $data = null;
         if (is_object($model)) {
