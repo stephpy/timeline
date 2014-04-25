@@ -6,6 +6,8 @@ use Spy\Timeline\ResolveComponent\ComponentDataResolverInterface;
 use Spy\Timeline\Spread\DeployerInterface;
 use Spy\Timeline\Model\ActionInterface;
 use Spy\Timeline\Model\ComponentInterface;
+use Spy\Timeline\ResolveComponent\ValueObject\ResolvedComponentData;
+use Spy\Timeline\ResolveComponent\ValueObject\ResolveComponentModelIdentifier;
 
 /**
  * AbstractActionManager
@@ -135,5 +137,38 @@ abstract class AbstractActionManager implements ActionManagerInterface
         }
 
         return $this->componentDataResolver;
+    }
+
+    /**
+     * Resolves the model and identifier.
+     *
+     * @param string|object     $model
+     * @param null|string|array $identifier
+     *
+     * @return ResolvedComponentData
+     */
+    protected function resolveModelAndIdentifier($model, $identifier)
+    {
+        $resolve = new ResolveComponentModelIdentifier($model, $identifier);
+
+        return $this->getComponentDataResolver()->resolveComponentData($resolve);
+    }
+
+    /**
+     * Creates a new component object from the resolved data.
+     *
+     * @param ResolvedComponentData $resolved The resolved component data
+     *
+     * @return ComponentInterface The newly created and populated component
+     */
+    protected function getComponentFromResolvedComponentData(ResolvedComponentData $resolved)
+    {
+        /** @var $component ComponentInterface */
+        $component = new $this->componentClass();
+        $component->setModel($resolved->getModel());
+        $component->setData($resolved->getData());
+        $component->setIdentifier($resolved->getIdentifier());
+
+        return $component;
     }
 }

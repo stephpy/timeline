@@ -9,6 +9,7 @@ use Spy\Timeline\Model\ActionInterface;
 use Spy\Timeline\Model\ComponentInterface;
 use Spy\Timeline\ResultBuilder\ResultBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Spy\Timeline\ResolveComponent\ValueObject\ResolveComponentModelIdentifier;
 
 /**
  * ActionManager
@@ -181,34 +182,5 @@ class ActionManager extends AbstractActionManager implements ActionManagerInterf
     protected function getSubjectRedisKey(ComponentInterface $subject)
     {
         return sprintf('%s:%s', $this->prefix, $subject->getHash());
-    }
-
-    /**
-     * @param string|object     $model
-     * @param null|string|array $identifier
-     *
-     * @return ResolvedComponentData
-     */
-    protected function resolveModelAndIdentifier($model, $identifier)
-    {
-        return $this->getComponentDataResolver()->resolveComponentData($model, $identifier);
-    }
-
-    /**
-     * Creates a new component object from the resolved data.
-     *
-     * @param ResolvedComponentData $resolved The resolved component data
-     *
-     * @return ComponentInterface The newly created and populated component
-     */
-    private function getComponentFromResolvedComponentData(ResolvedComponentData $resolved)
-    {
-        /** @var $component ComponentInterface */
-        $component = new $this->componentClass();
-        $component->setModel($resolved->getModel());
-        $component->setData($resolved->getData());
-        $component->setIdentifier($resolved->getIdentifier());
-
-        return $component;
     }
 }

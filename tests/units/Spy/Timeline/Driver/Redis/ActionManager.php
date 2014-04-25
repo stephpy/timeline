@@ -7,9 +7,10 @@ require_once __DIR__ . '/../../../../../../vendor/autoload.php';
 use mageekguy\atoum;
 use Spy\Timeline\Driver\Redis\ActionManager as TestedModel;
 use Spy\Timeline\ResolveComponent\ValueObject\ResolvedComponentData;
+use Spy\Timeline\ResolveComponent\ValueObject\ResolveComponentModelIdentifier;
 
 /**
- * Class ActionManager
+ * Test file for Spy\Timeline\Driver\Redis\ActionManager
  *
  * @author Stephane PY <py.stephane1@gmail.com>
  * @author Michiel Boeckaert <boeckaert@gmail.com>
@@ -18,6 +19,10 @@ class ActionManager extends atoum\test
 {
     public function testFindOrCreateComponent()
     {
+        $model = 'user';
+        $identifier = array('foo' => 'bar', 'baz' => 'baz');
+        $resolve = new ResolveComponentModelIdentifier($model, $identifier);
+
         $this
             //mocks
             ->if($this->mockClass('Spy\Timeline\ResultBuilder\ResultBuilderInterface', '\Mock'))
@@ -29,17 +34,17 @@ class ActionManager extends atoum\test
             ->and($actionClass = 'Spy\Timeline\Model\Action')
             ->and($componentClass = 'Spy\Timeline\Model\Component')
             ->and($actionComponentClass = 'Spy\Timeline\Model\ActionComponent')
-            ->and($this->calling($componentDataResolver)->resolveComponentData = function () {
-                return new ResolvedComponentData('user', '1');
+            ->and($this->calling($componentDataResolver)->resolveComponentData = function () use($model, $identifier) {
+                return new ResolvedComponentData($model, $identifier);
             })
             ->and($object = new TestedModel($redis, $resultBuilder, 'foo', $actionClass, $componentClass, $actionComponentClass))
 
             ->and($object->setComponentDataResolver($componentDataResolver))
-            ->when($result = $object->findOrCreateComponent('user', 1))
+            ->when($result = $object->findOrCreateComponent($model, $identifier))
             ->then(
-                $this->mock($componentDataResolver)->call('resolveComponentData')->withArguments('user', 1)->exactly(1)
-                ->string($result->getModel())->isEqualTo('user')
-                ->string($result->getIdentifier())->isEqualTo('1')
+                $this->mock($componentDataResolver)->call('resolveComponentData')->withArguments($resolve)->exactly(1)
+                ->string($result->getModel())->isEqualTo($model)
+                ->array($result->getIdentifier())->isEqualTo($identifier)
             )
             ;
     }

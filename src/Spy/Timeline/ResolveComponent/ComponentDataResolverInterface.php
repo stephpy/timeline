@@ -6,7 +6,6 @@ use Spy\Timeline\ResolveComponent\ValueObject\ResolvedComponentData;
 use Spy\Timeline\ResolveComponent\ValueObject\ResolveComponentModelIdentifier;
 use Spy\Timeline\Exception\ResolveComponentDataException;
 
-
 /**
  * Interface ComponentDataResolverInterface
  *
