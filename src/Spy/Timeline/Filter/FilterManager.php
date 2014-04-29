@@ -2,9 +2,6 @@
 
 namespace Spy\Timeline\Filter;
 
-use Spy\Timeline\Filter\FilterInterface;
-use Spy\Timeline\Filter\FilterManagerInterface;
-
 /**
  * FilterManager
  *
@@ -13,7 +10,7 @@ use Spy\Timeline\Filter\FilterManagerInterface;
 class FilterManager implements FilterManagerInterface
 {
     /**
-     * @var array<FilterInterface>
+     * @var FilterInterface[]
      */
     protected $filters = array();
 
@@ -32,9 +29,7 @@ class FilterManager implements FilterManagerInterface
     }
 
     /**
-     * @param array $collection collection
-     *
-     * @return array
+     * {@inheritdoc}
      */
     public function filter($collection)
     {
