@@ -2,9 +2,12 @@
 
 namespace Spy\Timeline\Driver;
 
+use Spy\Timeline\ResolveComponent\ComponentDataResolverInterface;
 use Spy\Timeline\Spread\DeployerInterface;
 use Spy\Timeline\Model\ActionInterface;
 use Spy\Timeline\Model\ComponentInterface;
+use Spy\Timeline\ResolveComponent\ValueObject\ResolvedComponentData;
+use Spy\Timeline\ResolveComponent\ValueObject\ResolveComponentModelIdentifier;
 
 /**
  * AbstractActionManager
@@ -32,6 +35,11 @@ abstract class AbstractActionManager implements ActionManagerInterface
      * @var string FQCN of the component class
      */
     protected $actionComponentClass;
+
+    /**
+     * @var ComponentDataResolverInterface
+     */
+    private $componentDataResolver;
 
     /**
      * @param string $actionClass          FQCN of the action class
@@ -103,5 +111,64 @@ abstract class AbstractActionManager implements ActionManagerInterface
     public function setDeployer(DeployerInterface $deployer)
     {
         $this->deployer = $deployer;
+    }
+
+    /**
+     * Sets the component data resolver.
+     *
+     * @param ComponentDataResolverInterface $componentDataResolver
+     */
+    public function setComponentDataResolver(ComponentDataResolverInterface $componentDataResolver)
+    {
+        $this->componentDataResolver = $componentDataResolver;
+    }
+
+    /**
+     * Gets the component data resolver.
+     *
+     * @return ComponentDataResolverInterface
+     *
+     * @throws \Exception When no component data resolver has been set
+     */
+    public function getComponentDataResolver()
+    {
+        if (empty($this->componentDataResolver) || !$this->componentDataResolver instanceof ComponentDataResolverInterface ) {
+            throw new \Exception('Component data resolver not set');
+        }
+
+        return $this->componentDataResolver;
+    }
+
+    /**
+     * Resolves the model and identifier.
+     *
+     * @param string|object     $model
+     * @param null|string|array $identifier
+     *
+     * @return ResolvedComponentData
+     */
+    protected function resolveModelAndIdentifier($model, $identifier)
+    {
+        $resolve = new ResolveComponentModelIdentifier($model, $identifier);
+
+        return $this->getComponentDataResolver()->resolveComponentData($resolve);
+    }
+
+    /**
+     * Creates a new component object from the resolved data.
+     *
+     * @param ResolvedComponentData $resolved The resolved component data
+     *
+     * @return ComponentInterface The newly created and populated component
+     */
+    protected function getComponentFromResolvedComponentData(ResolvedComponentData $resolved)
+    {
+        /** @var $component ComponentInterface */
+        $component = new $this->componentClass();
+        $component->setModel($resolved->getModel());
+        $component->setData($resolved->getData());
+        $component->setIdentifier($resolved->getIdentifier());
+
+        return $component;
     }
 }

@@ -2,13 +2,14 @@
 
 namespace Spy\Timeline\Driver\Redis;
 
-use Spy\Timeline\Driver\Doctrine\ValueObject\ResolvedComponentData;
+use Spy\Timeline\ResolveComponent\ValueObject\ResolvedComponentData;
 use Spy\Timeline\Driver\AbstractActionManager;
 use Spy\Timeline\Driver\ActionManagerInterface;
 use Spy\Timeline\Model\ActionInterface;
 use Spy\Timeline\Model\ComponentInterface;
 use Spy\Timeline\ResultBuilder\ResultBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Spy\Timeline\ResolveComponent\ValueObject\ResolveComponentModelIdentifier;
 
 /**
  * ActionManager
@@ -35,18 +36,18 @@ class ActionManager extends AbstractActionManager implements ActionManagerInterf
     protected $prefix;
 
     /**
-     * @param object                  $client               client
+     * @param object                 $client               client
      * @param ResultBuilderInterface $resultBuilder        resultBuilder
-     * @param string                  $prefix               prefix
-     * @param string                  $actionClass          actionClass
-     * @param string                  $componentClass       componentClass
-     * @param string                  $actionComponentClass actionComponentClass
+     * @param string                 $prefix               prefix
+     * @param string                 $actionClass          actionClass
+     * @param string                 $componentClass       componentClass
+     * @param string                 $actionComponentClass actionComponentClass
      */
     public function __construct($client, ResultBuilderInterface $resultBuilder, $prefix, $actionClass, $componentClass, $actionComponentClass)
     {
-        $this->client               = $client;
-        $this->prefix               = $prefix;
-        $this->resultBuilder        = $resultBuilder;
+        $this->client = $client;
+        $this->prefix = $prefix;
+        $this->resultBuilder = $resultBuilder;
 
         parent::__construct($actionClass, $componentClass, $actionComponentClass);
     }
@@ -181,65 +182,5 @@ class ActionManager extends AbstractActionManager implements ActionManagerInterf
     protected function getSubjectRedisKey(ComponentInterface $subject)
     {
         return sprintf('%s:%s', $this->prefix, $subject->getHash());
-    }
-
-    /**
-     * Resolves the model and identifier.
-     *
-     * This function tries to resolve the model and identifier.
-     *
-     * When model is a string:
-     *  - it uses the given model string as model and the given identifier as identifier
-     *
-     * When model is an object:
-     *  - It checks with doctrine if there is class meta data for the given object class
-     *  - If there is class meta data it uses the meta data to retrieve the model and identifier values
-     *  - If there is no class meta data
-     *      - it uses the get_class function to retrieve the model string name
-     *      - it uses the getId method for the object to try and retrieve the identifier
-     *
-     * @param string       $model      model
-     * @param string|array $identifier identifier
-     *
-     * @return array
-     */
-    protected function resolveModelAndIdentifier($model, $identifier)
-    {
-        if (!is_object($model) && (null === $identifier || '' === $identifier)) {
-            throw new \LogicException('Model has to be an object or a scalar + an identifier in 2nd argument');
-        }
-
-        $data = null;
-        if (is_object($model)) {
-            $data       = $model;
-            $modelClass = get_class($model);
-
-            if (!method_exists($model, 'getId')) {
-                throw new \LogicException('Model must have a getId method.');
-            }
-
-            $identifier = $model->getId();
-            $model      = $modelClass;
-        }
-
-        return new ResolvedComponentData($model, $identifier, $data);
-    }
-
-    /**
-     * Creates a new component object from the resolved data.
-     *
-     * @param ResolvedComponentData $resolved The resolved component data
-     *
-     * @return ComponentInterface The newly created and populated component
-     */
-    private function getComponentFromResolvedComponentData(ResolvedComponentData $resolved)
-    {
-        /** @var $component ComponentInterface */
-        $component = new $this->componentClass();
-        $component->setModel($resolved->getModel());
-        $component->setData($resolved->getData());
-        $component->setIdentifier($resolved->getIdentifier());
-
-        return $component;
     }
 }
