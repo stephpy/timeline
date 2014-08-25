@@ -26,11 +26,11 @@ Imagine theses actions:
     Chuck    | fight | BruceLee
     BruceLee | fight | Chuck
 
-You may not want to show on your page these two identical actions. By this way, you have **duplicateKey** field.
+You may not want to show on your page these two identical actions. Doing it in this way, you will have a **duplicateKey** field.
 
-When you'll create these two TimelineActions, define a same DuplicateKey .
+When you create these two TimelineActions, define a same DuplicateKey.
 
-After filtering with DuplicateKey filter, this will delete one of the two actions (the biggest duplicatePriority field, if you not define it, it will delete second entry). It'll set to TRUE the **isDuplicated** field on timeline_action.
+After filtering with DuplicateKey filter, this will delete one of the two actions (the biggest duplicatePriority field, if you don't define it, will delete the second entry). It will set to TRUE the **isDuplicated** field on timeline_action.
 
 
 Usage
