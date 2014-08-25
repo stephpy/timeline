@@ -2,16 +2,12 @@
 
 namespace Spy\Timeline\Driver\QueryBuilder;
 
+use Spy\Timeline\Driver\QueryBuilder\Criteria\CriteriaInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Spy\Timeline\Driver\ActionManagerInterface;
 use Spy\Timeline\Driver\QueryBuilder\Criteria\Asserter;
 use Spy\Timeline\Driver\QueryBuilder\Criteria\Operator;
 
-/**
- * QueryBuilderFactory
- *
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 class QueryBuilderFactory
 {
     /**
@@ -51,7 +47,8 @@ class QueryBuilderFactory
     public function createQueryBuilderFromArray(array $data, ActionManagerInterface $actionManager = null)
     {
         return $this->createQueryBuilder()
-            ->fromArray($data, $actionManager);
+            ->fromArray($data, $actionManager)
+        ;
     }
 
     /**
@@ -70,7 +67,8 @@ class QueryBuilderFactory
     public function createOperatorFromArray(array $data)
     {
         return $this->createOperator()
-            ->fromArray($data, $this);
+            ->fromArray($data, $this)
+        ;
     }
 
     /**
@@ -89,6 +87,7 @@ class QueryBuilderFactory
     public function createAsserterFromArray(array $data)
     {
         return $this->createAsserter()
-            ->fromArray($data);
+            ->fromArray($data)
+        ;
     }
 }

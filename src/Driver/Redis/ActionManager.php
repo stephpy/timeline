@@ -11,13 +11,6 @@ use Spy\Timeline\ResultBuilder\ResultBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Spy\Timeline\ResolveComponent\ValueObject\ResolveComponentModelIdentifier;
 
-/**
- * ActionManager
- *
- * @uses AbstractActionManager
- * @uses ActionManagerInterface
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 class ActionManager extends AbstractActionManager implements ActionManagerInterface
 {
     /**

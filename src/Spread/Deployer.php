@@ -10,11 +10,6 @@ use Spy\Timeline\Spread\Entry\Entry;
 use Spy\Timeline\Spread\Entry\EntryCollection;
 use Spy\Timeline\Notification\NotifierInterface;
 
-/**
- * Deployer
- *
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 class Deployer implements DeployerInterface
 {
     /**

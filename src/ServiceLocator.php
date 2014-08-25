@@ -2,11 +2,6 @@
 
 namespace Spy\Timeline;
 
-/**
- * ServiceLocator
- *
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 class ServiceLocator
 {
     /**

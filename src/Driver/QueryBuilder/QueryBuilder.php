@@ -8,11 +8,6 @@ use Spy\Timeline\Driver\QueryBuilder\Criteria\Operator;
 use Spy\Timeline\Model\Component;
 use Spy\Timeline\Model\ComponentInterface;
 
-/**
- * QueryBuilder
- *
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 class QueryBuilder
 {
     /**
@@ -97,7 +92,8 @@ class QueryBuilder
 
         return $this->factory
             ->createAsserter()
-            ->field($field);
+            ->field($field)
+        ;
     }
 
     /**
@@ -230,8 +226,10 @@ class QueryBuilder
     }
 
     /**
-     * @param array                  $data          data
+     * @param array $data data
      * @param ActionManagerInterface $actionManager actionManager
+     * @throws \Exception
+     * @return $this
      */
     public function fromArray(array $data, ActionManagerInterface $actionManager = null)
     {
@@ -274,7 +272,7 @@ class QueryBuilder
 
             if (count($components) != count($subjects)) {
                 foreach ($components as $component) {
-                    // remove existings components from subjects to keep only new one components
+                    // remove existing components from subjects to keep only new one components
                     unset($subjects[array_search($component->getHash(), $subjects)]);
                 }
 

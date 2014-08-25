@@ -2,12 +2,6 @@
 
 namespace Spy\Timeline\Driver\QueryBuilder\Criteria;
 
-/**
- * Asserter
- *
- * @uses CriteriaInterface
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 class Asserter implements CriteriaInterface
 {
     CONST ASSERTER_EQUAL               = '=';
