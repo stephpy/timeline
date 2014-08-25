@@ -1,14 +1,14 @@
 Filter
 ------
 
-Filters will apply modificaiton to collection of actions.
+Filters will apply modifications to a collection of actions.
 
 This bundle provides 2 filters, **DuplicateKey** and **DataHydrator**.
 
 Add your own filter
 ```````````````````
 
-Define a class which implements `Spy\Timeline\Filter\FilterInterface` and add it to filterManager
+Define a class that implements `Spy\Timeline\Filter\FilterInterface` and adds it to FilterManager
 
 .. code-block:: php
 
@@ -26,7 +26,7 @@ Imagine theses actions:
     Chuck    | fight | BruceLee
     BruceLee | fight | Chuck
 
-You may not want to show on your page these two identicals actions. By this way, you have **duplicateKey** field.
+You may not want to show on your page these two identical actions. By this way, you have **duplicateKey** field.
 
 When you'll create these two TimelineActions, define a same DuplicateKey .
 
