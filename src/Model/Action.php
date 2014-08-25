@@ -59,7 +59,7 @@ class Action implements ActionInterface
      */
     public function __construct()
     {
-        $this->createdAt        = new DateTime();
+        $this->createdAt        = new \DateTime();
         $this->actionComponents = array();
         $this->timelines        = array();
     }
