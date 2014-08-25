@@ -17,9 +17,6 @@ use Spy\Timeline\ResolveComponent\ValueObject\ResolveComponentModelIdentifier;
  *
  * When not able to resolve the component data an
  * Spy\Timeline\Exception\ResolveComponentDataException exception is thrown.
- *
- * @author Stephane PY <py.stephane1@gmail.com>
- * @author Michiel Boeckaert <boeckaert@gmail.com>
  */
 class BasicComponentDataResolver implements ComponentDataResolverInterface
 {

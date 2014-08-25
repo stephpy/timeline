@@ -9,8 +9,6 @@ use Spy\Timeline\Model\TimelineInterface;
  * This filter will unset from collection timeline_actions which
  * has same duplicate_key property
  *
- * @uses AbstractFilter
- * @uses FilterInterface
  * @author Stephane PY <py.stephane1@gmail.com>
  */
 class DuplicateKey extends AbstractFilter implements FilterInterface

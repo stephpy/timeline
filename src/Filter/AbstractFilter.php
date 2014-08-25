@@ -3,8 +3,6 @@
 namespace Spy\Timeline\Filter;
 
 /**
- * AbstractFilter
- *
  * @author Stephane PY <py.stephane1@gmail.com>
  */
 abstract class AbstractFilter

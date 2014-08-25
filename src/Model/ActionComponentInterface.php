@@ -4,8 +4,6 @@ namespace Spy\Timeline\Model;
 
 /**
  * The action component links the actions to the components.
- *
- * @author Stephane PY <py.stephane1@gmail.com>
  */
 interface ActionComponentInterface
 {

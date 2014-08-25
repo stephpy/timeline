@@ -4,8 +4,6 @@ namespace Spy\Timeline\ResolveComponent\TestHelper;
 
 /**
  * User object with get id method.
- *
- * @author Michiel Boeckaert <boeckaert@gmail.com>
  */
 class User
 {

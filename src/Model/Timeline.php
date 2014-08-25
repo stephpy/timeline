@@ -2,12 +2,6 @@
 
 namespace Spy\Timeline\Model;
 
-/**
- * Timeline
- *
- * @uses TimelineInterface
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 class Timeline implements TimelineInterface
 {
     /**
@@ -67,7 +61,7 @@ class Timeline implements TimelineInterface
     }
 
     /**
-     * @{inheritdoc}
+     * {@inheritdoc}
      */
     public function setContext($context)
     {
@@ -77,7 +71,7 @@ class Timeline implements TimelineInterface
     }
 
     /**
-     * @{inheritdoc}
+     * {@inheritdoc}
      */
     public function getContext()
     {
@@ -85,7 +79,7 @@ class Timeline implements TimelineInterface
     }
 
     /**
-     * @{inheritdoc}
+     * {@inheritdoc}
      */
     public function setType($type)
     {
@@ -95,7 +89,7 @@ class Timeline implements TimelineInterface
     }
 
     /**
-     * @{inheritdoc}
+     * {@inheritdoc}
      */
     public function getType()
     {
@@ -103,7 +97,7 @@ class Timeline implements TimelineInterface
     }
 
     /**
-     * @{inheritdoc}
+     * {@inheritdoc}
      */
     public function setCreatedAt(\DateTime $createdAt)
     {
@@ -113,7 +107,7 @@ class Timeline implements TimelineInterface
     }
 
     /**
-     * @{inheritdoc}
+     * {@inheritdoc}
      */
     public function getCreatedAt()
     {
@@ -121,7 +115,7 @@ class Timeline implements TimelineInterface
     }
 
     /**
-     * @{inheritdoc}
+     * {@inheritdoc}
      */
     public function setSubject(ComponentInterface $subject)
     {
@@ -131,7 +125,7 @@ class Timeline implements TimelineInterface
     }
 
     /**
-     * @{inheritdoc}
+     * {@inheritdoc}
      */
     public function getSubject()
     {
@@ -139,7 +133,7 @@ class Timeline implements TimelineInterface
     }
 
     /**
-     * @{inheritdoc}
+     * {@inheritdoc}
      */
     public function setAction(ActionInterface $action)
     {
@@ -149,7 +143,7 @@ class Timeline implements TimelineInterface
     }
 
     /**
-     * @{inheritdoc}
+     * {@inheritdoc}
      */
     public function getAction()
     {

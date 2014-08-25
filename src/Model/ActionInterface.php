@@ -2,11 +2,6 @@
 
 namespace Spy\Timeline\Model;
 
-/**
- * ActionInterface
- *
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 interface ActionInterface
 {
     CONST STATUS_PENDING   = 'pending';

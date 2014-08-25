@@ -2,12 +2,6 @@
 
 namespace Spy\Timeline\Model;
 
-/**
- * ActionComponent
- *
- * @uses ActionComponentInterface
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 class ActionComponent implements ActionComponentInterface
 {
     /**

@@ -6,12 +6,6 @@ use Spy\Timeline\ResolveComponent\ValueObject\ResolvedComponentData;
 use Spy\Timeline\ResolveComponent\ValueObject\ResolveComponentModelIdentifier;
 use Spy\Timeline\Exception\ResolveComponentDataException;
 
-/**
- * Interface ComponentDataResolverInterface
- *
- * @author Michiel Boeckaert <boeckaert@gmail.com>
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 interface ComponentDataResolverInterface
 {
     /**
