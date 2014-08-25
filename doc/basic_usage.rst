@@ -19,12 +19,12 @@ Example with `Pimple <http://pimple.sensiolabs.org/>`_ usage.
     $c = $serviceLocator->getContainer();
 
 2) Add spreads
-````````````````````````
+``````````````
 
 @todo
 
 3) Add an action.
-````````````````````````
+`````````````````
 
 .. code-block:: php
 
@@ -35,10 +35,10 @@ Example with `Pimple <http://pimple.sensiolabs.org/>`_ usage.
     $action = $actionManager->create($chuck, 'kick', array('directComplement' => $bruceLee))
     $actionManager->updateAction($action);
 
-You should see some keys inserted on redis ;)
+You should see some keys inserted on redis ;).
 
-4) Fetch timeline of chuck norris.
-``````````````````````````````````
+4) Fetch timeline for chuck norris.
+```````````````````````````````````
 
 .. code-block:: php
 
@@ -48,8 +48,8 @@ You should see some keys inserted on redis ;)
 
     $timeline = $timelineManager->getTimeline($chuck);
 
-5) Fetch actions of chuck norris.
-`````````````````````````````````
+5) Fetch actions for chuck norris.
+``````````````````````````````````
 
 .. code-block:: php
 

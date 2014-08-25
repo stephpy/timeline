@@ -10,7 +10,7 @@ abstract class AbstractFilter
     protected $priority = 255;
 
     /**
-     * @param array $options options
+     * @param mixed $priority
      */
     public function setPriority($priority)
     {

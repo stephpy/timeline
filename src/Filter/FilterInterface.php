@@ -2,9 +2,6 @@
 
 namespace Spy\Timeline\Filter;
 
-/**
- * This interface define how filters must be used
- */
 interface FilterInterface
 {
     /**
