@@ -44,7 +44,7 @@ Context
 
 Imagine Chuck Norris has 233 friends and follow 20 companies.
 
-If we have one context, like facebook, his wall will return each actions of his friends and companies.
+If we have one context, like facebook, his wall will return each action performed by his friends and companies.
 
 You can too use **Contexts** to filter timelines, for example, we can have 3 contexts:
 
@@ -52,7 +52,7 @@ You can too use **Contexts** to filter timelines, for example, we can have 3 con
 - FRIEND: actions of his friends
 - COMPANIES: actions of his companies
 
-You can define as many context as you want.
+You can define as many contexts as you want.
 If you have only one context, you'll get each actions without being able to easily filter them to return only "OWN" actions or have only actions of friends of ChuckNorris
 
 That's why we have a "GLOBAL" context, and you can easily add other contexts.
