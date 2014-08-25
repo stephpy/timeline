@@ -30,7 +30,7 @@ class EntryUnaware implements EntryInterface
      * @param string  $subjectModel subjectModel
      * @param string  $subjectId    subjectId
      * @param boolean $strict       If strict (component fetch is mandatory,
-     * if nothing is returned, exception will be throwed)
+     * if nothing is returned, exception will be thrown)
      */
     public function __construct($subjectModel, $subjectId, $strict = false)
     {

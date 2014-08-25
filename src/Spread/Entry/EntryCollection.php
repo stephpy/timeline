@@ -119,7 +119,7 @@ class EntryCollection implements \IteratorAggregate
                             throw new \Exception(sprintf('Component with ident "%s" is unknown', $entry->getIdent()));
                         }
 
-                        // thrid argument make component not flushed directly.
+                        // third argument ensures component is not flushed directly.
                         $component = $this->actionManager->createComponent($entry->getSubjectModel(), $entry->getSubjectId(), false);
 
                         $nbComponentCreated++;

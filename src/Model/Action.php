@@ -333,7 +333,7 @@ class Action implements ActionInterface
     }
 
     /**
-     * @return array
+     * {@inheritdoc}
      */
     public function getActionComponents()
     {
