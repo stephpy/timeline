@@ -2,14 +2,6 @@
 
 namespace Spy\Timeline\Model;
 
-use \DateTime;
-
-/**
- * Action
- *
- * @uses ActionInterface
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 class Action implements ActionInterface
 {
     /**
@@ -48,7 +40,7 @@ class Action implements ActionInterface
     protected $duplicated = false;
 
     /**
-     * @var DateTime
+     * @var \DateTime
      */
     protected $createdAt;
 

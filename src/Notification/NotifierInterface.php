@@ -5,11 +5,6 @@ namespace Spy\Timeline\Notification;
 use Spy\Timeline\Model\ActionInterface;
 use Spy\Timeline\Spread\Entry\EntryCollection;
 
-/**
- * NotifierInterface
- *
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 interface NotifierInterface
 {
     /**

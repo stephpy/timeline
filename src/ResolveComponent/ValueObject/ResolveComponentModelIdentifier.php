@@ -5,14 +5,10 @@ namespace Spy\Timeline\ResolveComponent\ValueObject;
 use Spy\Timeline\Exception\ResolveComponentDataException;
 
 /**
- * Class ResolveComponentModelIdentifier
- *
  * This value object is responsible for
  * - Checking if the given model and identifier are resolvable
  * - In the current implementation when an object is given, we retrieve the identifier from the object
  * - So when asking for the identifier, if an object is given we return null.
- *
- * @author Michiel Boeckaert <boeckaert@gmail.com>
  */
 class ResolveComponentModelIdentifier
 {

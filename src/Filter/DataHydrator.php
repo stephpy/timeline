@@ -4,15 +4,10 @@ namespace Spy\Timeline\Filter;
 
 use Spy\Timeline\Filter\DataHydrator\Locator\LocatorInterface;
 use Spy\Timeline\Filter\DataHydrator\Entry;
-use Spy\Timeline\Filter\FilterInterface;
 use Spy\Timeline\Model\TimelineInterface;
 use Spy\Timeline\ResultBuilder\Pager\PagerInterface;
 
 /**
- * DataHydrator
- *
- * @uses AbstractFilter
- * @uses FilterInterface
  * @author Stephane PY <py.stephane1@gmail.com>
  */
 class DataHydrator extends AbstractFilter implements FilterInterface
@@ -96,6 +91,7 @@ class DataHydrator extends AbstractFilter implements FilterInterface
      *
      * @param mixed $collection collection
      *
+     * @throws \Exception
      * @return mixed
      */
     protected function hydrateComponents($collection)

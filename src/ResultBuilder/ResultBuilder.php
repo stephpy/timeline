@@ -6,12 +6,6 @@ use Spy\Timeline\Filter\FilterManagerInterface;
 use Spy\Timeline\ResultBuilder\QueryExecutor\QueryExecutorInterface;
 use Spy\Timeline\ResultBuilder\Pager\PagerInterface;
 
-/**
- * ResultBuilder
- *
- * @uses ResultBuilderInterface
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 class ResultBuilder implements ResultBuilderInterface
 {
     /**

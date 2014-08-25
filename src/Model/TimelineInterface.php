@@ -2,11 +2,6 @@
 
 namespace Spy\Timeline\Model;
 
-/**
- * TimelineInterface
- *
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 interface TimelineInterface
 {
     CONST TYPE_TIMELINE = 'timeline';
@@ -55,7 +50,7 @@ interface TimelineInterface
     public function getCreatedAt();
 
     /**
-     * @param  Component $subject
+     * @param  ComponentInterface $subject
      * @return Timeline
      */
     public function setSubject(ComponentInterface $subject);

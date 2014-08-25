@@ -2,11 +2,6 @@
 
 namespace Spy\Timeline\Model;
 
-/**
- * ComponentInterface
- *
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 interface ComponentInterface
 {
     /**

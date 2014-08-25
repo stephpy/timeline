@@ -3,8 +3,6 @@
 namespace Spy\Timeline\Filter;
 
 /**
- * FilterManager
- *
  * @author Stephane PY <py.stephane1@gmail.com>
  */
 class FilterManager implements FilterManagerInterface

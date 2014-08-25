@@ -5,11 +5,7 @@ namespace Spy\Timeline\ResolveComponent\ValueObject;
 use Spy\Timeline\Exception\ResolveComponentDataException;
 
 /**
- * ResolvedComponentData
- *
  * This value object guards that the resolved model and identifier are valid.
- *
- * @author Michiel Boeckaert <boeckaert@gmail.com>
  */
 class ResolvedComponentData
 {
