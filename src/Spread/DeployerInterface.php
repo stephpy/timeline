@@ -6,11 +6,6 @@ use Spy\Timeline\Driver\ActionManagerInterface;
 use Spy\Timeline\Model\ActionInterface;
 use Spy\Timeline\Notification\NotifierInterface;
 
-/**
- * Deployer
- *
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 interface DeployerInterface
 {
     CONST DELIVERY_IMMEDIATE = 'immediate';

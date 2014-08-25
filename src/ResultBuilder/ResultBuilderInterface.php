@@ -2,11 +2,6 @@
 
 namespace Spy\Timeline\ResultBuilder;
 
-/**
- * ResultBuilderInterface
- *
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 interface ResultBuilderInterface
 {
     /**

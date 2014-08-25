@@ -5,11 +5,6 @@ namespace Spy\Timeline\Spread;
 use Spy\Timeline\Model\ActionInterface;
 use Spy\Timeline\Spread\Entry\EntryCollection;
 
-/**
- * How to define a spread
- *
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 interface SpreadInterface
 {
     /**

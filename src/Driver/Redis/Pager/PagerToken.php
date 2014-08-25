@@ -2,11 +2,6 @@
 
 namespace Spy\Timeline\Driver\Redis\Pager;
 
-/**
- * PagerToken
- *
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 class PagerToken
 {
     public $key;

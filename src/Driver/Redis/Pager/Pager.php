@@ -2,17 +2,8 @@
 
 namespace Spy\Timeline\Driver\Redis\Pager;
 
-use Spy\Timeline\Filter\FilterManagerInterface;
 use Spy\Timeline\ResultBuilder\Pager\PagerInterface;
 
-/**
- * Pager
- *
- * @uses AbstractPager
- * @uses PagerInterface
- * @uses ArrayAccess
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 class Pager extends AbstractPager implements PagerInterface, \IteratorAggregate, \Countable, \ArrayAccess
 {
     /**

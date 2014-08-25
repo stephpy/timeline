@@ -4,11 +4,6 @@ namespace Spy\Timeline\Driver\QueryBuilder\Criteria;
 
 use Spy\Timeline\Driver\QueryBuilder\QueryBuilderFactory;
 
-/**
- * Operator
- *
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 class Operator implements CriteriaInterface
 {
     CONST TYPE_AND = 'AND';
