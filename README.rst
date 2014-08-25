@@ -15,7 +15,7 @@ A timeline is a collection of action which can be represented by:
 
 - **Subject**
 - **Verb**
-- **Components** (directComplement, indirectComplement, etc...)
+- **Complements** (directComplement, indirectComplement, etc...)
 
 Example:
 
@@ -27,12 +27,12 @@ Example:
 | Sheldon      | say     | Bazinga (directComplement)                                         |
 +--------------+---------+--------------------------------------------------------------------+
 
-There is two type of action list to retrieve:
+There is two types of action list to retrieve:
 
 Timeline
 ~~~~~~~~
 
-Wall of a subject is all his actions + all actions of his **spreads**, see `spread.rst <https://github.com/stephpy/timeline/tree/master/doc/spread.rst>`_
+Wall of a subject with all its actions + all actions of its **spreads**, see `spread.rst <https://github.com/stephpy/timeline/tree/master/doc/spread.rst>`_
 
 SubjectAction
 ~~~~~~~~~~~~~
@@ -44,7 +44,7 @@ Context
 
 Imagine Chuck Norris has 233 friends and follow 20 companies.
 
-If we have one context, like facebook, his wall will return each actions of his friends and companies.
+If we have one context, like facebook, his wall will return each action performed by his friends and companies.
 
 You can too use **Contexts** to filter timelines, for example, we can have 3 contexts:
 
@@ -52,8 +52,8 @@ You can too use **Contexts** to filter timelines, for example, we can have 3 con
 - FRIEND: actions of his friends
 - COMPANIES: actions of his companies
 
-You can define as many context as you want.
-If you have only one context, you'll get each actions without being able to easily filter them to return only "OWN" actions or have only actions of friends of ChuckNorris
+You can define as many contexts as you want.
+If you have only one context, you'll get each action without being able to easily filter them to return only "OWN" actions or have only actions performed by ChuckNorris' friends
 
 That's why we have a "GLOBAL" context, and you can easily add other contexts.
 
@@ -67,7 +67,7 @@ In your `composer.json` you should have:
 
     {
         "require": {
-            "stephpy/timeline": "1.0.*",
+            "stephpy/timeline": "~1.0.0",
             "pimple/pimple": "*"
         }
     }

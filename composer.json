@@ -1,8 +1,8 @@
 {
     "name": "stephpy/timeline",
-    "description": "Standalone library to make timeline",
+    "description": "Standalone library to create timelines",
     "keywords": ["timeline", "standalone"],
-    "type": "standalone",
+    "type": "package",
     "homepage": "https://github.com/stephpy/timeline",
     "license": "MIT",
     "authors": [{
