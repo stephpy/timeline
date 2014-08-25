@@ -3,7 +3,6 @@
 namespace Spy\Timeline\ResultBuilder\Pager;
 
 use Knp\Component\Pager\Paginator;
-use Spy\Timeline\ResultBuilder\Pager\PagerInterface;
 
 /**
  * KnpPager
@@ -32,9 +31,9 @@ class KnpPager extends AbstractPager implements PagerInterface, \IteratorAggrega
     protected $data;
 
     /**
-     * @param Paginator $paginator paginator
+     * @param Paginator|null $paginator paginator
      */
-    public function __construct(Paginator $paginator)
+    public function __construct(Paginator $paginator = null)
     {
         $this->paginator = $paginator;
     }
