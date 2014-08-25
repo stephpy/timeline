@@ -8,12 +8,6 @@ use mageekguy\atoum;
 use Spy\Timeline\Model\Action as TestedModel;
 use Spy\Timeline\Model\ActionInterface;
 
-/**
- * Action
- *
- * @uses atoum\test
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 class Action extends atoum\test
 {
     public function testConstruct()
@@ -24,7 +18,7 @@ class Action extends atoum\test
             ->array($object->getActionComponents())->isEmpty()
             ->string($object->getStatusCurrent())->isEqualTo(ActionInterface::STATUS_PENDING)
             ->string($object->getStatusWanted())->isEqualTo(ActionInterface::STATUS_PUBLISHED)
-            ;
+        ;
     }
 
     public function testAddComponent()
@@ -46,7 +40,7 @@ class Action extends atoum\test
             // two times same componen
             ->when($action->addComponent('coi', 'text', '\Spy\Timeline\Model\ActionComponent'))
             ->integer(count($action->getActionComponents()))->isEqualTo(2)
-            ;
+        ;
     }
 
     public function testIsPublished()
@@ -54,7 +48,8 @@ class Action extends atoum\test
         $this->if($action = new TestedModel())
             ->boolean($action->isPublished())->isFalse()
             ->when($action->setStatusCurrent(TestedModel::STATUS_PUBLISHED))
-            ->boolean($action->isPublished())->isTrue();
+            ->boolean($action->isPublished())->isTrue()
+        ;
     }
 
     public function testHasDuplicateKey()
@@ -62,14 +57,16 @@ class Action extends atoum\test
         $this->if($action = new TestedModel())
             ->boolean($action->hasDuplicateKey())->isFalse()
             ->when($action->setDuplicateKey(uniqid()))
-            ->boolean($action->hasDuplicateKey())->isTrue();
+            ->boolean($action->hasDuplicateKey())->isTrue()
+        ;
     }
 
     public function testGetValidStatus()
     {
         $this->if($object = new TestedModel())
             ->array($object->getValidStatus())
-            ->isNotEmpty();
+            ->isNotEmpty()
+        ;
     }
 
     public function testIsValidStatus()
@@ -79,7 +76,7 @@ class Action extends atoum\test
             ->boolean($object->isValidStatus(TestedModel::STATUS_PUBLISHED))->isTrue()
             ->boolean($object->isValidStatus(TestedModel::STATUS_FROZEN))->isTrue()
             ->boolean($object->isValidStatus('custom_status'))->isFalse()
-            ;
+        ;
     }
 
     public function testGetComponent()
@@ -95,7 +92,7 @@ class Action extends atoum\test
             ->and($component = new \Mock\ComponentInterface())
             ->when($action->addComponent('coi', $component, '\Spy\Timeline\Model\ActionComponent'))
             ->object($action->getComponent('coi'))->isIdenticalTo($component)
-            ;
+        ;
     }
 
     public function testGetSubject()
@@ -111,6 +108,6 @@ class Action extends atoum\test
             ->and($component = new \Mock\ComponentInterface())
             ->when($action->addComponent('subject', $component, '\Spy\Timeline\Model\ActionComponent'))
             ->object($action->getComponent('subject'))->isIdenticalTo($component)
-            ;
+        ;
     }
 }

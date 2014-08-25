@@ -9,15 +9,8 @@ use Spy\Timeline\ResolveComponent\BasicComponentDataResolver as TestedModel;
 use Spy\Timeline\ResolveComponent\TestHelper\User;
 use Spy\Timeline\ResolveComponent\ValueObject\ResolveComponentModelIdentifier;
 
-/**
- * Test file for Spy\Timeline\ResolveComponent\BasicComponentDataResolver
- *
- * @author Michiel Boeckaert <boeckaert@gmail.com>
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 class BasicComponentDataResolver extends atoum\test
 {
-
     public function testWithObjectThatHasGetId()
     {
         $user = new User(1);

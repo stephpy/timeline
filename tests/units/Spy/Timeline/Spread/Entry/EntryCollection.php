@@ -7,12 +7,6 @@ require_once __DIR__ . '/../../../../../../vendor/autoload.php';
 use mageekguy\atoum;
 use Spy\Timeline\Spread\Entry\EntryCollection as TestedModel;
 
-/**
- * EntryCollection
- *
- * @uses atoum\test
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 class EntryCollection extends atoum\test
 {
     public function testAdd()
@@ -63,7 +57,7 @@ class EntryCollection extends atoum\test
                     'ident2' => $entry2,
                 )
             )))
-            ;
+        ;
     }
 
     public function testLoadUnawareEntries()
@@ -90,6 +84,6 @@ class EntryCollection extends atoum\test
             ->when($collection->clear())
             ->object($collection->getIterator())
             ->isEqualTo(new \ArrayIterator(array()))
-            ;
+        ;
     }
 }

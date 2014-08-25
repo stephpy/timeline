@@ -2,9 +2,6 @@
 
 namespace Spy\Timeline\Model;
 
-/**
- * The action component links the actions to the components.
- */
 interface ActionComponentInterface
 {
     /**

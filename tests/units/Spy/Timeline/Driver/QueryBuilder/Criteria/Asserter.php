@@ -7,12 +7,6 @@ require_once __DIR__ . '/../../../../../../../vendor/autoload.php';
 use mageekguy\atoum;
 use Spy\Timeline\Driver\QueryBuilder\Criteria\Asserter as TestedModel;
 
-/**
- * Asserter
- *
- * @uses atoum\test
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 class Asserter extends atoum\test
 {
     public function testField()
@@ -22,7 +16,7 @@ class Asserter extends atoum\test
             ->isInstanceOf('Spy\Timeline\Driver\QueryBuilder\Criteria\Asserter')
             ->string($model->getField())
             ->isEqualTo('field')
-            ;
+        ;
     }
 
     public function getAsserters()
@@ -52,7 +46,7 @@ class Asserter extends atoum\test
             ->and($resultExpected->create($operator, $data))
             ->object($model->field('field')->{$method}($data))
             ->isEqualTo($resultExpected)
-            ;
+        ;
     }
 
     /**
@@ -69,7 +63,7 @@ class Asserter extends atoum\test
             ))
             ->array($model->toArray())
             ->isIdenticalTo($resultExpected)
-            ;
+        ;
     }
 
     /**
@@ -87,6 +81,6 @@ class Asserter extends atoum\test
             ))
             ->object($model->fromArray($arrayRepresentation))
             ->isEqualTo($resultExpected)
-            ;
+        ;
     }
 }

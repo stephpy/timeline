@@ -9,12 +9,6 @@ use Spy\Timeline\Model\ActionInterface;
 use Spy\Timeline\Model\TimelineInterface;
 use Spy\Timeline\Spread\Deployer as TestedModel;
 
-/**
- * Deployer
- *
- * @uses atoum\test
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 class Deployer extends atoum\test
 {
     public function testDeployUnpublishedAction()
@@ -31,7 +25,7 @@ class Deployer extends atoum\test
                 ->mock($entryCollection)
                     ->call('setActionManager')
                 ->never();
-            ;
+        ;
     }
 
     public function testDeploy()
@@ -68,7 +62,7 @@ class Deployer extends atoum\test
                 ->mock($action)->call('setStatusCurrent')->withArguments(ActionInterface::STATUS_PUBLISHED)->once()
                 ->mock($actionManager)->call('updateAction')->withArguments($action)->once()
                 ->mock($entryCollection)->call('clear')->once()
-            ;
+        ;
     }
 
     public function testSetDelivery()
@@ -98,7 +92,7 @@ class Deployer extends atoum\test
             ->boolean($deployer->isDeliveryImmediate())->isTrue()
             ->and($deployer->setDelivery(TestedModel::DELIVERY_WAIT))
             ->boolean($deployer->isDeliveryImmediate())->isFalse()
-            ;
+        ;
     }
 
     public function testProcessSpreads()
@@ -138,6 +132,6 @@ class Deployer extends atoum\test
             ->mock($spread2)
                 ->call('supports')->once()
                 ->call('process')->never()
-            ;
+        ;
     }
 }

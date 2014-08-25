@@ -7,12 +7,6 @@ require_once __DIR__ . '/../../../../../vendor/autoload.php';
 use mageekguy\atoum;
 use Spy\Timeline\Filter\DataHydrator as TestedModel;
 
-/**
- * DataHydrator
- *
- * @uses atoum\test
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 class DataHydrator extends atoum\test
 {
     public function testFilterEmptyLocators()
@@ -23,7 +17,7 @@ class DataHydrator extends atoum\test
             ->and($action2 = new \Mock\ActionInterface())
             ->and($coll = array($action1, $action2))
             ->array($filter->filter($coll))->isIdenticalTo($coll)
-            ;
+        ;
     }
 
     public function testWithLocators()
@@ -77,6 +71,6 @@ class DataHydrator extends atoum\test
             ->and($filter->addLocator($locator))
             ->array($filter->filter(array($action)))
                 ->hasSize(0)
-            ;
+        ;
     }
 }

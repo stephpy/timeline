@@ -7,12 +7,6 @@ require_once __DIR__ . '/../../../../../vendor/autoload.php';
 use mageekguy\atoum;
 use Spy\Timeline\Filter\DuplicateKey as TestedModel;
 
-/**
- * DuplicateKey
- *
- * @uses atoum\test
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 class DuplicateKey extends atoum\test
 {
     public function testFilterNoDuplicateKey()
@@ -31,7 +25,7 @@ class DuplicateKey extends atoum\test
             ->mock($action2)
                 ->call('setIsDuplicated')
                 ->never()
-            ;
+        ;
     }
 
     public function testFilterOneDuplicateKey()
@@ -52,8 +46,7 @@ class DuplicateKey extends atoum\test
             ->mock($action2)
                 ->call('setIsDuplicated')
                 ->never()
-            ;
-
+        ;
     }
 
     public function testFilterTwoDuplicateKeyDifferent()
@@ -76,7 +69,7 @@ class DuplicateKey extends atoum\test
             ->mock($action2)
                 ->call('setIsDuplicated')
                 ->never()
-            ;
+        ;
     }
 
     public function testFilterTwoDuplicateKeyNoPriority()
@@ -99,7 +92,7 @@ class DuplicateKey extends atoum\test
             ->mock($action2)
                 ->call('setIsDuplicated')
                 ->never()
-            ;
+        ;
     }
 
     public function testFilterTwoDuplicateKeyPriorityEquals()
@@ -124,7 +117,7 @@ class DuplicateKey extends atoum\test
             ->mock($action2)
                 ->call('setIsDuplicated')
                 ->never()
-            ;
+        ;
     }
 
     public function testFilterTwoDuplicateKeyPriorityFirst()
@@ -149,7 +142,7 @@ class DuplicateKey extends atoum\test
             ->mock($action2)
                 ->call('setIsDuplicated')
                 ->never()
-            ;
+        ;
     }
 
     public function testFilterTwoDuplicateKeyPrioritySecond()
@@ -174,7 +167,6 @@ class DuplicateKey extends atoum\test
             ->mock($action2)
                 ->call('setIsDuplicated')
                 ->once()
-            ;
+        ;
     }
-
 }
