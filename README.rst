@@ -15,7 +15,7 @@ A timeline is a collection of action which can be represented by:
 
 - **Subject**
 - **Verb**
-- **Components** (directComplement, indirectComplement, etc...)
+- **Complements** (directComplement, indirectComplement, etc...)
 
 Example:
 
@@ -27,12 +27,12 @@ Example:
 | Sheldon      | say     | Bazinga (directComplement)                                         |
 +--------------+---------+--------------------------------------------------------------------+
 
-There is two type of action list to retrieve:
+There is two types of action list to retrieve:
 
 Timeline
 ~~~~~~~~
 
-Wall of a subject is all his actions + all actions of his **spreads**, see `spread.rst <https://github.com/stephpy/timeline/tree/master/doc/spread.rst>`_
+Wall of a subject with all its actions + all actions of its **spreads**, see `spread.rst <https://github.com/stephpy/timeline/tree/master/doc/spread.rst>`_
 
 SubjectAction
 ~~~~~~~~~~~~~
