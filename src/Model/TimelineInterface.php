@@ -18,7 +18,7 @@ interface TimelineInterface
 
     /**
      * @param  string   $context
-     * @return Timeline
+     * @return TimelineInterface
      */
     public function setContext($context);
 
@@ -29,7 +29,7 @@ interface TimelineInterface
 
     /**
      * @param  string   $type
-     * @return Timeline
+     * @return TimelineInterface
      */
     public function setType($type);
 
@@ -40,7 +40,7 @@ interface TimelineInterface
 
     /**
      * @param  \DateTime $createdAt
-     * @return Timeline
+     * @return TimelineInterface
      */
     public function setCreatedAt(\DateTime $createdAt);
 
@@ -51,7 +51,7 @@ interface TimelineInterface
 
     /**
      * @param  ComponentInterface $subject
-     * @return Timeline
+     * @return TimelineInterface
      */
     public function setSubject(ComponentInterface $subject);
 
@@ -62,7 +62,7 @@ interface TimelineInterface
 
     /**
      * @param  ActionInterface $action
-     * @return Timeline
+     * @return TimelineInterface
      */
     public function setAction(ActionInterface $action);
 

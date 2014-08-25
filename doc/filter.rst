@@ -1,14 +1,14 @@
 Filter
 ------
 
-Filters will apply modifications to a collection of actions.
+Filters apply modifications to a collection of actions.
 
 This bundle provides 2 filters, **DuplicateKey** and **DataHydrator**.
 
 Add your own filter
 ```````````````````
 
-Define a class that implements `Spy\Timeline\Filter\FilterInterface` and adds it to FilterManager
+In order to implement a filter you can define a class that implements `Spy\Timeline\Filter\FilterInterface` and add it to FilterManager.
 
 .. code-block:: php
 
@@ -19,18 +19,18 @@ Define a class that implements `Spy\Timeline\Filter\FilterInterface` and adds it
 DuplicateKey
 ````````````
 
-Imagine theses actions:
+Imagine these actions:
 
 .. code-block:: txt
 
     Chuck    | fight | BruceLee
     BruceLee | fight | Chuck
 
-You may not want to show on your page these two identical actions. Doing it in this way, you will have a **duplicateKey** field.
+You may not want to show on your page these two identical actions. This is what it is known as a **duplicateKey** entry.
 
-When you create these two TimelineActions, define a same DuplicateKey.
+When you create these two timeline actions you have a DuplicateKey.
 
-After filtering with DuplicateKey filter, this will delete one of the two actions (the biggest duplicatePriority field, if you don't define it, will delete the second entry). It will set to TRUE the **isDuplicated** field on timeline_action.
+When filtering a timeline with the DuplicateKey filter this will remove one of the two actions (the biggest duplicatePriority field, if you don't define it, it will delete the second entry). It will set to *true* the **isDuplicated** field on timeline_action.
 
 
 Usage
@@ -61,14 +61,14 @@ Usage
 DataHydrator
 ````````````
 
-This filter will hydrate your related objects, this will regroup the queries to avoid X query calls per action. In this way, if you have two timelines:
+This filter will hydrate your related objects, this will regroup the queries to avoid n query calls per action. In this way, if you have two timelines:
 
 .. code-block:: txt
 
     \Entity\User:1 | comment | \Entity\Article:2 | of | \Entity\User:2
     \Entity\User:2 | comment | \Entity\Article:7 | of | \Entity\User:1
 
-It will execute 2 sql queries !
+It will execute 2 sql queries!
 
 - \Entity\User -> whereIn 1 and 2
 - \Entity\Article -> whereIn 2 and 7
@@ -76,12 +76,12 @@ It will execute 2 sql queries !
 Removing Actions with Unresolved References
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Use the `filter.data_hydrator.filter_unresolved = true` parameters (defined on container) to remove any actions which have unresolved references after the hydration process. This will prevent unexpected EntityNotFoundExceptions when accessing an action component which was removed from the database, but are marked for Lazy-Loading by the entity loading listener.
+Use the `filter.data_hydrator.filter_unresolved = true` parameters (defined on container) to remove any actions which have unresolved references after the hydration process. This will prevent unexpected EntityNotFoundExceptions when accessing an action component which was removed from the database, but is marked for Lazy-Loading by the entity loading listener.
 
 Locators
 ~~~~~~~~
 
-Locators will search data to attribute to components. There is no locator provided on this library (only with bundle).
+Locators will search data to attribute to components. There is no locator provided on this library (only with the bundle).
 
 You can add your own locator, for example if you store your components on a filesystem or on another storage.
 
@@ -91,7 +91,7 @@ Imagine you have a component which represents a file:
 
     $component = $actionManager->findOrCreateComponent('file', '/path/to/file.txt');
 
-You want to retrieve the content of this file when fetch timeline or subjectActions:
+You want to retrieve the content of this file when fetching the main timeline or the subjectAction timeline:
 
 Define the locator:
 

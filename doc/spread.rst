@@ -46,7 +46,7 @@ Create Spread Class
             // can define an Entry with a ComponentInterface as argument
             $coll->add(new Entry($action->getComponent('subject')));
 
-            // or an EntryUnware, on these examples, we are not aware about components and
+            // or an EntryUnaware, on these examples, we are not aware about components and
             // we don't want to retrieve them, let library do it for us.
 
             // you can use composite identifier by adding an array as second argument

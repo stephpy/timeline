@@ -11,7 +11,7 @@ use Spy\Timeline\Spread\Entry\EntryCollection;
 class UnreadNotificationManager implements NotifierInterface
 {
     /**
-     * @var TimelineManager
+     * @var TimelineManagerInterface
      */
     protected $timelineManager;
 
@@ -75,11 +75,11 @@ class UnreadNotificationManager implements NotifierInterface
     }
 
     /**
-     * @param ComponentInterface $subject  The subject
-     * @param string             $actionId The actionId
-     * @param string             $context  The context
+     * @param ComponentInterface $subject          The subject
+     * @param string             $timelineActionId The actionId
+     * @param string             $context          The context
      */
-    public function markAsReadAction(ComponentInterface $subject, $timelineActionId, $context = "GLOBAL")
+    public function markAsReadAction(ComponentInterface $subject, $timelineActionId, $context = 'GLOBAL')
     {
         $this->markAsReadActions(array(
             array($context, $subject, $timelineActionId)
