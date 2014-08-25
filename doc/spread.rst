@@ -7,9 +7,9 @@ Action example:
 
 We want to publish this action on:
 
-- Chuck Noris timeline
+- Chuck Norris timeline
 - Sheldon timeline
-- Francky Vincent timeline
+- Franky Vincent timeline
 - World timeline
 
 When you publish an action, you can choose spreads (listed examples above) by defining component.

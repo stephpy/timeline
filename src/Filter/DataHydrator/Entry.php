@@ -2,14 +2,10 @@
 
 namespace Spy\Timeline\Filter\DataHydrator;
 
+use Doctrine\Common\Persistence\Proxy;
 use Spy\Timeline\Model\ActionInterface;
 use Spy\Timeline\Model\ActionComponentInterface;
 
-/**
- * Entry, each timeline actions are an entry
- *
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 class Entry
 {
     /**
@@ -63,7 +59,7 @@ class Entry
         $data      = $component->getData();
 
         if (null !== $data
-            && (!$data instanceof \Doctrine\Common\Persistence\Proxy || $data->__isInitialized())
+            && (!$data instanceof Proxy || $data->__isInitialized())
         ) {
             return;
         }

@@ -61,7 +61,7 @@ Usage
 DataHydrator
 ````````````
 
-This filter will hydrate yours related object, this will regrouping the queries to avoid X queries call by action. By this way, if you have two timelines:
+This filter will hydrate your related objects, this will regroup the queries to avoid X query calls per action. In this way, if you have two timelines:
 
 .. code-block:: txt
 
@@ -76,16 +76,16 @@ It will execute 2 sql queries !
 Removing Actions with Unresolved References
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Use the `filter.data_hydrator.filter_unresolved = true` parameters (defined on container) to remove any actions which have unresolved references after the hydration process. This will prevent unexpected EntityNotFoundExceptions when accessing an action component which have been removed from the database, but are marked for Lazy-Loading by the entity loading listener.
+Use the `filter.data_hydrator.filter_unresolved = true` parameters (defined on container) to remove any actions which have unresolved references after the hydration process. This will prevent unexpected EntityNotFoundExceptions when accessing an action component which was removed from the database, but are marked for Lazy-Loading by the entity loading listener.
 
 Locators
 ~~~~~~~~
 
-Locators will seach data to attribute to components. There is no locator provided on this library (only with bundle).
+Locators will search data to attribute to components. There is no locator provided on this library (only with bundle).
 
-You can add your own locator, for example if you store yours components on a filesystem or an other storage.
+You can add your own locator, for example if you store your components on a filesystem or on another storage.
 
-Imagine you have a component which represent a file:
+Imagine you have a component which represents a file:
 
 .. code-block:: php
 

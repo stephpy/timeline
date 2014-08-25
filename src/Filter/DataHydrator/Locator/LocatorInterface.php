@@ -4,11 +4,6 @@ namespace Spy\Timeline\Filter\DataHydrator\Locator;
 
 use Spy\Timeline\Model\ComponentInterface;
 
-/**
- * LocatorInterface
- *
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 interface LocatorInterface
 {
     /**

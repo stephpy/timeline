@@ -1,7 +1,7 @@
 Notification
 ------------
 
-During the deployment of an action, you can define some notifiers, they must implements **NotifierInterface**
+During the deployment of an action, you can define some notifiers, they must implement **NotifierInterface**
 
 .. code-block:: php
 
@@ -17,7 +17,7 @@ During the deployment of an action, you can define some notifiers, they must imp
     {
         public function notify(ActionInterface $action, EntryCollection $entryCollection)
         {
-            // By example, to deploy on each $action with verb OWN and Recipient (subject) is an User:
+            // For example, to deploy on each $action with verb OWN and Recipient (subject) is an User:
             if ($action->getVerb() !== 'OWN') {
                 return;
             }
