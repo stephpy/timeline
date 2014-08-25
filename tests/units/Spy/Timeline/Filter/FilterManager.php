@@ -7,12 +7,6 @@ require_once __DIR__ . '/../../../../../vendor/autoload.php';
 use mageekguy\atoum;
 use Spy\Timeline\Filter\FilterManager as TestedFilterManager;
 
-/**
- * FilterManager
- *
- * @uses atoum\test
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 class FilterManager extends atoum\test
 {
     public function testException()
@@ -23,7 +17,7 @@ class FilterManager extends atoum\test
             })
             ->isInstanceof('\Exception')
             ->hasMessage('Collection must be an array or traversable')
-            ;
+        ;
     }
 
     public function testFilters()
@@ -53,6 +47,6 @@ class FilterManager extends atoum\test
             ->and($manager->add($filter3))
             ->array($manager->filter(array()))
                 ->isIdenticalTo(array(3, 1, 2))
-            ;
+        ;
     }
 }

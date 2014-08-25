@@ -7,12 +7,6 @@ require_once __DIR__ . '/../../../../../../../vendor/autoload.php';
 use mageekguy\atoum;
 use Spy\Timeline\Driver\QueryBuilder\Criteria\Operator as TestedModel;
 
-/**
- * Operator
- *
- * @uses atoum\test
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 class Operator extends atoum\test
 {
     public function testSetType()
@@ -27,7 +21,7 @@ class Operator extends atoum\test
             ->isInstanceOf('Spy\Timeline\Driver\QueryBuilder\Criteria\Operator')
             ->string($model->getType())
             ->isEqualTo('AND')
-            ;
+        ;
     }
 
     public function testGetAvailableTypes()
@@ -52,7 +46,8 @@ class Operator extends atoum\test
                 'criterias' => array(
                     'CRITERIA_TO_ARRAY'
                 ),
-            ));
+            ))
+        ;
     }
 
     public function testFromArray()
@@ -92,6 +87,6 @@ class Operator extends atoum\test
                 ),
             ), $factory))
             ->isNotEqualTo($resultExpected)
-            ;
+        ;
     }
 }

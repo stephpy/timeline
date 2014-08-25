@@ -7,12 +7,6 @@ require_once __DIR__ . '/../../../../../../vendor/autoload.php';
 use mageekguy\atoum;
 use Spy\Timeline\ResultBuilder\Pager\KnpPager as TestedModel;
 
-/**
- * KnpPager
- *
- * @uses atoum\test
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 class KnpPager extends atoum\test
 {
     public function testPaginate()
@@ -38,6 +32,6 @@ class KnpPager extends atoum\test
             ->boolean($pagination->haveToPaginate())->isTrue()
             ->integer($pagination->getNbResults())->isEqualTo(17)
             ->integer(count($pagination))->isEqualTo(10)
-            ;
+        ;
     }
 }

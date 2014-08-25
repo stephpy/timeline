@@ -7,12 +7,6 @@ require_once __DIR__ . '/../../../../../../vendor/autoload.php';
 use mageekguy\atoum;
 use Spy\Timeline\Filter\DataHydrator\Entry as TestedModel;
 
-/**
- * Entry
- *
- * @uses atoum\test
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 class Entry extends atoum\test
 {
     public function testBuild()
@@ -46,6 +40,6 @@ class Entry extends atoum\test
                 'hashoir' => $component2,
                 // not third because has already data setted.
             ))
-            ;
+        ;
     }
 }

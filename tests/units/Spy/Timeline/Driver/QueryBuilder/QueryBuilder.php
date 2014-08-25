@@ -10,12 +10,6 @@ use Spy\Timeline\Driver\QueryBuilder\Criteria\Operator;
 use Spy\Timeline\Driver\QueryBuilder\QueryBuilderFactory;
 use Spy\Timeline\Driver\QueryBuilder\QueryBuilder as QueryBuilderTested;
 
-/**
- * QueryBuilder
- *
- * @uses atoum\test
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 class QueryBuilder extends atoum\test
 {
     public function testLogicalAnd()
@@ -36,7 +30,7 @@ class QueryBuilder extends atoum\test
             ->object($qb->logicalAnd($criteria, $criteria2))
             ->isEqualTo($qb->createNewOperator(Operator::TYPE_AND, array($criteria, $criteria2)))
             ->isEqualTo($resultExpected)
-            ;
+        ;
     }
 
     public function testLogicalOr()
@@ -57,7 +51,7 @@ class QueryBuilder extends atoum\test
             ->object($qb->logicalOr($criteria, $criteria2))
             ->isEqualTo($qb->createNewOperator(Operator::TYPE_OR, array($criteria, $criteria2)))
             ->isEqualTo($resultExpected)
-            ;
+        ;
     }
 
     public function testField()
@@ -73,7 +67,7 @@ class QueryBuilder extends atoum\test
             ->and($resultExpected->field('createdAt'))
             ->object($qb->field('createdAt'))
             ->isEqualTo($resultExpected)
-            ;
+        ;
     }
 
     public function testOrderBy()
@@ -97,7 +91,8 @@ class QueryBuilder extends atoum\test
     {
         $this->if($qb = new QueryBuilderTested())
             ->array($qb->getAvailableFields())
-            ->isNotEmpty();
+            ->isNotEmpty()
+        ;
     }
 
     public function testAddSubject()
@@ -119,7 +114,7 @@ class QueryBuilder extends atoum\test
             ->and($qb->addSubject($subject3))
 
             ->array($qb->getSubjects())->hasSize(2)
-            ;
+        ;
     }
 
     public function testFromArray()
@@ -157,7 +152,7 @@ class QueryBuilder extends atoum\test
             ->and($resultExpected->addSubject($component))
             ->object($data = $qb->fromArray($data, $actionManager))
             ->isEqualTo($resultExpected)
-            ;
+        ;
     }
 
     public function testToArray()
@@ -189,6 +184,6 @@ class QueryBuilder extends atoum\test
                     ),
                 )
             )
-            ;
+        ;
     }
 }

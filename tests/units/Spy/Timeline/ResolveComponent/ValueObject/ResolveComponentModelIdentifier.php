@@ -8,11 +8,6 @@ use mageekguy\atoum;
 use Spy\Timeline\ResolveComponent\ValueObject\ResolveComponentModelIdentifier as TestedModel;
 use Spy\Timeline\ResolveComponent\TestHelper\User;
 
-/**
- * Class ResolveComponentModelIdentifier
- *
- * @author Michiel Boeckaert <boeckaert@gmail.com>
- */
 class ResolveComponentModelIdentifier extends atoum\test
 {
     public function testStringModelEmptyIdentifierThrowsException()
@@ -21,7 +16,8 @@ class ResolveComponentModelIdentifier extends atoum\test
             new TestedModel('user');
             })
             ->isInstanceOf('Spy\Timeline\Exception\ResolveComponentDataException')
-            ->hasMessage('Model has to be an object or (a scalar + an identifier in 2nd argument)');
+            ->hasMessage('Model has to be an object or (a scalar + an identifier in 2nd argument)')
+        ;
     }
 
     public function testEmptyModelThrowsException()
@@ -30,7 +26,8 @@ class ResolveComponentModelIdentifier extends atoum\test
             new TestedModel('');
         })
             ->isInstanceOf('Spy\Timeline\Exception\ResolveComponentDataException')
-            ->hasMessage('Model has to be an object or (a scalar + an identifier in 2nd argument)');
+            ->hasMessage('Model has to be an object or (a scalar + an identifier in 2nd argument)')
+        ;
     }
 
     public function testObjectModelWithIdentifierGivenReturnsNullAsIdentifier()
@@ -38,7 +35,8 @@ class ResolveComponentModelIdentifier extends atoum\test
         $model = new \stdClass();
 
         $this->when($object = new TestedModel($model, 5))
-            ->variable($object->getIdentifier())->isNull();
+            ->variable($object->getIdentifier())->isNull()
+        ;
     }
 
     public function testObjectWithNoIdentifierReturnsObjectAndNullAsIdentifier()
@@ -47,7 +45,8 @@ class ResolveComponentModelIdentifier extends atoum\test
 
         $this->when($object = new TestedModel($model, 5))
             ->variable($object->getModel())->isIdenticalTo($model)
-            ->variable($object->getIdentifier())->isNull();
+            ->variable($object->getIdentifier())->isNull()
+        ;
     }
 
     public function testArrayIdentifier()
@@ -61,12 +60,14 @@ class ResolveComponentModelIdentifier extends atoum\test
     public function testIdentifierCanBeIntegerZero()
     {
         $this->when($object = new TestedModel('user', 0))
-            ->integer($object->getIdentifier())->isZero();
+            ->integer($object->getIdentifier())->isZero()
+        ;
     }
 
     public function testIdentifierCanBeStringZero()
     {
         $this->when($object = new TestedModel('user', '0'))
-            ->string($object->getIdentifier())->isEqualTo('0');
+            ->string($object->getIdentifier())->isEqualTo('0')
+        ;
     }
 }

@@ -7,31 +7,25 @@ require_once __DIR__ . '/../../../../../../vendor/autoload.php';
 use mageekguy\atoum;
 use Spy\Timeline\Spread\Entry\EntryUnaware as TestedModel;
 
-/**
- * EntryUnaware
- *
- * @uses atoum\test
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 class EntryUnaware extends atoum\test
 {
     public function testContruct()
     {
         $this->exception(function() {
-            $entry = new TestedModel('model', new \stdClass());
-        })
-        ->isInstanceOf('\InvalidArgumentException')
-        ->hasMessage('subjectId has to be a scalar or an array')
-        // array
-        ->if($entry = new TestedModel('model', array(1, 2)))
-        ->array($entry->getSubjectId())->isEqualTo(array(1, 2))
-        // scalar
-        ->if($entry = new TestedModel('model', 'string'))
-        ->string($entry->getSubjectId())->isEqualTo('string')
-        ->if($entry = new TestedModel('model', 1))
-        ->string($entry->getSubjectId())->isEqualTo('1')
-        ->if($entry = new TestedModel('model', 1.01))
-        ->string($entry->getSubjectId())->isEqualTo('1.01')
+                $entry = new TestedModel('model', new \stdClass());
+            })
+            ->isInstanceOf('\InvalidArgumentException')
+            ->hasMessage('subjectId has to be a scalar or an array')
+            // array
+            ->if($entry = new TestedModel('model', array(1, 2)))
+            ->array($entry->getSubjectId())->isEqualTo(array(1, 2))
+            // scalar
+            ->if($entry = new TestedModel('model', 'string'))
+            ->string($entry->getSubjectId())->isEqualTo('string')
+            ->if($entry = new TestedModel('model', 1))
+            ->string($entry->getSubjectId())->isEqualTo('1')
+            ->if($entry = new TestedModel('model', 1.01))
+            ->string($entry->getSubjectId())->isEqualTo('1.01')
         ;
     }
 

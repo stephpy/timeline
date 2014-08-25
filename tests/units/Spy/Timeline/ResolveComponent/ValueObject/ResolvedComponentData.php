@@ -7,12 +7,6 @@ require_once __DIR__ . '/../../../../../../vendor/autoload.php';
 use mageekguy\atoum;
 use Spy\Timeline\ResolveComponent\ValueObject\ResolvedComponentData as TestedModel;
 
-/**
- * ResolvedComponentData test
- *
- * @author Stephane PY <py.stephane1@gmail.com>
- * @author Michiel Boeckaert <boeckaert@gmail.com>
- */
 class ResolvedComponentData extends atoum\test
 {
     public function testEmptyModelThrowsException()
@@ -109,6 +103,6 @@ class ResolvedComponentData extends atoum\test
     {
         $this->if($action = new TestedModel('user', '0'))
             ->string($action->getIdentifier())->isEqualTo('0')
-            ;
+        ;
     }
 }

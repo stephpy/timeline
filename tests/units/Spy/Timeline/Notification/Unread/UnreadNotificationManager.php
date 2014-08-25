@@ -9,12 +9,6 @@ use Spy\Timeline\Notification\Unread\UnreadNotificationManager as TestedModel;
 use Spy\Timeline\Spread\Entry\EntryCollection;
 use Spy\Timeline\Spread\Entry\Entry;
 
-/**
- * UnreadNotificationManager
- *
- * @uses atoum\test
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 class UnreadNotificationManager extends atoum\test
 {
     public function testNotify()
@@ -45,7 +39,7 @@ class UnreadNotificationManager extends atoum\test
                 ->mock($manager)
                     ->call('flush')
                     ->once()
-            ;
+        ;
     }
 
     public function testGetUnreadNotifications()
@@ -61,8 +55,7 @@ class UnreadNotificationManager extends atoum\test
                     ->call('getTimeline')
                     ->withArguments($component, array_merge($options, array('context' => 'CONTEXT', 'type' => 'notification')))
                     ->once()
-            ;
-
+        ;
     }
 
     public function testCountKeys()
@@ -77,7 +70,7 @@ class UnreadNotificationManager extends atoum\test
                     ->call('countKeys')
                     ->withArguments($component, array('context' => 'CONTEXT', 'type' => 'notification'))
                     ->once()
-            ;
+        ;
     }
 
     public function testMarkAsReadAction()
@@ -93,7 +86,7 @@ class UnreadNotificationManager extends atoum\test
                 ->call('markAsReadActions')
                 ->withArguments(array(array('CONTEXT', $component, 1)))
                 ->once()
-            ;
+        ;
     }
 
     public function testMarkAsReadActions()
@@ -117,7 +110,7 @@ class UnreadNotificationManager extends atoum\test
                 ->once()
                 ->call('flush')
                 ->once()
-            ;
+        ;
     }
 
     public function testMarkAllAsRead()
@@ -134,7 +127,6 @@ class UnreadNotificationManager extends atoum\test
                     ->once()
                     ->call('flush')
                     ->once()
-            ;
-
+        ;
     }
 }

@@ -9,12 +9,6 @@ use Spy\Timeline\Driver\Redis\ActionManager as TestedModel;
 use Spy\Timeline\ResolveComponent\ValueObject\ResolvedComponentData;
 use Spy\Timeline\ResolveComponent\ValueObject\ResolveComponentModelIdentifier;
 
-/**
- * Test file for Spy\Timeline\Driver\Redis\ActionManager
- *
- * @author Stephane PY <py.stephane1@gmail.com>
- * @author Michiel Boeckaert <boeckaert@gmail.com>
- */
 class ActionManager extends atoum\test
 {
     public function testFindOrCreateComponent()
@@ -46,6 +40,6 @@ class ActionManager extends atoum\test
                 ->string($result->getModel())->isEqualTo($model)
                 ->array($result->getIdentifier())->isEqualTo($identifier)
             )
-            ;
+        ;
     }
 }
