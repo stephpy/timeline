@@ -53,7 +53,7 @@ You can too use **Contexts** to filter timelines, for example, we can have 3 con
 - COMPANIES: actions of his companies
 
 You can define as many contexts as you want.
-If you have only one context, you'll get each actions without being able to easily filter them to return only "OWN" actions or have only actions of friends of ChuckNorris
+If you have only one context, you'll get each action without being able to easily filter them to return only "OWN" actions or have only actions performed by ChuckNorris' friends
 
 That's why we have a "GLOBAL" context, and you can easily add other contexts.
 
@@ -67,7 +67,7 @@ In your `composer.json` you should have:
 
     {
         "require": {
-            "stephpy/timeline": "1.0.*",
+            "stephpy/timeline": "~1.0.0",
             "pimple/pimple": "*"
         }
     }
