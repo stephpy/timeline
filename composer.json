@@ -26,17 +26,16 @@
         "predis/predis": "Redis PHP client library"
     },
     "autoload":     {
-        "psr-0": {
-            "Spy\\Timeline": "src/"
+        "psr-4": {
+            "Spy\\Timeline\\": "src/"
         }
     },
     "config": {
         "bin-dir": "bin"
     },
-    "minimum-stability": "dev",
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0.x-dev"
+            "dev-master": "1.1.x-dev"
         }
     }
 }
