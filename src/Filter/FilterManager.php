@@ -48,7 +48,7 @@ class FilterManager implements FilterManagerInterface
      */
     protected function sortFilters()
     {
-        usort($this->filters, function($a, $b) {
+        usort($this->filters, function(FilterInterface $a, FilterInterface $b) {
             $a = $a->getPriority();
             $b = $b->getPriority();
 
