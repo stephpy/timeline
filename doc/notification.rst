@@ -42,10 +42,10 @@ During the deployment of an action, you can define some notifiers, they must imp
 UnreadNotification
 ``````````````````
 
-UnreadNotification is already provided on this library. All actions spreads on your timeline will be stored and you'll
+UnreadNotification is already provided with this library. All actions spreads on your timeline will be stored and you'll
 be able to mark them as read or retrieve unread notifications.
 
-How to use it ?
+How to use it?
 
 .. code-block:: php
 
@@ -57,7 +57,7 @@ How to use it ?
     $subject       = $actionManager->findOrCreateComponent('User', 'ChuckNorris');
 
     $unread        = $c['unread_notifications'];
-    //count how many unread message for global context
+    // count how many unread message for global context
     $count  = $unread->countKeys($subject); // on global context
     $count  = $unread->countKeys($subject, 'MyContext');
 

@@ -1,7 +1,7 @@
 QueryBuilder
 ------------
 
-*This feature is at this moment only available for `ORM` driver (available on bundle).*
+*This feature is at the moment only available for the `ORM` driver (available on the bundle).*
 
 You can create a query_builder to fetch timeline actions like you can do with Doctrine ORM QueryBuilder.
 
@@ -27,7 +27,7 @@ Api of query Builder
 Transform to array
 ``````````````````
 
-You want to store the query **or** give it to a webservice ?
+You want to store the query **or** pass it to a webservice?
 
 .. code-block:: php
 
@@ -37,10 +37,10 @@ You want to store the query **or** give it to a webservice ?
     $data = $qb->toArray();
     $qb   = $qb->fromArray($data);
 
-Criterias
-`````````
+Criteria
+````````
 
-Criterias will allow you to filter actions on theses fields:
+Criteria will allow you to filter actions on theses fields:
 
 - context
 - createdAt: Date of timeline propagation
@@ -51,20 +51,20 @@ Criterias will allow you to filter actions on theses fields:
 - identifier
 
 
-Create criterias
-''''''''''''''''
+Create criteria
+'''''''''''''''
 
-*Example 1) Fetch actions where something kick something.*
+*Example 1) Fetch actions where something kicks something.*
 
 .. code-block:: php
 
-    $criterias = $qb->field('verb')->equals('kick');
+    $criteria = $qb->field('verb')->equals('kick');
 
 *Example 2) Fetch actions where Chuck Norris kicks something.*
 
 .. code-block:: php
 
-    $criterias = $qb->logicalAnd(
+    $criteria = $qb->logicalAnd(
         $qb->field('model')->equals('User'),
         $qb->field('identifier')->equals('ChuckNorris'),
         $qb->field('verb')->equals('kick')
@@ -75,14 +75,14 @@ Create criterias
 
 .. code-block:: php
 
-    $criterias = $qb->logicalAnd(
+    $criteria = $qb->logicalAnd(
         $qb->field('model')->equals('User'),
         $qb->field('identifier')->equals('ChuckNorris'),
         $qb->field('model')->equals('User'),
         $qb->field('identifier')->equals('BruceLee'),
     )
     // but prefer (for readability)
-    $criterias = $qb->logicalAnd(
+    $criteria = $qb->logicalAnd(
         $qb->logicalAnd(
             $qb->field('model')->equals('User'),
             $qb->field('identifier')->equals('ChuckNorris')
@@ -97,7 +97,7 @@ Create criterias
 
 .. code-block:: php
 
-    $criterias = $qb->logicalAnd(
+    $criteria = $qb->logicalAnd(
         $qb->logicalOr(
             $qb->logicalAnd(
                 $qb->field('model')->equals('User'),
@@ -111,13 +111,13 @@ Create criterias
         $qb->field('verb', 'kick')
     )
 
-You can asking for each field listed above.
+You can query by each field listed above.
 
 Fields methods:
 
 .. code-block:: php
 
-    $value = 'foo'; // you can provide a DateTime,
+    $value = 'foo'; // you can provide a \DateTime,
     // for identifier, do not send a serialized data
 
     $qb->field('createdAt')->equals($value);
@@ -128,10 +128,10 @@ Fields methods:
     $qb->field('createdAt')->notLike($value.'%');
     $qb->field('createdAt')->lt($value); // lower than
     $qb->field('createdAt')->lte($value); // lower than equals
-    $qb->field('createdAt')->gt($value); // greather than
-    $qb->field('createdAt')->gte($value); // greather than equals
+    $qb->field('createdAt')->gt($value); // greater than
+    $qb->field('createdAt')->gte($value); // greater than equals
 
-Fetch results (available only on ORM Driver)
+Fetch results (available only for ORM Driver)
 `````````````````````````````````````````````
 
 .. code-block:: php

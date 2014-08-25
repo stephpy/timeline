@@ -29,7 +29,7 @@ class Component extends atoum\test
                 $component->createFromHash('invalidhash');
             })
             ->isInstanceOf('\InvalidArgumentException')
-            ->hasMessage('Invalid hash, must be formated {model}#{hash or identifier}')
+            ->hasMessage('Invalid hash, must be formatted {model}#{hash or identifier}')
             // real hash
             ->when(function() use ($component) {
                 $component->createFromHash('model#id');

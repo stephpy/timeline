@@ -1,7 +1,7 @@
 Basic usage
 -----------
 
-Example with `Pimple <http://pimple.sensiolabs.org/>`_ usage.
+This example uses the `Pimple dependency injection container <http://pimple.sensiolabs.org/>`_.
 
 1) Initialize container.
 ````````````````````````
@@ -23,8 +23,8 @@ Example with `Pimple <http://pimple.sensiolabs.org/>`_ usage.
 
 @todo
 
-3) Add an action.
-`````````````````
+3) Add an action
+````````````````
 
 .. code-block:: php
 
@@ -37,8 +37,8 @@ Example with `Pimple <http://pimple.sensiolabs.org/>`_ usage.
 
 You should see some keys inserted on redis ;).
 
-4) Fetch timeline for chuck norris.
-```````````````````````````````````
+4) Fetch timeline for Chuck Norris
+``````````````````````````````````
 
 .. code-block:: php
 
@@ -48,8 +48,8 @@ You should see some keys inserted on redis ;).
 
     $timeline = $timelineManager->getTimeline($chuck);
 
-5) Fetch actions for chuck norris.
-``````````````````````````````````
+5) Fetch actions for Chuck Norris
+`````````````````````````````````
 
 .. code-block:: php
 
