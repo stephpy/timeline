@@ -6,11 +6,6 @@ use Spy\Timeline\Model\ActionInterface;
 use Spy\Timeline\Model\ComponentInterface;
 use Spy\Timeline\Model\TimelineInterface;
 
-/**
- * TimelineManagerInterface
- *
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 interface TimelineManagerInterface
 {
     /**
@@ -61,7 +56,7 @@ interface TimelineManagerInterface
     public function createAndPersist(ActionInterface $action, ComponentInterface $subject, $context = 'GLOBAL', $type = TimelineInterface::TYPE_TIMELINE);
 
     /**
-     * flush persist timelines
+     * flush persist timeline instances
      */
     public function flush();
 }

@@ -8,8 +8,6 @@ use Spy\Timeline\Model\TimelineInterface;
  * Defined on "Resources/doc/filter.markdown"
  * This filter will unset from collection timeline_actions which
  * has same duplicate_key property
- *
- * @author Stephane PY <py.stephane1@gmail.com>
  */
 class DuplicateKey extends AbstractFilter implements FilterInterface
 {

@@ -6,20 +6,14 @@ use Spy\Timeline\ResultBuilder\QueryExecutor\QueryExecutorInterface;
 use Spy\Timeline\Driver\Redis\Pager\PagerToken;
 use Spy\Timeline\Driver\Redis\Pager\AbstractPager;
 
-/**
- * QueryExecutor
- *
- * @uses AbstractPager
- * @uses QueryExecutorInterface
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 class QueryExecutor extends AbstractPager implements QueryExecutorInterface
 {
     /**
-     * @param mixed $query      query
-     * @param int   $page       page
-     * @param int   $maxPerPage maxPerPage
+     * @param mixed $query query
+     * @param int $page page
+     * @param int $maxPerPage maxPerPage
      *
+     * @throws \Exception
      * @return \Traversable
      */
     public function fetch($query, $page = 1, $maxPerPage = 10)

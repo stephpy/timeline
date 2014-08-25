@@ -4,15 +4,6 @@ namespace Spy\Timeline\ResultBuilder\Pager;
 
 use Knp\Component\Pager\Paginator;
 
-/**
- * KnpPager
- *
- * @uses AbstractPager
- * @uses PagerInterface
- * @uses \IteratorAggregate
- * @uses \Countable
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 class KnpPager extends AbstractPager implements PagerInterface, \IteratorAggregate, \Countable
 {
     /**
@@ -88,6 +79,7 @@ class KnpPager extends AbstractPager implements PagerInterface, \IteratorAggrega
 
     /**
      * @param array $items items
+     * @throws \Exception
      */
     public function setItems(array $items)
     {

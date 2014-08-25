@@ -6,11 +6,6 @@ use Spy\Timeline\Model\ActionInterface;
 use Spy\Timeline\Model\ComponentInterface;
 use Spy\Timeline\ResultBuilder\Pager\PagerInterface;
 
-/**
- * ActionManagerInterface
- *
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 interface ActionManagerInterface
 {
     /**

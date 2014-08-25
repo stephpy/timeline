@@ -2,11 +2,6 @@
 
 namespace Spy\Timeline\ResultBuilder\Pager;
 
-/**
- * AbstractPager
- *
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 abstract class AbstractPager implements \ArrayAccess
 {
     /**

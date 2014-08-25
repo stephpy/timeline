@@ -2,11 +2,6 @@
 
 namespace Spy\Timeline\ResultBuilder\QueryExecutor;
 
-/**
- * QueryExecutorInterface
- *
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 interface QueryExecutorInterface
 {
     /**
