@@ -43,6 +43,10 @@ class KnpPager extends AbstractPager implements PagerInterface, \IteratorAggrega
      */
     public function paginate($target, $page = 1, $limit = 10)
     {
+        if (null === $this->paginator) {
+            throw new \LogicException(sprintf('Knp\Component\Pager\Paginator not injected in constructor of %s', __CLASS__));
+        }
+
         $this->page  = $page;
         $this->pager = $this->paginator->paginate($target, $page, $limit);
         $this->data  = $this->pager->getPaginationData();
