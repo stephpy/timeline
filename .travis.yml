@@ -11,7 +11,7 @@ matrix:
   allow_failures:
     - php: hhvm
 
-before_script: composer install --dev
+install: composer install
 
 script:
     - bin/atoum -d tests/units
