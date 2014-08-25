@@ -8,12 +8,6 @@ use Spy\Timeline\Model\ComponentInterface;
 use Spy\Timeline\Notification\NotifierInterface;
 use Spy\Timeline\Spread\Entry\EntryCollection;
 
-/**
- * UnreadNotificationManager
- *
- * @uses NotifierInterface
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 class UnreadNotificationManager implements NotifierInterface
 {
     /**

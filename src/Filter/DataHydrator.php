@@ -7,9 +7,6 @@ use Spy\Timeline\Filter\DataHydrator\Entry;
 use Spy\Timeline\Model\TimelineInterface;
 use Spy\Timeline\ResultBuilder\Pager\PagerInterface;
 
-/**
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 class DataHydrator extends AbstractFilter implements FilterInterface
 {
     /**

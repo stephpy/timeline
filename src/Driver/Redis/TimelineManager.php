@@ -9,12 +9,6 @@ use Spy\Timeline\Model\ComponentInterface;
 use Spy\Timeline\Model\TimelineInterface;
 use Spy\Timeline\ResultBuilder\ResultBuilderInterface;
 
-/**
- * TimelineManager
- *
- * @uses TimelineManagerInterface
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 class TimelineManager implements TimelineManagerInterface
 {
     /**
@@ -234,5 +228,4 @@ class TimelineManager implements TimelineManagerInterface
     {
         return sprintf('%s:%s', $this->prefix, $subject->getHash());
     }
-
 }

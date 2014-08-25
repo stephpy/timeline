@@ -2,18 +2,12 @@
 
 namespace Spy\Timeline\ResultBuilder\Pager;
 
-/**
- * PagerInterface
- *
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 interface PagerInterface
 {
     /**
      * @param mixed $target  target
      * @param int   $page    page
      * @param int   $limit   limit
-     * @param array $options options
      *
      * @return mixed
      */

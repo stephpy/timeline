@@ -4,11 +4,6 @@ namespace Spy\Timeline\Spread\Entry;
 
 use Spy\Timeline\Model\ComponentInterface;
 
-/**
- * EntryUnaware
- *
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 class EntryUnaware implements EntryInterface
 {
     /**

@@ -38,12 +38,13 @@ class ResultBuilder implements ResultBuilderInterface
     }
 
     /**
-     * @param mixed   $target     target
+     * @param mixed   $query     target
      * @param int     $page       page
      * @param int     $maxPerPage maxPerPage
      * @param boolean $filter     filter
      * @param boolean $paginate   paginate
      *
+     * @throws \Exception
      * @return \Traversable
      */
     public function fetchResults($query, $page = 1, $maxPerPage = 10, $filter = false, $paginate = false)

@@ -4,11 +4,6 @@ namespace Spy\Timeline\Spread\Entry;
 
 use Spy\Timeline\Driver\ActionManagerInterface;
 
-/**
- * A collection of entry
- *
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 class EntryCollection implements \IteratorAggregate
 {
     /**
@@ -78,9 +73,9 @@ class EntryCollection implements \IteratorAggregate
     /**
      * Load unaware entries, instead of having 1 call by entry to fetch component
      * you can add unaware entries. Component will be created or exception
-     * will be throwed if unexists
+     * will be thrown if it does not exist
      *
-     *
+     * @throws \Exception
      * @return void
      */
     public function loadUnawareEntries()

@@ -9,11 +9,6 @@ use Spy\Timeline\Model\ComponentInterface;
 use Spy\Timeline\ResolveComponent\ValueObject\ResolvedComponentData;
 use Spy\Timeline\ResolveComponent\ValueObject\ResolveComponentModelIdentifier;
 
-/**
- * AbstractActionManager
- *
- * @author Stephane PY <py.stephane1@gmail.com>
- */
 abstract class AbstractActionManager implements ActionManagerInterface
 {
     /**
