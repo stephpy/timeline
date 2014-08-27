@@ -11,7 +11,7 @@ At this moment, only one driver is **redis**, use `Symfony2` and `Bundle <https:
 Description
 -----------
 
-A timeline is a collection of action which can be represented by:
+A timeline is a collection of actions which can be represented by:
 
 - **Subject**
 - **Verb**
@@ -22,12 +22,12 @@ Example:
 +--------------+---------+--------------------------------------------------------------------+
 |   Subject    |  Verb   | Complements                                                        |
 +==============+=========+====================================================================+
-| Chuck Norris | Own     | the world (directComplement), with Vic Mc Key (indirectComplement) |
+| Chuck Norris | own     | the world (directComplement), with Vic Mc Key (indirectComplement) |
 +--------------+---------+--------------------------------------------------------------------+
 | Sheldon      | say     | Bazinga (directComplement)                                         |
 +--------------+---------+--------------------------------------------------------------------+
 
-There is two types of action list to retrieve:
+There is two types of action lists to retrieve:
 
 Timeline
 ~~~~~~~~

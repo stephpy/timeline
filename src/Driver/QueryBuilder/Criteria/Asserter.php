@@ -12,8 +12,8 @@ class Asserter implements CriteriaInterface
     CONST ASSERTER_NOT_LIKE            = 'NOT LIKE';
     CONST ASSERTER_LOWER_THAN          = '<';
     CONST ASSERTER_LOWER_THAN_EQUAL    = '<=';
-    CONST ASSERTER_GREATHER_THAN       = '>';
-    CONST ASSERTER_GREATHER_THAN_EQUAL = '>=';
+    CONST ASSERTER_GREATER_THAN       = '>';
+    CONST ASSERTER_GREATER_THAN_EQUAL = '>=';
 
     /**
      * @var string
@@ -109,27 +109,27 @@ class Asserter implements CriteriaInterface
     }
 
     /**
-     * greather than
+     * greater than
      *
      * @param mixed $value value
      *
-     * @return return DateTimeAsserter
+     * @return Asserter
      */
     public function gt($value)
     {
-        return $this->create(self::ASSERTER_GREATHER_THAN, $this->transform($value));
+        return $this->create(self::ASSERTER_GREATER_THAN, $this->transform($value));
     }
 
     /**
-     * greather than equal
+     * greater than equal
      *
      * @param mixed $value value
      *
-     * @return return DateTimeAsserter
+     * @return Asserter
      */
     public function gte($value)
     {
-        return $this->create(self::ASSERTER_GREATHER_THAN_EQUAL, $this->transform($value));
+        return $this->create(self::ASSERTER_GREATER_THAN_EQUAL, $this->transform($value));
     }
 
 
@@ -170,7 +170,8 @@ class Asserter implements CriteriaInterface
         list ($field, $operator, $value) = $data['value'];
 
         return $this->field($field)
-            ->create($operator, $value);
+            ->create($operator, $value)
+        ;
     }
 
     /**

@@ -37,9 +37,14 @@ abstract class AbstractPager
 
         $datas = $this->client->hmget($this->getActionKey(), $ids);
 
-        return array_values(array_map(function($v) {
-            return unserialize($v);
-        }, $datas));
+        return array_values(
+            array_map(
+                function($v) {
+                    return unserialize($v);
+                },
+                $datas
+            )
+        );
     }
 
     /**

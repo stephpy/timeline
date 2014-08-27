@@ -15,7 +15,7 @@ class Operator implements CriteriaInterface
     protected $type;
 
     /**
-     * @var array<CriteriaInterface>
+     * @var CriteriaInterface[]
      */
     protected $criterias = array();
 
@@ -77,7 +77,7 @@ class Operator implements CriteriaInterface
     }
 
     /**
-     * @return array<CriteriaInterface>
+     * @return CriteriaInterface[]
      */
     public function getCriterias()
     {

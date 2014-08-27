@@ -111,7 +111,8 @@ class QueryBuilder
         return $this->factory
             ->createOperator()
             ->setType($type)
-            ->setCriterias($args);
+            ->setCriterias($args)
+        ;
     }
 
     /**
