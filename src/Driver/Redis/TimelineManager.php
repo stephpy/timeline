@@ -2,12 +2,12 @@
 
 namespace Spy\Timeline\Driver\Redis;
 
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use Spy\Timeline\Driver\TimelineManagerInterface;
 use Spy\Timeline\Model\ActionInterface;
 use Spy\Timeline\Model\ComponentInterface;
 use Spy\Timeline\Model\TimelineInterface;
 use Spy\Timeline\ResultBuilder\ResultBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TimelineManager implements TimelineManagerInterface
 {

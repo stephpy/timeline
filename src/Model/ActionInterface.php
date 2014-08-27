@@ -4,9 +4,9 @@ namespace Spy\Timeline\Model;
 
 interface ActionInterface
 {
-    CONST STATUS_PENDING   = 'pending';
-    CONST STATUS_PUBLISHED = 'published';
-    CONST STATUS_FROZEN    = 'frozen';
+    const STATUS_PENDING   = 'pending';
+    const STATUS_PUBLISHED = 'published';
+    const STATUS_FROZEN    = 'frozen';
 
     /**
      * @param string                    $type                 type

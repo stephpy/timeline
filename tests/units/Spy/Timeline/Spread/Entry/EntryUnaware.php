@@ -2,16 +2,16 @@
 
 namespace tests\units\Spy\Timeline\Spread\Entry;
 
-require_once __DIR__ . '/../../../../../../vendor/autoload.php';
+require_once __DIR__.'/../../../../../../vendor/autoload.php';
 
-use mageekguy\atoum;
 use Spy\Timeline\Spread\Entry\EntryUnaware as TestedModel;
+use mageekguy\atoum;
 
 class EntryUnaware extends atoum\test
 {
     public function testContruct()
     {
-        $this->exception(function() {
+        $this->exception(function () {
                 $entry = new TestedModel('model', new \stdClass());
             })
             ->isInstanceOf('\InvalidArgumentException')

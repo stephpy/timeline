@@ -2,13 +2,13 @@
 
 namespace Spy\Timeline\Spread;
 
-use Spy\Timeline\Model\TimelineInterface;
-use Spy\Timeline\Model\ActionInterface;
 use Spy\Timeline\Driver\ActionManagerInterface;
 use Spy\Timeline\Driver\TimelineManagerInterface;
+use Spy\Timeline\Model\ActionInterface;
+use Spy\Timeline\Model\TimelineInterface;
+use Spy\Timeline\Notification\NotifierInterface;
 use Spy\Timeline\Spread\Entry\Entry;
 use Spy\Timeline\Spread\Entry\EntryCollection;
-use Spy\Timeline\Notification\NotifierInterface;
 
 class Deployer implements DeployerInterface
 {

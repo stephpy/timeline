@@ -2,11 +2,11 @@
 
 namespace tests\units\Spy\Timeline\ResolveComponent\ValueObject;
 
-require_once __DIR__ . '/../../../../../../vendor/autoload.php';
+require_once __DIR__.'/../../../../../../vendor/autoload.php';
 
-use mageekguy\atoum;
-use Spy\Timeline\ResolveComponent\ValueObject\ResolveComponentModelIdentifier as TestedModel;
 use Spy\Timeline\ResolveComponent\TestHelper\User;
+use Spy\Timeline\ResolveComponent\ValueObject\ResolveComponentModelIdentifier as TestedModel;
+use mageekguy\atoum;
 
 class ResolveComponentModelIdentifier extends atoum\test
 {

@@ -2,17 +2,17 @@
 
 namespace tests\units\Spy\Timeline\Driver\QueryBuilder\Criteria;
 
-require_once __DIR__ . '/../../../../../../../vendor/autoload.php';
+require_once __DIR__.'/../../../../../../../vendor/autoload.php';
 
-use mageekguy\atoum;
 use Spy\Timeline\Driver\QueryBuilder\Criteria\Operator as TestedModel;
+use mageekguy\atoum;
 
 class Operator extends atoum\test
 {
     public function testSetType()
     {
         $this->if($model = new TestedModel())
-            ->exception(function() use ($model) {
+            ->exception(function () use ($model) {
                 $model->setType('unknown');
             })
             ->isInstanceOf('\InvalidArgumentException')

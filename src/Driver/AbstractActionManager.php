@@ -2,12 +2,12 @@
 
 namespace Spy\Timeline\Driver;
 
-use Spy\Timeline\ResolveComponent\ComponentDataResolverInterface;
-use Spy\Timeline\Spread\DeployerInterface;
 use Spy\Timeline\Model\ActionInterface;
 use Spy\Timeline\Model\ComponentInterface;
-use Spy\Timeline\ResolveComponent\ValueObject\ResolvedComponentData;
+use Spy\Timeline\ResolveComponent\ComponentDataResolverInterface;
 use Spy\Timeline\ResolveComponent\ValueObject\ResolveComponentModelIdentifier;
+use Spy\Timeline\ResolveComponent\ValueObject\ResolvedComponentData;
+use Spy\Timeline\Spread\DeployerInterface;
 
 abstract class AbstractActionManager implements ActionManagerInterface
 {
@@ -57,7 +57,7 @@ abstract class AbstractActionManager implements ActionManagerInterface
         $action = new $this->actionClass();
         $action->setVerb($verb);
 
-        if (!$subject instanceof ComponentInterface AND !is_object($subject)) {
+        if (!$subject instanceof ComponentInterface and !is_object($subject)) {
             throw new \Exception('Subject must be a ComponentInterface or an object');
         }
 
@@ -71,9 +71,9 @@ abstract class AbstractActionManager implements ActionManagerInterface
     }
 
     /**
-     * @param ActionInterface $action    action
-     * @param string          $type      type
-     * @param mixed           $component component
+     * @param  ActionInterface $action    action
+     * @param  string          $type      type
+     * @param  mixed           $component component
      * @throws \Exception
      */
     public function addComponent($action, $type, $component)

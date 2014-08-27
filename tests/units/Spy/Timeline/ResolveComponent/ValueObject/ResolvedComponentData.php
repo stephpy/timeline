@@ -2,16 +2,16 @@
 
 namespace tests\units\Spy\Timeline\ResolveComponent\ValueObject;
 
-require_once __DIR__ . '/../../../../../../vendor/autoload.php';
+require_once __DIR__.'/../../../../../../vendor/autoload.php';
 
-use mageekguy\atoum;
 use Spy\Timeline\ResolveComponent\ValueObject\ResolvedComponentData as TestedModel;
+use mageekguy\atoum;
 
 class ResolvedComponentData extends atoum\test
 {
     public function testEmptyModelThrowsException()
     {
-        $this->exception(function() {
+        $this->exception(function () {
             new TestedModel('', 2);
             })
             ->isInstanceOf('Spy\Timeline\Exception\ResolveComponentDataException')
@@ -44,7 +44,7 @@ class ResolvedComponentData extends atoum\test
         $invalidData = array(null, '');
 
         foreach ($invalidData as $invalid) {
-            $this->exception(function() use ($invalid) {
+            $this->exception(function () use ($invalid) {
                     new TestedModel('user', $invalid);
                 })
                 ->isInstanceOf('Spy\Timeline\Exception\ResolveComponentDataException')

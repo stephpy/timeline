@@ -2,11 +2,11 @@
 
 namespace tests\units\Spy\Timeline\Model;
 
-require_once __DIR__ . '/../../../../../vendor/autoload.php';
+require_once __DIR__.'/../../../../../vendor/autoload.php';
 
-use mageekguy\atoum;
 use Spy\Timeline\Model\Timeline as TestedModel;
 use Spy\Timeline\Model\TimelineInterface;
+use mageekguy\atoum;
 
 class Timeline extends atoum\test
 {

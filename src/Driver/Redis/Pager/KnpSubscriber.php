@@ -2,8 +2,8 @@
 
 namespace Spy\Timeline\Driver\Redis\Pager;
 
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Knp\Component\Pager\Event\ItemsEvent;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class KnpSubscriber extends AbstractPager implements EventSubscriberInterface
 {

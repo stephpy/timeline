@@ -78,7 +78,7 @@ class KnpPager extends AbstractPager implements PagerInterface, \IteratorAggrega
     }
 
     /**
-     * @param array $items items
+     * @param  array      $items items
      * @throws \Exception
      */
     public function setItems(array $items)

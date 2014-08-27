@@ -58,15 +58,15 @@ class ServiceLocator
         // ---- services ----
 
         // filters
-        $c['filter.manager'] = $c->share(function($c) {
-            return new $c['filter.manager.class'];
+        $c['filter.manager'] = $c->share(function ($c) {
+            return new $c['filter.manager.class']();
         });
 
-        $c['filter.duplicate_key'] = $c->share(function($c) {
+        $c['filter.duplicate_key'] = $c->share(function ($c) {
             return new $c['filter.duplicate_key.class']();
         });
 
-        $c['filter.data_hydrator'] = $c->share(function($c) {
+        $c['filter.data_hydrator'] = $c->share(function ($c) {
             return new $c['filter.data_hydrator.class'](
                 $c['filter.data_hydrator.filter_unresolved']
             );
@@ -74,7 +74,7 @@ class ServiceLocator
 
         // notifications
 
-        $c['unread_notifications'] = $c->share(function($c) {
+        $c['unread_notifications'] = $c->share(function ($c) {
             return new $c['unread_notifications.class'](
                 $c['timeline_manager']
             );
@@ -82,7 +82,7 @@ class ServiceLocator
 
         // query_builder
 
-        $c['query_builder.factory'] = $c->share(function($c) {
+        $c['query_builder.factory'] = $c->share(function ($c) {
             return new $c['query_builder.factory.class'](
                 $c['query_builder.class'],
                 $c['query_builder.asserter.class'],
@@ -92,7 +92,7 @@ class ServiceLocator
 
         // result builder
 
-        $c['result_builder'] = $c->share(function($c) {
+        $c['result_builder'] = $c->share(function ($c) {
             $instance = new $c['result_builder.class'](
                 $c['query_executor'],
                 $c['filter.manager']
@@ -105,7 +105,7 @@ class ServiceLocator
 
         // deployers
 
-        $c['spread.deployer'] = $c->share(function($c) {
+        $c['spread.deployer'] = $c->share(function ($c) {
             $instance = new $c['spread.deployer.class'](
                 $c['timeline_manager'],
                 $c['spread.entry_collection'],
@@ -118,7 +118,7 @@ class ServiceLocator
             return $instance;
         });
 
-        $c['spread.entry_collection'] = $c->share(function($c) {
+        $c['spread.entry_collection'] = $c->share(function ($c) {
             return new $c['spread.entry_collection.class'](
                 $c['spread.on_global_context'],
                 $c['spread.batch_size']
@@ -144,7 +144,7 @@ class ServiceLocator
         $c['class.component_data_resolver'] = 'Spy\Timeline\ResolveComponent\BasicComponentDataResolver';
         $c['redis.client'] = $client;
 
-        $c['timeline_manager'] = $c->share(function($c) {
+        $c['timeline_manager'] = $c->share(function ($c) {
             return new $c['timeline_manager.class'](
                 $c['redis.client'],
                 $c['result_builder'],
@@ -153,7 +153,7 @@ class ServiceLocator
             );
         });
 
-        $c['action_manager'] = $c->share(function($c) {
+        $c['action_manager'] = $c->share(function ($c) {
             $instance = new $c['action_manager.class'](
                 $c['redis.client'],
                 $c['result_builder'],
@@ -163,21 +163,20 @@ class ServiceLocator
                 $c['class.action_component']
             );
 
-
             $instance->setDeployer($c['spread.deployer']);
             $instance->setComponentDataResolver($c['class.component_data_resolver']);
 
             return $instance;
         });
 
-        $c['query_executor'] = $c->share(function($c) {
+        $c['query_executor'] = $c->share(function ($c) {
             return new $c['query_executor.class'](
                 $c['redis.client'],
                 $c['redis.prefix']
             );
         });
 
-        $c['pager'] = $c->share(function($c) {
+        $c['pager'] = $c->share(function ($c) {
             return new $c['pager.class'](
                 $c['redis.client'],
                 $c['redis.prefix']

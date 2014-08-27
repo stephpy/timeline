@@ -2,8 +2,8 @@
 
 namespace Spy\Timeline\Filter;
 
-use Spy\Timeline\Filter\DataHydrator\Locator\LocatorInterface;
 use Spy\Timeline\Filter\DataHydrator\Entry;
+use Spy\Timeline\Filter\DataHydrator\Locator\LocatorInterface;
 use Spy\Timeline\Model\TimelineInterface;
 use Spy\Timeline\ResultBuilder\Pager\PagerInterface;
 

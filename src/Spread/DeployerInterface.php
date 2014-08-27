@@ -8,8 +8,8 @@ use Spy\Timeline\Notification\NotifierInterface;
 
 interface DeployerInterface
 {
-    CONST DELIVERY_IMMEDIATE = 'immediate';
-    CONST DELIVERY_WAIT      = 'wait';
+    const DELIVERY_IMMEDIATE = 'immediate';
+    const DELIVERY_WAIT      = 'wait';
 
     /**
      * @param ActionInterface        $action        action

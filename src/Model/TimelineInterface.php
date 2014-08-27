@@ -4,7 +4,7 @@ namespace Spy\Timeline\Model;
 
 interface TimelineInterface
 {
-    CONST TYPE_TIMELINE = 'timeline';
+    const TYPE_TIMELINE = 'timeline';
 
     /**
      * {@inheritdoc}
@@ -17,7 +17,7 @@ interface TimelineInterface
     public function getId();
 
     /**
-     * @param  string   $context
+     * @param  string            $context
      * @return TimelineInterface
      */
     public function setContext($context);
@@ -28,7 +28,7 @@ interface TimelineInterface
     public function getContext();
 
     /**
-     * @param  string   $type
+     * @param  string            $type
      * @return TimelineInterface
      */
     public function setType($type);
@@ -39,7 +39,7 @@ interface TimelineInterface
     public function getType();
 
     /**
-     * @param  \DateTime $createdAt
+     * @param  \DateTime         $createdAt
      * @return TimelineInterface
      */
     public function setCreatedAt(\DateTime $createdAt);
@@ -61,7 +61,7 @@ interface TimelineInterface
     public function getSubject();
 
     /**
-     * @param  ActionInterface $action
+     * @param  ActionInterface   $action
      * @return TimelineInterface
      */
     public function setAction(ActionInterface $action);
