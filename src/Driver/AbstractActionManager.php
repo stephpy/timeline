@@ -74,6 +74,7 @@ abstract class AbstractActionManager implements ActionManagerInterface
      * @param ActionInterface $action    action
      * @param string          $type      type
      * @param mixed           $component component
+     * @throws \Exception
      */
     public function addComponent($action, $type, $component)
     {

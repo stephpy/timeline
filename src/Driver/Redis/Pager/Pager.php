@@ -21,12 +21,12 @@ class Pager extends AbstractPager implements PagerInterface, \IteratorAggregate,
         }
 
         $offset = ($page - 1) * $limit;
-        $limit  = $limit - 1; // due to redis
+        $limit = $limit - 1; // due to redis
 
-        $ids    = $this->client->zRevRange($target->key, $offset, ($offset + $limit));
+        $ids = $this->client->zRevRange($target->key, $offset, ($offset + $limit));
 
-        $this->page      = $page;
-        $this->items     = $this->findActionsForIds($ids);
+        $this->page = $page;
+        $this->items = $this->findActionsForIds($ids);
         $this->nbResults = $this->client->zCard($target->key);
         $this->lastPage  = intval(ceil($this->nbResults / ($limit + 1)));
 

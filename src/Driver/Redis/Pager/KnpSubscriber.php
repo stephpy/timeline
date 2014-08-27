@@ -18,9 +18,9 @@ class KnpSubscriber extends AbstractPager implements EventSubscriberInterface
 
         $target = $event->target;
         $offset = $event->getOffset();
-        $limit  = $event->getLimit() - 1;
+        $limit = $event->getLimit() - 1;
 
-        $ids    = $this->client->zRevRange($target->key, $offset, ($offset + $limit));
+        $ids = $this->client->zRevRange($target->key, $offset, ($offset + $limit));
 
         $event->count = $this->client->zCard($target->key);
         $event->items = $this->actionManager->findActionsForIds($ids);

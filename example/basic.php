@@ -16,24 +16,24 @@ $c['spread.deployer']->addNotifier($c['unread_notifications']);
 // Push an action
 
 $actionManager = $c['action_manager'];
-$chuck         = $actionManager->findOrCreateComponent('User', 'Chuck');
-$bruceLee      = $actionManager->findOrCreateComponent('User', 'BruceLee');
+$chuck = $actionManager->findOrCreateComponent('User', 'Chuck');
+$bruceLee = $actionManager->findOrCreateComponent('User', 'BruceLee');
 
 $action = $actionManager->create($chuck, 'kick', array('directComplement' => $bruceLee));
 $actionManager->updateAction($action);
 
 // Pull a timeline of a subject
 
-$actionManager   = $c['action_manager'];
+$actionManager = $c['action_manager'];
 $timelineManager = $c['timeline_manager'];
-$chuck           = $actionManager->findOrCreateComponent('User', 'Chuck');
+$chuck = $actionManager->findOrCreateComponent('User', 'Chuck');
 
-$timeline        = $timelineManager->getTimeline($chuck);
+$timeline = $timelineManager->getTimeline($chuck);
 
 print sprintf("---- Timeline Results = (%s) -----\n", count($timeline));
 
 foreach ($timeline as $action) {
-    $subject          = $action->getSubject();
+    $subject = $action->getSubject();
     $directComplement = $action->getComponent('directComplement');
     //.....
 }
@@ -41,9 +41,9 @@ foreach ($timeline as $action) {
 // Pull actions of a subject
 
 $actionManager = $c['action_manager'];
-$chuck         = $actionManager->findOrCreateComponent('User', 'Chuck');
+$chuck = $actionManager->findOrCreateComponent('User', 'Chuck');
 
-$actions       = $actionManager->getSubjectActions($chuck);
+$actions = $actionManager->getSubjectActions($chuck);
 
 print sprintf("---- Actions Results = (%s) -----\n", count($actions));
 

@@ -11,7 +11,7 @@ At this moment, only one driver is **redis**, use `Symfony2` and `Bundle <https:
 Description
 -----------
 
-A timeline is a collection of action which can be represented by:
+A timeline is a collection of actions which can be represented by:
 
 - **Subject**
 - **Verb**
@@ -22,22 +22,22 @@ Example:
 +--------------+---------+--------------------------------------------------------------------+
 |   Subject    |  Verb   | Complements                                                        |
 +==============+=========+====================================================================+
-| Chuck Norris | Own     | the world (directComplement), with Vic Mc Key (indirectComplement) |
+| Chuck Norris | own     | the world (directComplement), with Vic Mc Key (indirectComplement) |
 +--------------+---------+--------------------------------------------------------------------+
 | Sheldon      | say     | Bazinga (directComplement)                                         |
 +--------------+---------+--------------------------------------------------------------------+
 
-There is two types of action list to retrieve:
+There are two types of action lists to retrieve:
 
 Timeline
 ~~~~~~~~
 
-Wall of a subject with all its actions + all actions of its **spreads**, see `spread.rst <https://github.com/stephpy/timeline/tree/master/doc/spread.rst>`_
+Stream of actions where the subject is involved + all actions of its **spreads**, see `spread.rst <https://github.com/stephpy/timeline/tree/master/doc/spread.rst>`_
 
 SubjectAction
 ~~~~~~~~~~~~~
 
-All actions of the subject.
+All actions the subject performed.
 
 Context
 ~~~~~~~
@@ -46,7 +46,7 @@ Imagine Chuck Norris has 233 friends and follow 20 companies.
 
 If we have one context, like facebook, his wall will return each action performed by his friends and companies.
 
-You can too use **Contexts** to filter timelines, for example, we can have 3 contexts:
+You can also use **Contexts** to filter timelines, for example, we can have 3 contexts:
 
 - GLOBAL: actions of his friends and companies
 - FRIEND: actions of his friends

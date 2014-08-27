@@ -66,9 +66,7 @@ class QueryBuilderFactory
      */
     public function createOperatorFromArray(array $data)
     {
-        return $this->createOperator()
-            ->fromArray($data, $this)
-        ;
+        return $this->createOperator()->fromArray($data, $this);
     }
 
     /**
@@ -86,8 +84,6 @@ class QueryBuilderFactory
      */
     public function createAsserterFromArray(array $data)
     {
-        return $this->createAsserter()
-            ->fromArray($data)
-        ;
+        return $this->createAsserter()->fromArray($data);
     }
 }
