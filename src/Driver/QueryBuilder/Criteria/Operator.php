@@ -6,8 +6,8 @@ use Spy\Timeline\Driver\QueryBuilder\QueryBuilderFactory;
 
 class Operator implements CriteriaInterface
 {
-    CONST TYPE_AND = 'AND';
-    CONST TYPE_OR  = 'OR';
+    const TYPE_AND = 'AND';
+    const TYPE_OR  = 'OR';
 
     /**
      * @var string
@@ -89,7 +89,7 @@ class Operator implements CriteriaInterface
      */
     public function toArray()
     {
-        $criterias = array_map(function($criteria) {
+        $criterias = array_map(function ($criteria) {
             return $criteria->toArray();
         }, $this->getCriterias());
 
@@ -105,7 +105,7 @@ class Operator implements CriteriaInterface
      */
     public function fromArray(array $data, QueryBuilderFactory $factory)
     {
-        $criterias = array_map(function($v) use ($factory) {
+        $criterias = array_map(function ($v) use ($factory) {
             if ('operator' == $v['type']) {
                 return $factory->createOperatorFromArray($v);
             } elseif ('expr' == $v['type']) {

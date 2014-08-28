@@ -2,9 +2,9 @@
 
 namespace Spy\Timeline\ResolveComponent;
 
-use Spy\Timeline\ResolveComponent\ValueObject\ResolvedComponentData;
 use Spy\Timeline\Exception\ResolveComponentDataException;
 use Spy\Timeline\ResolveComponent\ValueObject\ResolveComponentModelIdentifier;
+use Spy\Timeline\ResolveComponent\ValueObject\ResolvedComponentData;
 
 /**
  * Basic implementation of a component data resolver.

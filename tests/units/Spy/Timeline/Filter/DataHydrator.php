@@ -2,10 +2,10 @@
 
 namespace tests\units\Spy\Timeline\Filter;
 
-require_once __DIR__ . '/../../../../../vendor/autoload.php';
+require_once __DIR__.'/../../../../../vendor/autoload.php';
 
-use mageekguy\atoum;
 use Spy\Timeline\Filter\DataHydrator as TestedModel;
+use mageekguy\atoum;
 
 class DataHydrator extends atoum\test
 {
@@ -40,7 +40,7 @@ class DataHydrator extends atoum\test
             // ---- build action ----
             ->and($component1 = new \Mock\ComponentInterface())
             ->and($component1->getMockController()->getModel = 'man')
-            ->and($component1->getMockController()->getHash= 'man#chuck')
+            ->and($component1->getMockController()->getHash = 'man#chuck')
             ->and($component2 = new \Mock\ComponentInterface())
             ->and($component2->getMockController()->getModel = 'man')
             ->and($component2->getMockController()->getHash = 'man#bruce')

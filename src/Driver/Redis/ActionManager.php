@@ -2,14 +2,13 @@
 
 namespace Spy\Timeline\Driver\Redis;
 
-use Spy\Timeline\ResolveComponent\ValueObject\ResolvedComponentData;
 use Spy\Timeline\Driver\AbstractActionManager;
 use Spy\Timeline\Driver\ActionManagerInterface;
 use Spy\Timeline\Model\ActionInterface;
 use Spy\Timeline\Model\ComponentInterface;
+use Spy\Timeline\ResolveComponent\ValueObject\ResolvedComponentData;
 use Spy\Timeline\ResultBuilder\ResultBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Spy\Timeline\ResolveComponent\ValueObject\ResolveComponentModelIdentifier;
 
 class ActionManager extends AbstractActionManager implements ActionManagerInterface
 {

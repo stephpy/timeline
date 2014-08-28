@@ -6,7 +6,7 @@ Spy Timeline Documentation
 
 Standalone library to make timeline with php.
 
-At this moment, only one driver is **redis**, use `Symfony2` and `Bundle <https://github.com/stephpy/TimelineBundle>`_ to have other drivers.
+At this moment, only one driver is **redis**, use `Symfony2` and `Bundle <https://github.com/stephpy/timeline-bundle>`_ to have other drivers.
 
 Description
 -----------
@@ -102,4 +102,4 @@ You can run tests with:
 
 Thanks
 ------
-Thanks to all `timeline contributors <https://github.com/stephpy/timeline/graphs/contributors>`_ and `bundle contributors <https://github.com/stephpy/TimelineBundle/graphs/contributors>`_.
+Thanks to all `timeline contributors <https://github.com/stephpy/timeline/graphs/contributors>`_ and `bundle contributors <https://github.com/stephpy/timeline-bundle/graphs/contributors>`_.

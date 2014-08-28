@@ -2,10 +2,10 @@
 
 namespace tests\units\Spy\Timeline\Driver\QueryBuilder\Criteria;
 
-require_once __DIR__ . '/../../../../../../../vendor/autoload.php';
+require_once __DIR__.'/../../../../../../../vendor/autoload.php';
 
-use mageekguy\atoum;
 use Spy\Timeline\Driver\QueryBuilder\Criteria\Asserter as TestedModel;
+use mageekguy\atoum;
 
 class Asserter extends atoum\test
 {

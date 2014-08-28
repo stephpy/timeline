@@ -3,8 +3,8 @@
 namespace Spy\Timeline\Filter\DataHydrator;
 
 use Doctrine\Common\Persistence\Proxy;
-use Spy\Timeline\Model\ActionInterface;
 use Spy\Timeline\Model\ActionComponentInterface;
+use Spy\Timeline\Model\ActionInterface;
 
 class Entry
 {

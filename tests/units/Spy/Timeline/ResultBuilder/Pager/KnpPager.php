@@ -2,10 +2,10 @@
 
 namespace tests\units\Spy\Timeline\ResultBuilder\Pager;
 
-require_once __DIR__ . '/../../../../../../vendor/autoload.php';
+require_once __DIR__.'/../../../../../../vendor/autoload.php';
 
-use mageekguy\atoum;
 use Spy\Timeline\ResultBuilder\Pager\KnpPager as TestedModel;
+use mageekguy\atoum;
 
 class KnpPager extends atoum\test
 {

@@ -39,7 +39,7 @@ abstract class AbstractPager
 
         return array_values(
             array_map(
-                function($v) {
+                function ($v) {
                     return unserialize($v);
                 },
                 $datas

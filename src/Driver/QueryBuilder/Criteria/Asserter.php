@@ -4,16 +4,16 @@ namespace Spy\Timeline\Driver\QueryBuilder\Criteria;
 
 class Asserter implements CriteriaInterface
 {
-    CONST ASSERTER_EQUAL               = '=';
-    CONST ASSERTER_NOT_EQUAL           = '!=';
-    CONST ASSERTER_IN                  = 'IN';
-    CONST ASSERTER_NOT_IN              = 'NOT IN';
-    CONST ASSERTER_LIKE                = 'LIKE';
-    CONST ASSERTER_NOT_LIKE            = 'NOT LIKE';
-    CONST ASSERTER_LOWER_THAN          = '<';
-    CONST ASSERTER_LOWER_THAN_EQUAL    = '<=';
-    CONST ASSERTER_GREATER_THAN       = '>';
-    CONST ASSERTER_GREATER_THAN_EQUAL = '>=';
+    const ASSERTER_EQUAL               = '=';
+    const ASSERTER_NOT_EQUAL           = '!=';
+    const ASSERTER_IN                  = 'IN';
+    const ASSERTER_NOT_IN              = 'NOT IN';
+    const ASSERTER_LIKE                = 'LIKE';
+    const ASSERTER_NOT_LIKE            = 'NOT LIKE';
+    const ASSERTER_LOWER_THAN          = '<';
+    const ASSERTER_LOWER_THAN_EQUAL    = '<=';
+    const ASSERTER_GREATER_THAN       = '>';
+    const ASSERTER_GREATER_THAN_EQUAL = '>=';
 
     /**
      * @var string
@@ -131,7 +131,6 @@ class Asserter implements CriteriaInterface
     {
         return $this->create(self::ASSERTER_GREATER_THAN_EQUAL, $this->transform($value));
     }
-
 
     /**
      * @param string $operator operator

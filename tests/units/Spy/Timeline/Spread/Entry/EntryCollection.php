@@ -2,10 +2,10 @@
 
 namespace tests\units\Spy\Timeline\Spread\Entry;
 
-require_once __DIR__ . '/../../../../../../vendor/autoload.php';
+require_once __DIR__.'/../../../../../../vendor/autoload.php';
 
-use mageekguy\atoum;
 use Spy\Timeline\Spread\Entry\EntryCollection as TestedModel;
+use mageekguy\atoum;
 
 class EntryCollection extends atoum\test
 {

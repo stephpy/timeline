@@ -2,16 +2,16 @@
 
 namespace Spy\Timeline\Driver\Redis;
 
-use Spy\Timeline\ResultBuilder\QueryExecutor\QueryExecutorInterface;
-use Spy\Timeline\Driver\Redis\Pager\PagerToken;
 use Spy\Timeline\Driver\Redis\Pager\AbstractPager;
+use Spy\Timeline\Driver\Redis\Pager\PagerToken;
+use Spy\Timeline\ResultBuilder\QueryExecutor\QueryExecutorInterface;
 
 class QueryExecutor extends AbstractPager implements QueryExecutorInterface
 {
     /**
-     * @param mixed $query query
-     * @param int $page page
-     * @param int $maxPerPage maxPerPage
+     * @param mixed $query      query
+     * @param int   $page       page
+     * @param int   $maxPerPage maxPerPage
      *
      * @throws \Exception
      * @return \Traversable

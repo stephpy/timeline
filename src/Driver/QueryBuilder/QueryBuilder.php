@@ -98,7 +98,7 @@ class QueryBuilder
 
     /**
      * @param string $type type
-     * @param array $args args
+     * @param array  $args args
      *
      * @return Operator
      */
@@ -227,8 +227,8 @@ class QueryBuilder
     }
 
     /**
-     * @param array $data data
-     * @param ActionManagerInterface $actionManager actionManager
+     * @param  array                  $data          data
+     * @param  ActionManagerInterface $actionManager actionManager
      * @throws \Exception
      * @return $this
      */

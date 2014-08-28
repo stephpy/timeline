@@ -5,9 +5,9 @@ namespace Spy\Timeline\ResultBuilder\Pager;
 interface PagerInterface
 {
     /**
-     * @param mixed $target  target
-     * @param int   $page    page
-     * @param int   $limit   limit
+     * @param mixed $target target
+     * @param int   $page   page
+     * @param int   $limit  limit
      *
      * @return mixed
      */

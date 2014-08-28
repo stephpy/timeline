@@ -75,7 +75,7 @@ class ResolvedComponentData
     public function getIdentifier()
     {
         if (is_scalar($this->identifier)) {
-            return (string)$this->identifier;
+            return (string) $this->identifier;
         }
 
         return $this->identifier;

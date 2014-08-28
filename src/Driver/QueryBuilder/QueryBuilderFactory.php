@@ -2,11 +2,11 @@
 
 namespace Spy\Timeline\Driver\QueryBuilder;
 
-use Spy\Timeline\Driver\QueryBuilder\Criteria\CriteriaInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use Spy\Timeline\Driver\ActionManagerInterface;
 use Spy\Timeline\Driver\QueryBuilder\Criteria\Asserter;
+use Spy\Timeline\Driver\QueryBuilder\Criteria\CriteriaInterface;
 use Spy\Timeline\Driver\QueryBuilder\Criteria\Operator;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class QueryBuilderFactory
 {

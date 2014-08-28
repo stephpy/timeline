@@ -3,8 +3,8 @@
 namespace Spy\Timeline\ResultBuilder;
 
 use Spy\Timeline\Filter\FilterManagerInterface;
-use Spy\Timeline\ResultBuilder\QueryExecutor\QueryExecutorInterface;
 use Spy\Timeline\ResultBuilder\Pager\PagerInterface;
+use Spy\Timeline\ResultBuilder\QueryExecutor\QueryExecutorInterface;
 
 class ResultBuilder implements ResultBuilderInterface
 {
@@ -38,7 +38,7 @@ class ResultBuilder implements ResultBuilderInterface
     }
 
     /**
-     * @param mixed   $query     target
+     * @param mixed   $query      target
      * @param int     $page       page
      * @param int     $maxPerPage maxPerPage
      * @param boolean $filter     filter

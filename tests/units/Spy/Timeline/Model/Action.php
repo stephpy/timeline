@@ -2,11 +2,11 @@
 
 namespace tests\units\Spy\Timeline\Model;
 
-require_once __DIR__ . '/../../../../../vendor/autoload.php';
+require_once __DIR__.'/../../../../../vendor/autoload.php';
 
-use mageekguy\atoum;
 use Spy\Timeline\Model\Action as TestedModel;
 use Spy\Timeline\Model\ActionInterface;
+use mageekguy\atoum;
 
 class Action extends atoum\test
 {
@@ -24,7 +24,7 @@ class Action extends atoum\test
     public function testAddComponent()
     {
         $this->if($action = new TestedModel())
-            ->exception(function() use ($action) {
+            ->exception(function () use ($action) {
                 $action->addComponent('subject', new \stdClass(), '\Spy\Timeline\Model\ActionComponent');
             })
             ->isInstanceOf('\InvalidArgumentException')

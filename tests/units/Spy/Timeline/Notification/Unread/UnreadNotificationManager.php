@@ -2,12 +2,12 @@
 
 namespace tests\units\Spy\Timeline\Notification\Unread;
 
-require_once __DIR__ . '/../../../../../../vendor/autoload.php';
+require_once __DIR__.'/../../../../../../vendor/autoload.php';
 
-use mageekguy\atoum;
 use Spy\Timeline\Notification\Unread\UnreadNotificationManager as TestedModel;
-use Spy\Timeline\Spread\Entry\EntryCollection;
 use Spy\Timeline\Spread\Entry\Entry;
+use Spy\Timeline\Spread\Entry\EntryCollection;
+use mageekguy\atoum;
 
 class UnreadNotificationManager extends atoum\test
 {
