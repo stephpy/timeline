@@ -22,9 +22,9 @@ Example:
 +--------------+---------+--------------------------------------------------------------------+
 |   Subject    |  Verb   | Complements                                                        |
 +==============+=========+====================================================================+
-| Chuck Norris | own     | the world (directComplement), with Vic Mc Key (indirectComplement) |
+| Chuck Norris | owns    | the world (directComplement), with Vic Mc Key (indirectComplement) |
 +--------------+---------+--------------------------------------------------------------------+
-| Sheldon      | say     | Bazinga (directComplement)                                         |
+| Sheldon      | says    | Bazinga (directComplement)                                         |
 +--------------+---------+--------------------------------------------------------------------+
 
 There are two types of action lists to retrieve:
