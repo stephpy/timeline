@@ -2,6 +2,7 @@
 
 namespace Spy\Timeline\ResolveComponent;
 
+use Doctrine\Common\Util\ClassUtils;
 use Spy\Timeline\Exception\ResolveComponentDataException;
 use Spy\Timeline\ResolveComponent\ValueObject\ResolveComponentModelIdentifier;
 use Spy\Timeline\ResolveComponent\ValueObject\ResolvedComponentData;
@@ -31,7 +32,7 @@ class BasicComponentDataResolver implements ComponentDataResolverInterface
         $data = null;
         if (is_object($model)) {
             $data = $model;
-            $modelClass = get_class($model);
+            $modelClass = ClassUtils::getRealClass(get_class($model));
 
             if (!method_exists($model, 'getId')) {
                 throw new ResolveComponentDataException('Model must have a getId method');
