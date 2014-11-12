@@ -32,7 +32,7 @@ class BasicComponentDataResolver implements ComponentDataResolverInterface
         $data = null;
         if (is_object($model)) {
             $data = $model;
-            $modelClass = ClassUtils::getRealClass(get_class($model));
+            $modelClass = get_class($model);
 
             if (!method_exists($model, 'getId')) {
                 throw new ResolveComponentDataException('Model must have a getId method');
@@ -41,6 +41,8 @@ class BasicComponentDataResolver implements ComponentDataResolverInterface
             $identifier = $model->getId();
             $model = $modelClass;
         }
+
+        $model = ClassUtils::getRealClass($model);
 
         return new ResolvedComponentData($model, $identifier, $data);
     }
