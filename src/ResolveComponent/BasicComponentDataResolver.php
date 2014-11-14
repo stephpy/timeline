@@ -2,6 +2,7 @@
 
 namespace Spy\Timeline\ResolveComponent;
 
+use Doctrine\Common\Util\ClassUtils;
 use Spy\Timeline\Exception\ResolveComponentDataException;
 use Spy\Timeline\ResolveComponent\ValueObject\ResolveComponentModelIdentifier;
 use Spy\Timeline\ResolveComponent\ValueObject\ResolvedComponentData;
@@ -40,6 +41,8 @@ class BasicComponentDataResolver implements ComponentDataResolverInterface
             $identifier = $model->getId();
             $model = $modelClass;
         }
+
+        $model = ClassUtils::getRealClass($model);
 
         return new ResolvedComponentData($model, $identifier, $data);
     }
