@@ -17,8 +17,13 @@ class DuplicateKey extends AbstractFilter implements FilterInterface
     public function filter($collection)
     {
         $duplicateKeys = array();
+        $clonedCollection = array();
 
-        foreach ($collection as $key => $action) {
+        foreach ($collection as $key => $value) {
+            $clonedCollection[$key] = $value;
+        }
+
+        foreach ($clonedCollection as $key => $action) {
             if ($action instanceof TimelineInterface) {
                 $action = $action->getAction();
             }
