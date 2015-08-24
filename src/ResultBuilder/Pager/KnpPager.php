@@ -39,7 +39,7 @@ class KnpPager extends AbstractPager implements PagerInterface, \IteratorAggrega
         }
 
         $this->page  = $page;
-        $this->pager = $this->paginator->paginate($target, $page, $limit);
+        $this->pager = $this->paginator->paginate($target, $page, $limit, array('distinct' => true));
         $this->data  = $this->pager->getPaginationData();
 
         return $this;
