@@ -201,6 +201,15 @@ class QueryBuilder
     }
 
     /**
+     * @param string $field    field
+     * @param string $location location
+     */
+    public function addFieldLocation($field, $location)
+    {
+        self::$fieldLocation[$field] = $location;
+    }
+
+    /**
      * @param string $field field
      *
      * @return string
@@ -215,15 +224,7 @@ class QueryBuilder
      */
     public function getAvailableFields()
     {
-        return array(
-            'context',
-            'verb',
-            'createdAt',
-            'type',
-            'text',
-            'model',
-            'identifier',
-        );
+        return array_keys(self::$fieldLocation);
     }
 
     /**
