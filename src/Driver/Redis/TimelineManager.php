@@ -195,7 +195,7 @@ class TimelineManager implements TimelineManagerInterface
 
         if ($this->pipeline) {
             //Predis as a specific way to flush pipeline.
-            if ($client instanceof \Predis\Pipeline\PipelineContext) {
+            if ($client instanceof \Predis\Pipeline\PipelineContext || $client instanceof \Predis\Pipeline\Pipeline) {
                 $replies = $client->execute();
             } else {
                 $replies = $client->exec();
