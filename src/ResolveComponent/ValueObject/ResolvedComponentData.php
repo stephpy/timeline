@@ -2,6 +2,7 @@
 
 namespace Spy\Timeline\ResolveComponent\ValueObject;
 
+use Spy\Timeline\Model\HashTrait;
 use Spy\Timeline\Exception\ResolveComponentDataException;
 
 /**
@@ -9,6 +10,8 @@ use Spy\Timeline\Exception\ResolveComponentDataException;
  */
 class ResolvedComponentData
 {
+    use HashTrait;
+
     /**
      * The resolved model string.
      *
@@ -43,6 +46,7 @@ class ResolvedComponentData
         $this->model = $model;
         $this->identifier = $identifier;
         $this->data = $data;
+        $this->buildHash();
     }
 
     /**

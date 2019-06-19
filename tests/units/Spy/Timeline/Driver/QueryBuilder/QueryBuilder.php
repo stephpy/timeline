@@ -61,7 +61,7 @@ class QueryBuilder extends atoum\test
                 $qb->field('unknownfield');
             })
                 ->isInstanceOf('\InvalidArgumentException')
-                ->hasMessage('Field "unknownfield" not supported, prefer: context, verb, createdAt, type, text, model, identifier')
+                ->hasMessage('Field "unknownfield" not supported, prefer: context, createdAt, verb, type, text, model, identifier')
             // real field
             ->and($resultExpected = new Asserter())
             ->and($resultExpected->field('createdAt'))
@@ -77,7 +77,7 @@ class QueryBuilder extends atoum\test
                 $qb->orderBy('unknownfield', 'ASC');
             })
                 ->isInstanceOf('\InvalidArgumentException')
-                ->hasMessage('Field "unknownfield" not supported, prefer: context, verb, createdAt, type, text, model, identifier')
+                ->hasMessage('Field "unknownfield" not supported, prefer: context, createdAt, verb, type, text, model, identifier')
             // bad order
             ->exception(function () use ($qb) {
                 $qb->orderBy('createdAt', 'badorder');
