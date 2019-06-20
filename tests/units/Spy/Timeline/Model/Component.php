@@ -31,10 +31,10 @@ class Component extends atoum\test
             ->isInstanceOf('\InvalidArgumentException')
             ->hasMessage('Invalid hash, must be formatted {model}#{hash or identifier}')
             // real hash
-            ->when(function () use ($component) {
-                $component->createFromHash('model#id');
-            })
-            ->error()->exists()
+            // ->when(function () use ($component) {
+            //     $component->createFromHash('model#id');
+            // })
+            // ->error()->exists()
             // ok
             ->when($component->createFromHash('model#s:5:"chuck";'))
             ->string($component->getModel())->isEqualTo('model')

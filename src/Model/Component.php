@@ -4,6 +4,8 @@ namespace Spy\Timeline\Model;
 
 class Component implements ComponentInterface
 {
+    use HashTrait;
+
     /**
      * @var integer
      */
@@ -20,32 +22,11 @@ class Component implements ComponentInterface
     protected $identifier;
 
     /**
-     * @var string
-     */
-    protected $hash;
-
-    /**
      * Data defined on this component.
      *
      * @var mixed
      */
     protected $data;
-
-    /**
-     * {@inheritdoc}
-     */
-    public function buildHash()
-    {
-        $this->hash = $this->getModel().'#'.serialize($this->getIdentifier());
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getHash()
-    {
-        return $this->hash;
-    }
 
     /**
      * {@inheritdoc}

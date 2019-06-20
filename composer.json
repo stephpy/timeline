@@ -10,7 +10,7 @@
         "homepage": "https://github.com/stephpy/timeline/contributors"
     }],
     "require": {
-        "php": ">=5.3.2",
+        "php": ">=5.6.0",
         "symfony/options-resolver": "*",
         "doctrine/common": "~2.2"
     },
